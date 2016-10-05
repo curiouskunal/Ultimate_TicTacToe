@@ -1,6 +1,7 @@
 *.auxf
 *.log
 *.gz
+*.pdf
 *.dvi
 *.bbl
 # OS generated files #
