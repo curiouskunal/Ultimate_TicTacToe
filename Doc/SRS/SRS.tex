@@ -82,31 +82,29 @@ User characteristics should go under assumptions.
 \subsubsection{Work Partitioning}
 The development of this game is shared evenly between the two team members. The game logic is developed by both members. The graphical portion is mainly going to be done by Kunal, and the server portion will be done by Pareek.
 \subsubsection{Individual Product Use Cases}
-
+One of a possible use case is when a player might possibly disconnect from their internet connection, but when their internet resumes, they wish to reconnect to the game. Another case is if a player wished to change the device they are playing on during an on going game. There could be a case where both players agree that a player should be able to revert back by one move they made, in which case the game will undo the user’s last move. The general use case if of course two users playing on their devices without any flaws from start to end.
 \subsection{Functional Requirements}
-
+Some of the functional requirements are that the game will display a game board on the user’s device screen, the user’s move will be registered, recorded and reflected on the game board. In addition, the game will determine when a player has taken control of a square, when the square square is dumped and when the game is won. The game logic will also determine in which square the next player will make their move based on the previous player’s move. In order for the game to be played over the internet, the game would need to communicate to both devices through means of a server. 
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
-
+In order to make the game easy to use, clear instructions will be provided to help them. With the use of unique but neutral colors, the aesthetics of the game will also make it an enjoyable experience. Computers using a browser with strong HTML5 support will be able to run the game easily. Interactive sounds will be played when a user makes a move and to notify them that their opponent has made their move. Smooth calming background music will also be played to make the experience enjoyable.
 \subsection{Usability and Humanity Requirements}
-
+The game must have an easy UI which is not difficult to use or learn. Both the touch interface and click interface should both work smoothly. There should a be a tab for instructions on both the rules of the game, but also how to play the game for those who might not know.
 \subsection{Performance Requirements}
-
+As this game will be played over the internet, it would be necessary for the speed of the information transfer to be very fast. It would not be acceptable if there was a long delay to record the move on another player’s board. The game board would also need to be constantly updated. If the game logic knows the player’s move, but it is not reflected on the board, that would be an issue. When the user is using the touch interface, it is important to ensure that the layout is such that the player does not accidentally make a move they did not intend to make. A certain level of precision is required to ensure this doesn’t happen. Currently the game will be run on a local server, but in the future, a larger server would be required to to match the demand for the game and ensure that the server’s capacity is sufficient. The server should be reliable and available at all times such that it does not crash leaving people without the ability to play the game.
 \subsection{Operational and Environmental Requirements}
-
+In order for the user to play this game, the system requirements are not very high. As long as they are using a web browser (preferably Google Chrome) and have a stable internet connection, the game should run smoothly. If the ping of a user’s internet is very poor, it would cause some issues in communicating with the other player.
 \subsection{Maintainability and Support Requirements}
-
+The game should be easy to maintain as the only factor that would need constant care is the server. The game logic is not complicated and would be simple to fix if there were an error, but the server would be a challenge. If the server were to reach capacity, it would take some time to transfer to a larger server. It is currently impractical to use a large server for this product, but should the demand rise, larger servers can be prepared to transfer over to.
 \subsection{Security Requirements}
-
+Since this game is being run over the internet, there is always the matter of internet security. It is important that there be a certain level of encryption to ensure that the information being transferred is safe and protected. 
 \subsection{Cultural Requirements}
 
 \subsection{Legal Requirements}
-
+From a legal standpoint the main requirement is that we must not have access to any personal information from the users from when they connect to the internet. This game if it were to be rated by the ESRB, would have a rating of E for everyone. 
 \subsection{Health and Safety Requirements}
-
-This section is not in the original Volere template, but health and safety are
-issues that should be considered for every engineering project.
+When the game is being played, to ensure there is no possible cause of epilepsy from the colors, very mild and neutral colors will be used to represent each player. Majority of the health and safety is on the owness of the user to ensure they are not walking and playing or are not playing the game for prolonged periods of time which could damage their health.
 
 \section{Project Issues}
 
