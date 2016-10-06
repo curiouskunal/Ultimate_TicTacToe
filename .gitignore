@@ -1,9 +1,14 @@
-*.auxf
+*.aux
 *.log
 *.gz
 *.pdf
 *.dvi
 *.bbl
+*.out
+*.lof
+*.lot
+*.toc
+*.blg
 # OS generated files #
 ######################
 .DS_Store
