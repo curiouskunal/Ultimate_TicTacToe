@@ -1,198 +1,208 @@
-<h1> Ultimate Tic-Tac-Toe</h1>
-<head>
-<link rel="stylesheet" type="text/css" href="format.css">
-</head> 
-<br>
-<br>
+<!DOCTYPE html>
 
-<table class="fullBoard">
-	<!-- row1 -->
-	<tr class="innerBoard">
-		<!-- col 1 -->
-		<td class="bigSquare">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 2 -->
-		<td class="bigSquare vert">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 3 -->
-		<td class="bigSquare">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-	<!-- row 2 -->
-	</tr>
-	<tr class="innerBoard">
-		<!-- col 1 -->
-		<td class="bigSquare hor">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 2  -->
-		<td class="bigSquare vert hor">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 3 -->
-		<td class="bigSquare hor">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-	</tr>
-	<!-- row 3 -->
-	<tr class="innerBoard">
-		<!-- col 1 -->
-		<td class="bigSquare">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 2 -->
-		<td class="bigSquare vert">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-		<!-- col 3 -->
-		<td class="bigSquare">
-			<table class="smallBoard">
-		    	<tr class="cell">
-		        	<td class="square">Cell: A - 00</td>
-		        	<td class="square v">Cell: A - 01</td>
-		        	<td class="square">Cell: A - 02</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square h">Cell: A - 10</td>
-			        <td class="square v h">Cell: A - 11</td>
-			        <td class="square h">Cell: A - 12</td>
-			    </tr>
-			    <tr class="cell">
-			        <td class="square">Cell: A - 20</td>
-			        <td class="square v">Cell: A - 21</td>
-			        <td class="square">Cell: A - 22</td>
-			    </tr>
-			</table>
-		</td>
-	</tr>
-</table>
+<head>
+  <title>Ultimate TicTacToe</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body onload="startGame();">
+
+  <div class = center>
+
+    <h1>Welcome to my Tic-Tac-Toe game!</h1>
+
+    <div id="message">X gets to start.</div>
+
+    <table class= mainTable > <!-- table of tables  -->
+      <tr> <!-- Row 1  -->
+        <td id="B10" class = box>
+          <table > <!-- Col 1  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B11" class = box>
+          <table > <!-- Col 2  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B12" class = box>
+          <table > <!-- Col 3  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr> <!-- Row 2  -->
+        <td id="B20" class = box>
+          <table > <!-- Col 1  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B21" class = box>
+          <table > <!-- Col 2  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B22" class = box>
+          <table > <!-- Col 3  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr> <!-- Row 3 -->
+        <td id="B30" class = box>
+          <table > <!-- Col 1  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B31" class = box >
+          <table > <!-- Col 2  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+
+        <td id="B32" class = box >
+          <table > <!-- Col 3  -->
+            <tr>
+              <td id="s1" class="Square" onclick="nextMove(this);"></td>
+              <td id="s2" class="Square" onclick="nextMove(this);"></td>
+              <td id="s3" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s4" class="Square" onclick="nextMove(this);"></td>
+              <td id="s5" class="Square" onclick="nextMove(this);"></td>
+              <td id="s6" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+            <tr>
+              <td id="s7" class="Square" onclick="nextMove(this);"></td>
+              <td id="s8" class="Square" onclick="nextMove(this);"></td>
+              <td id="s9" class="Square" onclick="nextMove(this);"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table> <!-- close table of tables  -->
+
+
+    <!-- <a href="javascript:startGame();">Start Over</a> -->
+  </div>
+</body>
+</html>
