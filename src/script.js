@@ -33,6 +33,21 @@ function nextMove(square) {
 	}
 }
 
+// test for replacing sub games into Winner Symbol
+function testMove(){
+	document.getElementById("B00").innerHTML = "X";
+	document.getElementById("B01").innerHTML = "-";
+	document.getElementById("B02").innerHTML = "O";
+	document.getElementById("B10").innerHTML = "-";
+	document.getElementById("B11").innerHTML = "X";
+	document.getElementById("B12").innerHTML = "O";
+	document.getElementById("B20").innerHTML = "O";
+	document.getElementById("B21").innerHTML = "O";
+	document.getElementById("B22").innerHTML = "X";
+}
+
+
+
 // alternates player turn
 function switchTurn() {
 	if (document.turn == "X") {
@@ -60,13 +75,17 @@ function checkCompletedBoard(square){
 	//getting the inner board as a 2d array
 	var innerBoard = getBoard(boardTable);
 	//identifying the col and row of the innerBoard in terms of the fullBoard
-	var row = boardID.charAt(1)-1;
+	var row = boardID.charAt(1);
 	var col = boardID.charAt(2);
 
 	// row 1
 	if (innerBoard[0][0] == square.innerText && innerBoard [0][1] == square.innerText && innerBoard[0][2] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -74,6 +93,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[1][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[1][2] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -81,6 +104,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[2][0] == square.innerText && innerBoard [2][1] == square.innerText && innerBoard[2][2] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -88,6 +115,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[0][0] == square.innerText && innerBoard [1][0] == square.innerText && innerBoard[2][0] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -95,6 +126,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[0][1] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][1] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -102,6 +137,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[0][2] == square.innerText && innerBoard [1][2] == square.innerText && innerBoard[2][2] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -109,6 +148,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[0][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][2] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
@@ -116,6 +159,10 @@ function checkCompletedBoard(square){
 	else if (innerBoard[0][2] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][0] == square.innerText){
 		//changing the color of the inner board to show a win
 		document.getElementById(boardID) .style.backgroundColor = color;
+		
+		//changing the label of the inner board to show a win
+		document.getElementById(boardID).innerHTML = document.turn;
+
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}

@@ -27,6 +27,13 @@
 .box{
 	/*background-color: black;*/
 	/*border: 5px solid var(--colour);*/
+
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	font-size: 80pt;
+	font-family: Verdana;
+
 }
 
 
@@ -43,34 +50,34 @@ table {
 
 /*Row 1 */
 
-#B10{
+#B00{
 	border-right: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 }
-#B11{
+#B01{
 	border-left: 5px solid var(--colour);
 	border-right: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 }
-#B12{
+#B02{
 	border-left: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 }
 
 /*Row 2 */
 
-#B20{
+#B10{
 	border-right: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
-#B21{
+#B11{
 	border-left: 5px solid var(--colour);
 	border-right: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
-#B22{
+#B12{
 	border-left: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
@@ -78,16 +85,16 @@ table {
 
 /*Row 3*/
 
-#B30{
+#B20{
 	border-right: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
-#B31{
+#B21{
 	border-left: 5px solid var(--colour);
 	border-right: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
-#B32{
+#B22{
 	border-left: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
