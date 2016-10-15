@@ -1,19 +1,27 @@
+
+// game setup. called at startup.
+// determines who will start
 function startGame() {
 	document.turn = "X";
-
+	if (Math.random() < 0.5) {
+		document.turn = "O";
+	}
 	setMessage(document.turn + " gets to start.");
 }
 
+// will set status message
 function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
 
+// switches player and updates message
 function nextMove(square) {
 	square.innerText = document.turn;
 	checkCompletedBoard(square);
 	switchTurn();
 }
 
+// alternates player turn
 function switchTurn() {
 	if (document.turn == "X") {
 		document.turn = "O";
