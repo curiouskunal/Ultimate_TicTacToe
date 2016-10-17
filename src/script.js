@@ -26,8 +26,21 @@ function setMessage(msg) {
 
 // switches player and updates message
 function nextMove(square) {
+	// if tile is empty
 	if(square.innerText == ""){
+		
+		// Print move to board
 		square.innerText = document.turn;
+
+		// log player move.
+		console.log("player: " + document.turn + " Played at: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id);
+
+		// display as last move
+		document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
+
+		changeColour(square);
+
+		// Check if win then change turn
 		checkCompletedBoard(square);
 		switchTurn();
 	}
@@ -47,7 +60,6 @@ function testMove(){
 }
 
 
-
 // alternates player turn
 function switchTurn() {
 	if (document.turn == "X") {
@@ -55,8 +67,46 @@ function switchTurn() {
 	} else {
 		document.turn = "X";
 	}
-
 	setMessage("It's " + document.turn + "'s turn!");
+
+}
+
+function changeColour(square){
+	
+	var boardID = square.parentNode.parentNode.parentNode.parentNode.id;
+	var tileID = square.id;
+
+	// Clean Board
+	for (var i = 0; i < 3; i++) { 
+  		for (var j = 0; j < 3; j++) { 
+    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
+		}
+	}
+
+	// set Next move's playable region
+
+	if (tileID == "s1"){
+		boardID = 'B00';
+	}else if (tileID == "s2"){
+		boardID = 'B01';
+	}else if (tileID == "s3"){
+		boardID = 'B02';
+	}else if (tileID == "s4"){
+		boardID = 'B10';
+	}else if (tileID == "s5"){
+		boardID = 'B11';
+	}else if (tileID == "s6"){
+		boardID = 'B12';
+	}else if (tileID == "s7"){
+		boardID = 'B20';
+	}else if (tileID == "s8"){
+		boardID = 'B21';
+	}else if (tileID == "s9"){
+		boardID = 'B22';
+	}
+
+	document.getElementById(boardID) .style.backgroundColor = "#79A6D8";
+
 }
 
 function checkCompletedBoard(square){
