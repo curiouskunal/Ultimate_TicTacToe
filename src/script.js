@@ -1,3 +1,4 @@
+var setColor = "#79A6D8"
 var fullBoard = [[],[],[]];
 fullBoard[0][0] = null;
 fullBoard[0][1] = null;
@@ -75,18 +76,8 @@ function switchTurn() {
 
 function changeColour(square){
 	
-	var boardID = square.parentNode.parentNode.parentNode.parentNode.id;
+	var boardID;
 	var tileID = square.id;
-
-	// loop through the whole board
-	for (var i = 0; i < 3; i++) { 
-  		for (var j = 0; j < 3; j++) { 
-  			// clear all backgound colour
-    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
-    		// set whole board un-clickable
-    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
-		}
-	}
 
 	// set Next move's playable region boardID
 	
@@ -119,11 +110,35 @@ function changeColour(square){
 			boardID = 'B22';
 			break;
 	}
-
-	// set playable region backgound colour to indicate active area.
-	document.getElementById(boardID) .style.backgroundColor = "#79A6D8";
-	// set region clickable
-	document.getElementById(boardID).style.pointerEvents = 'auto'	
+	if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
+		for (var i = 0; i < 3; i++) {
+			for (var j = 0; j < 3; j++) {
+	  			// set all backgound colour
+	    		document.getElementById("B"+i+j) .style.backgroundColor = setColor;
+	    		// set whole board clickable
+	    		document.getElementById("B"+i+j).style.pointerEvents = 'auto';
+			}
+		}
+		// set un-playable region backgound colour to indicate active area.
+		document.getElementById(boardID) .style.backgroundColor = 'white';
+		// set region un-clickable
+		document.getElementById(boardID).style.pointerEvents = 'none'
+	}
+	else {
+		// loop through the whole board
+		for (var i = 0; i < 3; i++) { 
+			for (var j = 0; j < 3; j++) { 
+	  			// clear all backgound colour
+	    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
+	    		// set whole board un-clickable
+	    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
+			}
+		}
+		// set playable region backgound colour to indicate active area.
+		document.getElementById(boardID) .style.backgroundColor = setColor;
+		// set region clickable
+		document.getElementById(boardID).style.pointerEvents = 'auto'
+	}	
 
 }
 
@@ -251,10 +266,6 @@ function checkCompletedBoard(square){
 			document.getElementById(boardID).innerHTML = "-";
 		}
 	}
-
-	
-	
-
 
 	checkWin();
 }
