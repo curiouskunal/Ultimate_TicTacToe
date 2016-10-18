@@ -38,11 +38,13 @@ function nextMove(square) {
 		// display as last move
 		document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
 
-		changeColour(square);
-
 		// Check if win then change turn
 		checkCompletedBoard(square);
+
+		changeColour(square);
+
 		switchTurn();
+		console.log(fullBoard);
 	}
 }
 
@@ -87,30 +89,41 @@ function changeColour(square){
 	}
 
 	// set Next move's playable region boardID
-	if (tileID == "s1"){
-		boardID = 'B00';
-	}else if (tileID == "s2"){
-		boardID = 'B01';
-	}else if (tileID == "s3"){
-		boardID = 'B02';
-	}else if (tileID == "s4"){
-		boardID = 'B10';
-	}else if (tileID == "s5"){
-		boardID = 'B11';
-	}else if (tileID == "s6"){
-		boardID = 'B12';
-	}else if (tileID == "s7"){
-		boardID = 'B20';
-	}else if (tileID == "s8"){
-		boardID = 'B21';
-	}else if (tileID == "s9"){
-		boardID = 'B22';
+	
+	switch(tileID) {
+		case "s1":
+			boardID = 'B00';
+			break;
+		case "s2":
+			boardID = 'B01';
+			break;
+		case "s3":
+			boardID = 'B02';
+			break;
+		case "s4":
+			boardID = 'B10';
+			break;
+		case "s5":
+			boardID = 'B11';
+			break;
+		case "s6":
+			boardID = 'B12';
+			break;
+		case "s7":
+			boardID = 'B20';
+			break;
+		case "s8":
+			boardID = 'B21';
+			break;
+		case "s9":
+			boardID = 'B22';
+			break;
 	}
 
 	// set playable region backgound colour to indicate active area.
 	document.getElementById(boardID) .style.backgroundColor = "#79A6D8";
 	// set region clickable
-	document.getElementById(boardID).style.pointerEvents = 'auto';
+	document.getElementById(boardID).style.pointerEvents = 'auto'	
 
 }
 
@@ -221,6 +234,25 @@ function checkCompletedBoard(square){
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
+
+	
+	var flag = true;
+	
+	for (var i = 0; i < 3; i++){
+		for (var j = 0; j<3; j++){
+			if (innerBoard[i][j] == ""){
+				flag = false;
+				break;
+			}
+		}
+	}
+
+	if (flag){
+		fullBoard[col][row] = "-";
+		document.getElementById(boardID).innerHTML = "-";
+	}
+
+
 	checkWin();
 }
 
@@ -271,4 +303,4 @@ function getBoard(boardTable){
 	}
 	return innerBoard;
 }
-console.log(fullBoard);
+// console.log(fullBoard);
