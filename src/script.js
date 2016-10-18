@@ -10,6 +10,8 @@ fullBoard[2][0] = null;
 fullBoard[2][1] = null;
 fullBoard[2][2] = null;
 
+console.log(fullBoard);
+
 // game setup. called at startup.
 // determines who will start
 function startGame() {
@@ -45,7 +47,6 @@ function nextMove(square) {
 		changeColour(square);
 
 		switchTurn();
-		console.log(fullBoard);
 	}
 }
 
