@@ -234,23 +234,26 @@ function checkCompletedBoard(square){
 		//indicating on the full board that the inner board is won
 		fullBoard[col][row] = square.innerText;
 	}
+	else{
+		var flag = true;
 
-	
-	var flag = true;
-	
-	for (var i = 0; i < 3; i++){
-		for (var j = 0; j<3; j++){
-			if (innerBoard[i][j] == ""){
-				flag = false;
-				break;
+		for (var i = 0; i < 3; i++){
+			for (var j = 0; j<3; j++){
+				if (innerBoard[i][j] == ""){
+					flag = false;
+					break;
+				}
 			}
+		}
+
+		if (flag){
+			fullBoard[col][row] = "-";
+			document.getElementById(boardID).innerHTML = "-";
 		}
 	}
 
-	if (flag){
-		fullBoard[col][row] = "-";
-		document.getElementById(boardID).innerHTML = "-";
-	}
+	
+	
 
 
 	checkWin();
