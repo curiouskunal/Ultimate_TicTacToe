@@ -10,7 +10,7 @@ fullBoard[2][0] = null;
 fullBoard[2][1] = null;
 fullBoard[2][2] = null;
 
-console.log(fullBoard);
+var win = null;
 
 // game setup. called at startup.
 // determines who will start
@@ -29,24 +29,34 @@ function setMessage(msg) {
 
 // switches player and updates message
 function nextMove(square) {
-	// if tile is empty
-	if(square.innerText == ""){
-		
-		// Print move to board
-		square.innerText = document.turn;
-
-		// log player move.
-		console.log("player: " + document.turn + " Played at: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id);
-
-		// display as last move
-		document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
-
-		// Check if win then change turn
-		checkCompletedBoard(square);
-
-		changeColour(square);
-
-		switchTurn();
+	if (win == null){
+		// if tile is empty
+		if(square.innerText == ""){
+			
+			// Print move to board
+			square.innerText = document.turn;
+	
+			// log player move.
+			// console.log("player: " + document.turn + " Played at: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id);
+	
+			// display as last move
+			document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
+	
+			
+			// Check if win then change turn
+			checkCompletedBoard(square);
+	
+			changeColour(square);
+	
+			switchTurn();
+		}
+	}
+	else {
+		for (var i = 0; i < 3; i++) {
+			for (var j = 0; j < 3; j++) {
+				
+			}
+		}
 	}
 }
 
@@ -111,36 +121,36 @@ function changeColour(square){
 			boardID = 'B22';
 			break;
 	}
-	if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
-	  			// set all backgound colour
-	    		document.getElementById("B"+i+j) .style.backgroundColor = setColor;
-	    		// set whole board clickable
-	    		document.getElementById("B"+i+j).style.pointerEvents = 'auto';
-			}
-		}
-		// set un-playable region backgound colour to indicate active area.
-		document.getElementById(boardID) .style.backgroundColor = 'white';
-		// set region un-clickable
-		document.getElementById(boardID).style.pointerEvents = 'none'
-	}
-	else {
-		// loop through the whole board
-		for (var i = 0; i < 3; i++) { 
-			for (var j = 0; j < 3; j++) { 
-	  			// clear all backgound colour
-	    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
-	    		// set whole board un-clickable
-	    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
-			}
-		}
-		// set playable region backgound colour to indicate active area.
-		document.getElementById(boardID) .style.backgroundColor = setColor;
-		// set region clickable
-		document.getElementById(boardID).style.pointerEvents = 'auto'
-	}	
 
+	for (var i = 0; i < 3; i++) {
+		for (var j = 0; j < 3; j++) {
+			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
+				if (fullBoard[i][j] == null) {
+					// set all backgound colour
+		    		document.getElementById("B"+i+j) .style.backgroundColor = setColor;
+		    		// set whole board clickable
+		    		document.getElementById("B"+i+j).style.pointerEvents = 'auto';
+				}
+				else{
+					// set all backgound colour
+		    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
+		    		// set whole board clickable
+		    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
+				}
+			}
+			else{
+					// set all backgound colour
+		    		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
+		    		// set whole board clickable
+		    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
+
+		    		// set playable region backgound colour to indicate active area.
+					document.getElementById(boardID) .style.backgroundColor = setColor;
+					// set region clickable
+					document.getElementById(boardID).style.pointerEvents = 'auto'
+			}
+		}
+	}
 }
 
 function checkCompletedBoard(square){
@@ -171,7 +181,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//row 2
 	else if (innerBoard[1][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[1][2] == square.innerText){
@@ -182,7 +193,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//row 3
 	else if (innerBoard[2][0] == square.innerText && innerBoard [2][1] == square.innerText && innerBoard[2][2] == square.innerText){
@@ -193,7 +205,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//col 1
 	else if (innerBoard[0][0] == square.innerText && innerBoard [1][0] == square.innerText && innerBoard[2][0] == square.innerText){
@@ -204,7 +217,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//col 2
 	else if (innerBoard[0][1] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][1] == square.innerText){
@@ -215,7 +229,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//col 3
 	else if (innerBoard[0][2] == square.innerText && innerBoard [1][2] == square.innerText && innerBoard[2][2] == square.innerText){
@@ -226,7 +241,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	// diagonal
 	else if (innerBoard[0][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][2] == square.innerText){
@@ -237,7 +253,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	//diagonal 
 	else if (innerBoard[0][2] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][0] == square.innerText){
@@ -248,7 +265,8 @@ function checkCompletedBoard(square){
 		document.getElementById(boardID).innerHTML = document.turn;
 
 		//indicating on the full board that the inner board is won
-		fullBoard[col][row] = square.innerText;
+		fullBoard[row][col] = square.innerText;
+		console.log(fullBoard)
 	}
 	else{
 		var flag = true;
@@ -263,47 +281,59 @@ function checkCompletedBoard(square){
 		}
 
 		if (flag){
-			fullBoard[col][row] = "-";
+			fullBoard[row][col] = "-";
+			console.log(fullBoard)
 			document.getElementById(boardID).innerHTML = "-";
 		}
 	}
 
-	checkWin();
+	win = checkWin();
 }
 
 function checkWin(){
+	var winner;
 	// row 1
 	if (fullBoard[0][0] == fullBoard[0][1] && fullBoard[0][0] == fullBoard[0][2] && fullBoard[0][0] !=null){
+		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
 	}
 	//row 2
 	else if (fullBoard[1][0] == fullBoard[1][1] && fullBoard[1][0]  == fullBoard[1][2] && fullBoard[1][0]!=null){
+		winner = fullBoard[1][0];
 		window.alert(fullBoard[1][0] + " wins the game!!!");
 	}
 	//row 3
 	else if (fullBoard[2][0] == fullBoard[2][1] && fullBoard[2][0]  == fullBoard[2][2] && fullBoard[2][0]!=null){
+		winner = fullBoard[2][0];
 		window.alert(fullBoard[2][0] + " wins the game!!!");
 	}
 	//col 1
 	else if (fullBoard[0][0] == fullBoard[1][0] && fullBoard[0][0] == fullBoard[2][0] && fullBoard[0][0]!=null){
+		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
 	}
 	//col 2
 	else if (fullBoard[0][1] == fullBoard[1][1] && fullBoard[0][1]  == fullBoard[2][1] && fullBoard[0][1]!=null){
+		winner = fullBoard[0][1];
 		window.alert(fullBoard[0][1] + " wins the game!!!");
 	}
 	//col 3
 	else if (fullBoard[0][2] == fullBoard[1][2] && fullBoard[0][2]  == fullBoard[2][2] && fullBoard[0][2]!=null){
+		winner = fullBoard[0][2];
 		window.alert(fullBoard[0][2] + " wins the game!!!");
 	}
 	// diagonal
 	else if (fullBoard[0][0] == fullBoard[1][1] && fullBoard[0][0]  == fullBoard[2][2] && fullBoard[0][0]!=null){
+		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
 	}
 	//diagonal 
 	else if (fullBoard[0][2] == fullBoard[1][1] && fullBoard[0][2]  == fullBoard[2][0] && fullBoard[0][2]!=null){
+		winner = fullBoard[0][2];
 		window.alert(fullBoard[0][2] + " wins the game!!!");
 	}
+
+	return winner;
 }
 
 function getBoard(boardTable){
