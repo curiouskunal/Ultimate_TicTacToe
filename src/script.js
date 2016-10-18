@@ -76,15 +76,17 @@ function changeColour(square){
 	var boardID = square.parentNode.parentNode.parentNode.parentNode.id;
 	var tileID = square.id;
 
-	// Clean Board
+	// loop through the whole board
 	for (var i = 0; i < 3; i++) { 
   		for (var j = 0; j < 3; j++) { 
+  			// clear all backgound colour
     		document.getElementById("B"+i+j) .style.backgroundColor = 'white';
+    		// set whole board un-clickable
+    		document.getElementById("B"+i+j).style.pointerEvents = 'none';
 		}
 	}
 
-	// set Next move's playable region
-
+	// set Next move's playable region boardID
 	if (tileID == "s1"){
 		boardID = 'B00';
 	}else if (tileID == "s2"){
@@ -105,7 +107,10 @@ function changeColour(square){
 		boardID = 'B22';
 	}
 
+	// set playable region backgound colour to indicate active area.
 	document.getElementById(boardID) .style.backgroundColor = "#79A6D8";
+	// set region clickable
+	document.getElementById(boardID).style.pointerEvents = 'auto';
 
 }
 
