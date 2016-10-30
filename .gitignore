@@ -1,7 +1,10 @@
+.pdf
+
+# LaTex Files #
+###############
 *.aux
 *.log
 *.gz
-*.pdf
 *.dvi
 *.bbl
 *.out
@@ -9,6 +12,11 @@
 *.lot
 *.toc
 *.blg
+
+# WebStorm files #
+#####################
+.idea/
+
 # OS generated files #
 ######################
 .DS_Store
