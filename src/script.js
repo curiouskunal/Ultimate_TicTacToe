@@ -1,5 +1,6 @@
 var setColor = "#79A6D8"
 var fullBoard = [[],[],[]];
+var winningSet = [];
 fullBoard[0][0] = null;
 fullBoard[0][1] = null;
 fullBoard[0][2] = null;
@@ -296,43 +297,50 @@ function checkWin(){
 	if (fullBoard[0][0] == fullBoard[0][1] && fullBoard[0][0] == fullBoard[0][2] && fullBoard[0][0] !=null){
 		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
+		winningSet = [00,01,02];
 	}
 	//row 2
 	else if (fullBoard[1][0] == fullBoard[1][1] && fullBoard[1][0]  == fullBoard[1][2] && fullBoard[1][0]!=null){
 		winner = fullBoard[1][0];
 		window.alert(fullBoard[1][0] + " wins the game!!!");
+		winningSet = [10,11,12];
 	}
 	//row 3
 	else if (fullBoard[2][0] == fullBoard[2][1] && fullBoard[2][0]  == fullBoard[2][2] && fullBoard[2][0]!=null){
 		winner = fullBoard[2][0];
 		window.alert(fullBoard[2][0] + " wins the game!!!");
+		winningSet = [20,21,22];
 	}
 	//col 1
 	else if (fullBoard[0][0] == fullBoard[1][0] && fullBoard[0][0] == fullBoard[2][0] && fullBoard[0][0]!=null){
 		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
+		winningSet = [00,10,20];
 	}
 	//col 2
 	else if (fullBoard[0][1] == fullBoard[1][1] && fullBoard[0][1]  == fullBoard[2][1] && fullBoard[0][1]!=null){
 		winner = fullBoard[0][1];
 		window.alert(fullBoard[0][1] + " wins the game!!!");
+		winningSet = [01,11,21];
 	}
 	//col 3
 	else if (fullBoard[0][2] == fullBoard[1][2] && fullBoard[0][2]  == fullBoard[2][2] && fullBoard[0][2]!=null){
 		winner = fullBoard[0][2];
 		window.alert(fullBoard[0][2] + " wins the game!!!");
+		winningSet = [02,12,22];
 	}
 	// diagonal
 	else if (fullBoard[0][0] == fullBoard[1][1] && fullBoard[0][0]  == fullBoard[2][2] && fullBoard[0][0]!=null){
 		winner = fullBoard[0][0];
 		window.alert(fullBoard[0][0] + " wins the game!!!");
+		winningSet = [00,11,22];
 	}
 	//diagonal 
 	else if (fullBoard[0][2] == fullBoard[1][1] && fullBoard[0][2]  == fullBoard[2][0] && fullBoard[0][2]!=null){
 		winner = fullBoard[0][2];
 		window.alert(fullBoard[0][2] + " wins the game!!!");
+		winningSet = [02,11,20];
 	}
-
 	return winner;
 }
 
