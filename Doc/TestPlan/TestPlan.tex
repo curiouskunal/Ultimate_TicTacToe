@@ -9,7 +9,7 @@
 \hypersetup{
     colorlinks,
     citecolor=black,
-    filecolor=black,
+    filecolor=blue,
     linkcolor=red,
     urlcolor=blue
 }
@@ -53,13 +53,24 @@ Date 2 & 1.0 & Notes\\
 \pagenumbering{arabic}
 
 \section*{Abstract} 
-This document ...
+This document describes the Testing Plan for the Ultimate Tic Tac Toe Project.
 
 \section{General Information}
 
 \subsection{Purpose}
+The purpose of testing this project's is to confirm all requirements that where
+outlined in the Requirements Specifications document have been met and to build
+confidence that the software for the project was implemented correctly.
 
 \subsection{Scope}
+The Test Plan presents a basis for testing the functionality of the re-
+implementation of Ultimate Tic Tac Toe. It has the objective of proving that
+Ultimate Tic Tac Toe has met the requirements specified in the Requirements
+Document and to attach metrics to those requirements so that adherence to
+requirements is quantifiable and can be measured. The testing plan acts as a
+means to arrange testing activities. This document will present what is to be
+tested of the software. It will also act as an outline of testing methods and
+outline the tools that will be utilized.
 
 \subsection{Acronyms, Abbreviations, and Symbols}
 	
@@ -92,23 +103,34 @@ Term2 & Definition2\\
 \end{table}	
 
 \subsection{Overview of Document}
-The purpose of testing this project's is to confirm all requirements that where
-outlined in the Requirements Specifications document have been met and the
-Ultimate Tic Tac Toe Game has been implemented correctly.
 
 \section{Plan}
 	
 \subsection{Software Description}
+The software is a JavaScript implementation of the game Ultimate Tic Tac Toe. 
 
 \subsection{Test Team}
+The individuals responsible for testing are Kunal Shah and Pareek Ravi. For a
+detailed breakdown of responsibilities refer to the
+\href{run:../../ProjectSchedule/Gantt Chart.gan}{Gantt Chart}
 
 \subsection{Automated Testing Approach}
+The primary testing approach will be to use Karma Unit Testing to automate unit
+tests. Karma will automatically play the game in a headless browser following
+pre-defined moves. The unit testing framework will compare the results to
+expected values
 
 \subsection{Testing Tools}
+The tool that will be utilized for this project is Karma unit testing with the
+Jasmine framework. It will be used to automate the unit testing. There will be a
+package.json file in the src directory to download all dependencies required for
+Karma Unit Testing.\\
+There will also be a Google Form used to survey user's experience and provide
+and avenue for feedback and suggestions.
 
-\subsection{Testing Schedule}
-		
-See Gantt Chart at the following url ...
+\subsection{Testing Schedule}	
+Refer to the \href{run:../../ProjectSchedule/Gantt Chart.gan}{Gantt Chart} for
+details about Testing Schedule
 
 \section{System Test Description}
 	
