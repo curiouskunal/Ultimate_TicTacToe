@@ -3,6 +3,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -13,7 +16,7 @@
 \usepackage[round]{natbib}
 \usepackage{graphicx}
 
-\title{SE 3XA3: Development Plan\\Ultimate Tic Tac Toe}
+\title{SE 3XA3: SRS\\Ultimate Tic Tac Toe}
 
 \author{Team 3
 		\\ Kunal Shah - shahk24
@@ -25,7 +28,8 @@
 \input{../Comments}
 
 \begin{document}
-
+\lhead{Team 3 - System Requirement Specification}
+\rhead{Ultimate Tic Tac Toe}
 \maketitle
 
 \pagenumbering{roman}
@@ -296,7 +300,7 @@ user training.
 
 \subsection{Waiting Room}
 After redeveloping the Ultimate Tic Tac Toe game, we plan to add Player vs
-ComputerÄù game mode. This AI should be able to intelligently perform moves based
+ComputerÔøΩÔøΩ game mode. This AI should be able to intelligently perform moves based
 on the human player's previous move. Secondly User accounts which will be able
 to track player statistics such win ratio. Additionally we plan to add an online
 lobby to face strangers. Players will be matched based on their player
@@ -307,7 +311,7 @@ As discussed before we will be utilizing many off-the shelf solutions to help in
 the development process. We plan to Use CSS to style the game board. To make the
 game language ambiguous we will be including many images into the game
 instructions. To make this game easy to maintain we shall be using
-Model-Äìview-ìcontroller (MVC) software architectural pattern to make it
+Model-ÔøΩÔøΩview-ÔøΩcontroller (MVC) software architectural pattern to make it
 modular.
 
 \bibliographystyle{plainnat}
