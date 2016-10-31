@@ -1,4 +1,4 @@
-window.game = (function() {
+// window.game = (function() {
 
 
     var setColor = "#79A6D8"
@@ -24,6 +24,12 @@ window.game = (function() {
         // 	document.turn = "O";
         // }
         setMessage(document.turn + " gets to start.");
+
+        var squares = document.getElementsByClassName("Square");
+        for (var s = 0; s < squares.length; s++){
+            // console.log(squares[s]);
+            squares[s].addEventListener('click',nextMove,false);
+        }
     }
 
 // will set status message
@@ -32,9 +38,9 @@ window.game = (function() {
     }
 
 // switches player and updates message
-    function nextMove(square) {
-
-        console.log(document.getElementById('s1').innerText);
+    function nextMove() {
+        square = this;
+        // console.log(document.getElementById('s1').innerText);
 
         if (win == null) {
             // if tile is empty
@@ -357,7 +363,6 @@ window.game = (function() {
         }
         if (winningSet != null) {
             for (var i = 0; i < winningSet.length; i++) {
-                console.log(winningSet[i]);
                 // set all backgound colour
                 document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.backgroundColor = 'green';
                 // set whole board clickable
@@ -379,7 +384,7 @@ window.game = (function() {
         }
         return innerBoard;
     }
-})();
+// })();
 // console.log(fullBoard);
 
 

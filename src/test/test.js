@@ -9,11 +9,10 @@ describe('UTTT', function() {
     // API for interacting with the page.
     var fix;
     var controls =  {
-        get result() {
+        get s1() {
             return document.getElementById('s1').innerHTML;
         },
         clicks1: function() {
-            console.log(document.getElementById("s1"));
             document.getElementById('s1').click();
         },
         // clicks2: function() {
@@ -29,20 +28,20 @@ describe('UTTT', function() {
         fixture.load('fixture.html');
 
         // init js lib
-        window.game.startGame();
+        window.startGame();
     });
 
     // // remove the html fixture from the DOM
-    // afterEach(function() {
-    //     fixture.cleanup();
-    // });
+    afterEach(function() {
+        fixture.cleanup();
+    });
 
     it('S1 should be X', function() {
         controls.clicks1();
         // controls.clicks2();
 
-        console.log(controls.result);
-        controls.result.should.equal("X");
+        // console.log(typeof controls.s1);
+        expect(controls.s1).toBe('X');
     });
 
 });
