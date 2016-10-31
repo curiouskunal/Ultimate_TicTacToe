@@ -1,5 +1,5 @@
-.pdf
-
+*.pdf
+node_modules/
 # LaTex Files #
 ###############
 *.aux
