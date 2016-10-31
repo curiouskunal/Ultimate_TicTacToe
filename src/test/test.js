@@ -338,7 +338,7 @@ describe('UTTT', function() {
         expect(controls.fullBoard[1][1]).toBe(controls.turn);
     });
 
-    it('Draw inner board', function(){
+    it('Draw inner board (tie)', function(){
         controls.clickCell('11s2');
         controls.clickCell('01s5');
         controls.clickCell('11s5');
