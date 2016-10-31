@@ -20,9 +20,9 @@
 // determines who will start
     function startGame() {
         document.turn = "X";
-        // if (Math.random() < 0.5) {
-        // 	document.turn = "O";
-        // }
+        if (Math.random() < 0.5) {
+        	document.turn = "O";
+        }
         setMessage(document.turn + " gets to start.");
 
         var squares = document.getElementsByClassName("Square");
@@ -40,7 +40,7 @@
 // switches player and updates message
     function nextMove() {
         square = this;
-        // console.log(document.getElementById('s1').innerText);
+        // console.log(square.id);
 
         if (win == null) {
             // if tile is empty
@@ -97,6 +97,7 @@
 
         var boardID;
         var tileID = square.id;
+        tileID = tileID.substring(2);
 
         // set Next move's playable region boardID
 

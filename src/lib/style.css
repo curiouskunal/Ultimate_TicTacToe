@@ -108,34 +108,34 @@ table{
 /* Inside Border*/
 
 
-#s1{
+td[id$='s1']{
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
-#s2{
+td[id$='s2']{
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
-#s3{
+td[id$='s3']{
 	border-left: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
 
 /*Row 2 */
 
-#s4{
+td[id$='s4']{
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
-#s5{
+td[id$='s5']{
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
-#s6{
+td[id$='s6']{
 	border-left: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
@@ -143,16 +143,16 @@ table{
 
 /*Row 3*/
 
-#s7{
+td[id$='s7']{
 	border-right: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
-#s8{
+td[id$='s8']{
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
-#s9{
+td[id$='s9']{
 	border-left: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
