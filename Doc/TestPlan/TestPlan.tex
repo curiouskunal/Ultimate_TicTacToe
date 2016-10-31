@@ -136,35 +136,47 @@ details about Testing Schedule
 	
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{User Input}
 		
-\paragraph{Title for Test}
+\paragraph{Click on cell of inner board}
 
 \begin{enumerate}
 
 \item{test-id1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Automatic
 					
-Initial State: 
+Initial State: It is the start of a new game and the board is empty
 					
-Input: 
+Input: A click on any cell of any inner tic tac toe board
 					
-Output: 
+Output: That cell should have the user's character on it
 					
-How test will be performed: 
+How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element will be clicked and then the inner html of the text will be checked to see if it is updated to the character that represents that person's turn. There will also be a check on the variable that stores the all game information to see that it is updated.
 					
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+Initial State: Opponent has played on a inner board and it is the user's turn
 					
-Input: 
+Input: The user attempts to click on a tile that they are not designated to click based on the rules of the game
 					
-Output: 
+Output: The board should not change at all. The game data should not change and it is still the user's turn
 					
-How test will be performed: 
+How test will be performed: This test will be done automatically with theuse of the Karma Unit Test. When the use clicks on a inner board that they cannot select, the javascript will prevent anything from changing in the game data
+
+\item{test-id3\\}
+
+Type: Functional, Dynamic, Automatic
+					
+Initial State: Opponent has played on a inner board and it is the user's turn
+					
+Input: The user attempts to click on a tile that has already been clicked previously
+					
+Output: The board should not change at all. The game data should not change and it is still the user's turn
+					
+How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element in the inner board they are meant to click is already selected previously will be clicked. There will be no change to the board as the cell was previously selected. The script will not change anything as that cell is not a null value, it has the character representing the player that selected it.
 
 \end{enumerate}
 
