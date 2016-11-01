@@ -164,7 +164,11 @@ Input: A click on any cell of any inner tic tac toe board
 					
 Output: That cell should have the user's character on it
 					
-How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element will be clicked and then the inner html of the text will be checked to see if it is updated to the character that represents that person's turn. There will also be a check on the variable that stores the all game information to see that it is updated.
+How test will be performed: This test will be performed automatically with the
+use of the Karma Unit Test. In the test, an element will be clicked and then
+the inner html of the text will be checked to see if it is updated to the
+character that represents that person's turn. There will also be a check on
+the variable that stores the all game information to see that it is updated.
 					
 \item{in-test-id2\\}
 \textbf{Testing if user click on invalid inner board}
@@ -173,11 +177,15 @@ Type: Functional, Dynamic, Automatic
 					
 Initial State: Opponent has played on a inner board and it is the user's turn
 
-Input: Click on a tile that they are not designated to click based on the rules of the game
+Input: Click on a tile that they are not designated to click based on the
+rules of the game
 					
-Output: The board should not change at all. The game data should not change and it is still the user's turn
+Output: The board should not change at all. The game data should not change
+and it is still the user's turn
 					
-How test will be performed: This test will be done automatically with theuse of the Karma Unit Test. When the use clicks on a inner board that they cannot select, the javascript will prevent anything from changing in the game data
+How test will be performed: This test will be done automatically with theuse
+of the Karma Unit Test. When the use clicks on a inner board that they cannot
+select, the javascript will prevent anything from changing in the game data
 
 \item{in-test-id3\\}
 \textbf{Testing if user's input on cell already clicked}
@@ -188,9 +196,15 @@ Initial State: Opponent has played on a inner board and it is the user's turn
 					
 Input: Click on a tile that has already been clicked previously
 					
-Output: The board should not change at all. The game data should not change and it is still the user's turn
+Output: The board should not change at all. The game data should not change
+and it is still the user's turn
 					
-How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element in the inner board they are meant to click is already selected previously will be clicked. There will be no change to the board as the cell was previously selected. The script will not change anything as that cell is not a null value, it has the character representing the player that selected it.
+How test will be performed: This test will be performed automatically with the
+use of the Karma Unit Test. In the test, an element in the inner board they
+are meant to click is already selected previously will be clicked. There will
+be no change to the board as the cell was previously selected. The script will
+not change anything as that cell is not a null value, it has the character
+representing the player that selected it.
 
 \end{enumerate}
 
@@ -203,26 +217,39 @@ How test will be performed: This test will be performed automatically with the u
 
 Type: Functional, Dynamic, Automatic
 					
-Initial State: Inner board is almost completed by user. It is their turn to play in the inner board where they will complete it. 
+Initial State: Inner board is almost completed by user. It is their turn to
+play in the inner board where they will complete it.
 					
 Input: Clicks on the cell that will complete the inner board
 					
-Output: The inner board will be marked with the character representing the user
+Output: The inner board will be marked with the character representing the
+user
 					
-How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check if there is any three in a row in that inner board that the player just played in. If there is a three in a row, the entire board is deemed as completed and marked as so. The check for a three in a row is to check all 8 possible win scenarios, i.e. three rows, three columns and two diagonals
+How test will be performed: This test will be performed automatically with the
+use of the Karma Unit Test. The cell element will be clicked by the tester.
+The logic will check if there is any three in a row in that inner board that
+the player just played in. If there is a three in a row, the entire board is
+deemed as completed and marked as so. The check for a three in a row is to
+check all 8 possible win scenarios, i.e. three rows, three columns and two
+diagonals
 
 \item{log-test-id2\\}
 \textbf{Test if inner board ends in draw}
 
 Type: Functional, Dynamic, Automatic
 					
-Initial State: The board is in a state where an inner board only has 1 cell available to click and it will result in that board being a draw
+Initial State: The board is in a state where an inner board only has 1 cell
+available to click and it will result in that board being a draw
 
 Input: Click on the only available cell
 					
-Output: The inner board will be marked with the character '-' meaning it is a draw
+Output: The inner board will be marked with the character '-' meaning it is a
+draw
 					
-How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check all 8 possible cases for a completed three in a row. If non exist and the inner board is full it is classified as a draw.
+How test will be performed: This test will be performed automatically with the
+use of the Karma Unit Test. The cell element will be clicked by the tester.
+The logic will check all 8 possible cases for a completed three in a row. If
+non exist and the inner board is full it is classified as a draw.
 
 \item{log-test-id3\\}
 \textbf{Test if next move can be made on any incomplete inner board}
@@ -231,11 +258,15 @@ Type: Functional, Dynamic, Automatic
 					
 Initial State: Game board is partially filled with one inner board completed
 
-Input: Click at a cell coresponding to a completed inner board
+Input: Click at a cell corresponding to a completed inner board
 					
 Output: All incomplete inner boards active
 					
-How test will be performed: When the click is made on the inner board, the background of all inner boards that are not completed is set to blue. Based on the array which contains a map of the board, a loop through all the inner board elements and check their background colors. Any inner board that is not complete will have a background style blue.
+How test will be performed: When the click is made on the inner board, the
+background of all inner boards that are not completed is set to blue. Based on
+the array which contains a map of the board, a loop through all the inner
+board elements and check their background colors. Any inner board that is not
+complete will have a background style blue.
 
 \item{log-test-id4\\}
 \textbf{Test if user turns are alternating}
@@ -248,7 +279,8 @@ Input: Click at any available cell
 					
 Output: The character changes to X
 					
-How test will be performed: When a click is made, the character should change and the innerHTML should represent the other one.
+How test will be performed: When a click is made, the character should change
+and the innerHTML should represent the other one.
 
 \end{enumerate}
 
@@ -265,9 +297,10 @@ Initial State: User is in the file explorer
 					
 Input: User launches the html file in browser
 					
-Output: The game launches in all browsers and shows an empty UTTT game board. 
+Output: The game launches in all browsers and shows an empty UTTT game board.
 					
-How test will be performed: The user will launch the game from their file explorer. If they are able to see a blank UTTT board, the game has launched.
+How test will be performed: The user will launch the game from their file
+explorer. If they are able to see a blank UTTT board, the game has launched.
 
 \item{logistic-test-id2\\}
 \textbf{Test if user input shows in window}
@@ -280,7 +313,9 @@ Input: User clicks on any cell
 					
 Output: Cell they clicked on should change appearance
 					
-How test will be performed: If the user's click was registered, it would indicate that to the user by changing the cell they clicked on to the character that represents them. This will be seen graphically.
+How test will be performed: If the user's click was registered, it would
+indicate that to the user by changing the cell they clicked on to the
+character that represents them. This will be seen graphically.
 
 \end{enumerate}
 
@@ -297,11 +332,13 @@ Pass: 4.5/5 average rating on this question
 \item{laf-test-id2\\}
 This will be tested by survey question~\ref{question:q10}.
 
-Pass 4.5/5 average rating for this question. The details will provide more information on repairs needed
+Pass 4.5/5 average rating for this question. The details will provide more
+information on repairs needed
 \item{laf-test-id3\\}
 This will be tested by survey question~\ref{question:q11}.
 
-Pass 4.5/5 average rating for this question. The details will provide more information on repairs needed
+Pass 4.5/5 average rating for this question. The details will provide more
+information on repairs needed
 \end{enumerate}
 
 \subsubsection{Ease of Use}
@@ -371,9 +408,9 @@ Pass: 4.5/5 average rating on this question. The details could lead to optimizat
 \begin{enumerate}
 
 \item{legreq-test-id1\\}
-Description: This game should have a rating suitable for all ages to play according to ESRB
-How: ESRB will rate the game based on their standards which are accepted universally
-Pass: The game has a rating of E for everyone.
+Description: This game should have a rating suitable for all ages to play
+according to ESRB How: ESRB will rate the game based on their standards which
+are accepted universally Pass: The game has a rating of E for everyone.
 \end{enumerate}
 
 \subsubsection{Security Requirements}
@@ -381,8 +418,8 @@ Pass: The game has a rating of E for everyone.
 \begin{enumerate}
 
 \item{secreq-test-id1\\}
-Description: When the game is implemented on a server, no personal data should be transfered
-How: Check all the packages that are transfered over the server
+Description: When the game is implemented on a server, no personal data should
+be transfered How: Check all the packages that are transfered over the server
 Pass: Only game data is passed, no personal data
 \end{enumerate}
 
@@ -404,7 +441,8 @@ Input: click on Inner Board [B00] Cell [1]
 					
 Output: Player1 symbol ( either X or O ) Figure:\ref{fig:Test1_output}
 					
-How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
+How test will be performed: User clicks input on game page loaded on an
+browser. User watches for graphical response.
 
 \item{Set Active Board\\}
 
@@ -416,7 +454,8 @@ Input: User click Inner Board [B03] Cell [5]
 					
 Output:  Active Board set to Inner Board [B11] Figure:\ref{fig:Test2_output}
 					
-How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response. 
+How test will be performed: User clicks input on game page loaded on an
+browser. User watches for graphical response.
 
 
 \item{All incomplete Inner Boards active when player sets complete inner board active \\}
@@ -429,7 +468,8 @@ Input: User click Inner Board [B02] Cell [3] Figure:\ref{fig:Test3-4_output}
 					
 Output:  all Inner Boards excluding Inner Board [B02] show blue background colour
 					
-How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+How test will be performed: Users clicks the following sequence on game page
+loaded on an browser. User watches for graphical response.
 \begin{enumerate}
 	\item Player 1 clicks on Inner Board [B02] Cell [5]
 	\item Player 2 clicks on Inner Board [B11] Cell [3]
@@ -451,7 +491,8 @@ Input: User click Inner Board [B01] Cell [3]
 					
 Output:  Inner Board [B01] displays Player 1 symbol Figure:\ref{fig:Test3-4_output}
 					
-How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+How test will be performed: Users clicks the following sequence on game page
+loaded on an browser. User watches for graphical response.
 \begin{enumerate}
 	\item Player 1 clicks on Inner Board [B02] Cell [5]
 	\item Player 2 clicks on Inner Board [B11] Cell [3]
@@ -470,7 +511,8 @@ Input: User click to cause Inner Board to draw Figure:\ref{fig:Test5_input}
 					
 Output:  Inner Board displays dash to indicate draw Figure:\ref{fig:Test5_output}
 					
-How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
+How test will be performed: User clicks input on game page loaded on an
+browser. User watches for graphical response.
 
 \item{Win Full Game\\}
 
@@ -478,16 +520,19 @@ Type: Manual
 					
 Initial State: One move till Player 1 wins full game
 					
-Input: User click cell to complete last inner board needed to win Main Board Figure:\ref{fig:Test6_input}
+Input: User click cell to complete last inner board needed to win Main Board
+Figure:\ref{fig:Test6_input}
 					
 Output:  Browser alert with player that won ( X or O ) Figure:\ref{fig:Test6_output}
 					
-How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+How test will be performed: Users clicks the following sequence on game page
+loaded on an browser. User watches for graphical response.
 
 \end{enumerate}
 	
 \section{Comparison to Existing Implementation}
-There are 8 tests that compare the program to the Existing Implementation of the program. Please refer to:
+There are 8 tests that compare the program to the Existing Implementation of
+the program. Please refer to:
 \begin{itemize}
 
 \item test 1 to 6 in Tests for Proof of Concept
@@ -500,20 +545,38 @@ Reference section \ref{LookAndFeel} of Tests for Nonfunctional Requirements
 \end{itemize}		
 				
 \section{Unit Testing Plan}
-The Karma and Jasmine framework will be used to implement unit testing for this project. This will require the installation of multiple dependencies that cam be found in a .json file. Using the npm framework these can all be easily installed. 
+The Karma and Jasmine framework will be used to implement unit testing for
+this project. This will require the installation of multiple dependencies that
+cam be found in a .json file. Using the npm framework these can all be easily
+installed.
 \subsection{Unit testing of internal functions}
-In order to unit test the internal functions of the game, the values of the arrays will be checked after the function is run. There are arrays which are used to record the user who controls each inner board, and also an array which has the full 81 cells of the board in a multi-dimensional array. After running a function which will update these arrays, compare the results to expected. The values in the arrays will need to match. For the functions that have a return, providing the proper inputs and comparing it to the expected output, test cases can be created. Knowing that all functions are not testable, the aim will be to have at least 75\% of the functions tested using unit testing.
+In order to unit test the internal functions of the game, the values of the
+arrays will be checked after the function is run. There are arrays which are
+used to record the user who controls each inner board, and also an array which
+has the full 81 cells of the board in a multi-dimensional array. After running
+a function which will update these arrays, compare the results to expected.
+The values in the arrays will need to match. For the functions that have a
+return, providing the proper inputs and comparing it to the expected output,
+test cases can be created. Knowing that all functions are not testable, the
+aim will be to have at least 75\% of the functions tested using unit testing.
 \subsection{Unit testing of output files}		
-Given that this project does not have an output file, the unit testing out the output will be the graphical portion. The unit testing will involve clicking on cells of the game board and matching the change in the html to the expected result. For example, a click on an available playable cell, should result in the innerHTML of that cell to have either an X or O. Similar tests will be run for numerous use cases such as:
+Given that this project does not have an output file, the unit testing out the
+output will be the graphical portion. The unit testing will involve clicking
+on cells of the game board and matching the change in the html to the expected
+result. For example, a click on an available playable cell, should result in
+the innerHTML of that cell to have either an X or O. Similar tests will be run
+for numerous use cases such as:
 \begin{itemize}
 \item
 Winning an inner board
 \item
 Inner board results in a draw
 \item
-Next move is set to entire board because previous click resulted in selection of completed inner board
+Next move is set to entire board because previous click resulted in selection
+of completed inner board
 \item
-Completition of inner board cor	responds to same inner board resulting in next click to be made to entire board
+Competition of inner board corresponds to same inner board resulting in next
+click to be made to entire board
 \item
 Winning the entire game
 \item
@@ -589,17 +652,21 @@ Is the color pallet visually appealing? \label{question:q4}
 \item
 Is the response time satisfying? \label{question:q5}
 \item
-Was the game able to run on your browser? Please indicate the browser you used \label{question:q6}
+Was the game able to run on your browser? Please indicate the browser you used
+\label{question:q6}
 \item
-Was the game able to run smoothly on your device. Please indicate the computer used and the manufactured year \label{question:q7}
+Was the game able to run smoothly on your device. Please indicate the computer
+used and the manufactured year \label{question:q7}
 \item
 Were you offended by anything in the game. Please provide details \label{question:q8}
 \item
 Did you encounter epileptic symptoms while playing the game \label{question:q9}
 \item
-Did anything unexpected appear on the screen while playing. Please describe \label{question:q10}
+Did anything unexpected appear on the screen while playing. Please describe
+\label{question:q10}
 \item
-Is the entire game board visible on the screen? Are there any aspects that are cut off? Please describe \label{question:q11}
+Is the entire game board visible on the screen? Are there any aspects that are
+cut off? Please describe \label{question:q11}
 
 
 \end{enumerate}
