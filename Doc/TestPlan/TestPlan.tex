@@ -141,12 +141,11 @@ details about Testing Schedule
 \subsection{Tests for Functional Requirements}
 
 \subsubsection{User Input}
-		
-\paragraph{Click on cell of inner board}
 
 \begin{enumerate}
 
-\item{in-test-id1}
+\item{in-test-id1\\}
+\textbf {Testing if user's input being received}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -158,7 +157,8 @@ Output: That cell should have the user's character on it
 					
 How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element will be clicked and then the inner html of the text will be checked to see if it is updated to the character that represents that person's turn. There will also be a check on the variable that stores the all game information to see that it is updated.
 					
-\item{in-test-id2}
+\item{in-test-id2\\}
+\textbf{Testing if user click on invalid inner board}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -170,7 +170,8 @@ Output: The board should not change at all. The game data should not change and 
 					
 How test will be performed: This test will be done automatically with theuse of the Karma Unit Test. When the use clicks on a inner board that they cannot select, the javascript will prevent anything from changing in the game data
 
-\item{in-test-id3}
+\item{in-test-id3\\}
+\textbf{Testing if user's input on cell already clicked}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -188,7 +189,8 @@ How test will be performed: This test will be performed automatically with the u
 
 \begin{enumerate}
 
-\item{log-test-id1}
+\item{log-test-id1\\}
+\textbf{Test if inner board gets completed}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -200,7 +202,8 @@ Output: The inner board will be marked with the character representing the user
 					
 How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check if there is any three in a row in that inner board that the player just played in. If there is a three in a row, the entire board is deemed as completed and marked as so. The check for a three in a row is to check all 8 possible win scenarios, i.e. three rows, three columns and two diagonals
 
-\item{log-test-id2}
+\item{log-test-id2\\}
+\textbf{Test if inner board ends in draw}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -212,17 +215,50 @@ Output: The inner board will be marked with the character '-' meaning it is a dr
 					
 How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check all 8 possible cases for a completed three in a row. If non exist and the inner board is full it is classified as a draw.
 
-\item{log-test-id3}
+\item{log-test-id3\\}
+\textbf{Test if next move can be made on any incomplete inner board}
 
 Type: Functional, Dynamic, Automatic
 					
-Initial State: 
+Initial State: Game board is partially filled with one inner board completed
 
-Input: 
+Input: Click at a cell coresponding to a completed inner board
 					
-Output: 
+Output: All incomplete inner boards active
 					
-How test will be performed: 
+How test will be performed: When the click is made on the inner board, the background of all inner boards that are not completed is set to blue. Based on the array which contains a map of the board, a loop through all the inner board elements and check their background colors. Any inner board that is not complete will have a background style blue.
+
+\end{enumerate}
+
+\subsubsection{Game Logistics}
+
+\begin{enumerate}
+
+\item{logistic-test-id1\\}
+\textbf{Test if game launches}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: User is in the file explorer
+					
+Input: User launches the html file in browser
+					
+Output: The game launches in all browsers and shows an empty UTTT game board. 
+					
+How test will be performed: The user will launch the game from their file explorer. If they are able to see a blank UTTT board, the game has launched.
+
+\item{logistic-test-id2\\}
+\textbf{Test if user input shows in window}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: User has just openned game
+					
+Input: User clicks on any cell
+					
+Output: Cell they clicked on should change appearance
+					
+How test will be performed: If the user's click was registered, it would indicate that to the user by changing the cell they clicked on to the character that represents them. This will be seen graphically.
 
 \end{enumerate}
 
