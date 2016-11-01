@@ -82,7 +82,7 @@ outline the tools that will be utilized.
 \textbf{Abbreviation} & \textbf{Definition} \\
 \midrule
 Abbreviation1 & Definition1\\
-Abbreviation2 & Definition2\\
+JS & JavaScript\\
 \bottomrule
 \end{tabularx}
 
@@ -107,6 +107,13 @@ In-complete & Result has yet to be determined for an Inner board \\
 \end{table}	
 
 \subsection{Overview of Document}
+
+The Ultimate  project will re-implement the project Ultimate Tic Tac Toe. The
+software will allow user to play the the game based on the rules defined by
+mathwithbaddrawings.com~\citep{Rules}. All the software's requirements can be
+referenced in the \href{run:../SRS/SRS.pdf}{Requirements Document}. This document
+demonstrates how the game Ultimate Tic Tac Toe will be tested, the testing
+schedule and the tools used.
 
 \section{Plan}
 	
@@ -388,18 +395,18 @@ How test will be performed: User clicks input on game page loaded on an browser.
 
 Type: Manual
 					
-Initial State: One move till Player 1 completes inner board [B01]
+Initial State: One move till Player 1 wins full game
 					
-Input: User click Inner Board [B01] Cell [3] 
+Input: User click cell to complete last inner board needed to win Main Board
 					
-Output:  Inner Board [B01] displays Player 1 symbol
+Output:  Browser alert with player that won ( X or O )
 					
 How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
 
-
 \end{enumerate}
 	
-\section{Comparison to Existing Implementation}	
+\section{Comparison to Existing Implementation}
+	
 				
 \section{Unit Testing Plan}
 		
@@ -409,13 +416,12 @@ How test will be performed: Users clicks the following sequence on game page loa
 
 \bibliographystyle{plainnat}
 
-\bibliography{SRS}
+\bibliography{TestPlan}
 
 \newpage
 
 \section{Appendix}
-
-This is where you can place additional information.
+Karma JS Installation Tutorial and Example source code~\citep{Karma}
 
 \subsection{Symbolic Parameters}
 
