@@ -235,6 +235,19 @@ Output: All incomplete inner boards active
 					
 How test will be performed: When the click is made on the inner board, the background of all inner boards that are not completed is set to blue. Based on the array which contains a map of the board, a loop through all the inner board elements and check their background colors. Any inner board that is not complete will have a background style blue.
 
+\item{log-test-id4\\}
+\textbf{Test if user turns are alternating}
+
+Type: Functional, Dynamic, Automatic
+					
+Initial State: Player with character O just made a move
+
+Input: Click at any available cell
+					
+Output: The character changes to X
+					
+How test will be performed: When a click is made, the character should change and the innerHTML should represent the other one.
+
 \end{enumerate}
 
 \subsubsection{Game Logistics}
@@ -473,11 +486,25 @@ How test will be performed: Users clicks the following sequence on game page loa
 	
 				
 \section{Unit Testing Plan}
-		
+The Karma and Jasmine framework will be used to implement unit testing for this project. This will require the installation of multiple dependencies that cam be found in a .json file. Using the npm framework these can all be easily installed. 
 \subsection{Unit testing of internal functions}
-		
+In order to unit test the internal functions of the game, the values of the arrays will be checked after the function is run. There are arrays which are used to record the user who controls each inner board, and also an array which has the full 81 cells of the board in a multi-dimensional array. After running a function which will update these arrays, compare the results to expected. The values in the arrays will need to match. For the functions that have a return, providing the proper inputs and comparing it to the expected output, test cases can be created. Knowing that all functions are not testable, the aim will be to have at least 75\% of the functions tested using unit testing.
 \subsection{Unit testing of output files}		
-
+Given that this project does not have an output file, the unit testing out the output will be the graphical portion. The unit testing will involve clicking on cells of the game board and matching the change in the html to the expected result. For example, a click on an available playable cell, should result in the innerHTML of that cell to have either an X or O. Similar tests will be run for numerous use cases such as:
+\begin{itemize}
+\item
+Winning an inner board
+\item
+Inner board results in a draw
+\item
+Next move is set to entire board because previous click resulted in selection of completed inner board
+\item
+Completition of inner board cor	responds to same inner board resulting in next click to be made to entire board
+\item
+Winning the entire game
+\item
+Entire game results in a draw
+\end{itemize}
 \bibliographystyle{plainnat}
 
 \bibliography{TestPlan}
