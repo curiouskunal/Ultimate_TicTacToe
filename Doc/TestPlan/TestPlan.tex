@@ -315,8 +315,6 @@ How test will be performed: Users clicks the following sequence on game page loa
 	\item Player 1 clicks on Inner Board [B02] Cell [3]
 \end{enumerate}
 
-\end{enumerate}
-
 \subsection{Game Logic}
 
 \item{Complete Inner Board\\}
@@ -338,6 +336,32 @@ How test will be performed: Users clicks the following sequence on game page loa
 	\item Player 1 clicks on Inner Board [B02] Cell [3]
 \end{enumerate}
 
+\item{Complete Inner Board with draw(or tie) \\}
+
+Type: Manual
+					
+Initial State: One move till Player completes inner board
+					
+Input: User click to cause Inner Board to draw 
+					
+Output:  Inner Board displays dash to indicate draw
+					
+How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
+
+\item{Win Full Game\\}
+
+Type: Manual
+					
+Initial State: One move till Player 1 completes inner board [B01]
+					
+Input: User click Inner Board [B01] Cell [3] 
+					
+Output:  Inner Board [B01] displays Player 1 symbol
+					
+How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+
+
+\end{enumerate}
 	
 \section{Comparison to Existing Implementation}	
 				
