@@ -95,8 +95,12 @@ Abbreviation2 & Definition2\\
 \toprule
 \textbf{Term} & \textbf{Definition}\\
 \midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
+Main Board & Full game board, all clickable regions \\
+Inner Board [ID] & One of 9 Tic Tac Toe boards within the Main Board\\
+Cell [ID] & One of 9 Tic Tac Toe elements of an Inner Board\\
+Active Board & Inner board that next player is able to play on\\
+Complete & Result has been determined for an Inner board \\
+In-complete & Result has yet to be determined for an Inner board \\
 \bottomrule
 \end{tabularx}
 
@@ -298,41 +302,77 @@ How test will be performed:
 
 \section{Tests for Proof of Concept}
 
-\subsection{Area of Testing1}
+\subsection{User Input}
 		
-\paragraph{Title for Test}
+\paragraph{User inputs from the same local machine}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{Test first click\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Manual
 					
-Initial State: 
+Initial State: On Load
 					
-Input: 
+Input: click on Inner Board [B00] Cell [1] 
 					
-Output: 
+Output: Player1 symbol ( either X or O )
 					
-How test will be performed: 
-					
-\item{test-id2\\}
+How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
 
-Type: Functional, Dynamic, Manual, Static etc.
+\item{Set Active Board\\}
+
+Type: Manual
 					
-Initial State: 
+Initial State: On Load
 					
-Input: 
+Input: User click Inner Board [B03] Cell [5] 
 					
-Output: 
+Output:  Active Board set to Inner Board [B11]
 					
-How test will be performed: 
+How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response. 
+
+\item{All incomplete Inner Boards active when player sets complete inner board active \\}
+
+Type: Manual
+					
+Initial State: One move till Player 1 completes inner board [B02]
+					
+Input: User click Inner Board [B02] Cell [3] 
+					
+Output:  all Inner Boards excluding Inner Board [B02] show blue background colour
+					
+How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+\begin{enumerate}
+	\item Player 1 clicks on Inner Board [B02] Cell [5]
+	\item Player 2 clicks on Inner Board [B11] Cell [3]
+	\item Player 1 clicks on Inner Board [B02] Cell [7]
+	\item Player 2 clicks on Inner Board [B20] Cell [3]
+	\item Player 1 clicks on Inner Board [B02] Cell [3]
+\end{enumerate}
 
 \end{enumerate}
 
-\subsection{Area of Testing2}
+\subsection{Game Logic}
 
-...
+\item{Complete Inner Board\\}
+
+Type: Manual
+					
+Initial State: One move till Player 1 completes inner board [B01]
+					
+Input: User click Inner Board [B01] Cell [3] 
+					
+Output:  Inner Board [B01] displays Player 1 symbol
+					
+How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
+\begin{enumerate}
+	\item Player 1 clicks on Inner Board [B02] Cell [5]
+	\item Player 2 clicks on Inner Board [B11] Cell [3]
+	\item Player 1 clicks on Inner Board [B02] Cell [7]
+	\item Player 2 clicks on Inner Board [B20] Cell [3]
+	\item Player 1 clicks on Inner Board [B02] Cell [3]
+\end{enumerate}
 
 	
 \section{Comparison to Existing Implementation}	
