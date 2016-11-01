@@ -146,7 +146,7 @@ details about Testing Schedule
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{in-test-id1}
 
 Type: Functional, Dynamic, Automatic
 					
@@ -158,25 +158,25 @@ Output: That cell should have the user's character on it
 					
 How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. In the test, an element will be clicked and then the inner html of the text will be checked to see if it is updated to the character that represents that person's turn. There will also be a check on the variable that stores the all game information to see that it is updated.
 					
-\item{test-id2\\}
+\item{in-test-id2}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Automatic
 					
 Initial State: Opponent has played on a inner board and it is the user's turn
-					
-Input: The user attempts to click on a tile that they are not designated to click based on the rules of the game
+
+Input: Click on a tile that they are not designated to click based on the rules of the game
 					
 Output: The board should not change at all. The game data should not change and it is still the user's turn
 					
 How test will be performed: This test will be done automatically with theuse of the Karma Unit Test. When the use clicks on a inner board that they cannot select, the javascript will prevent anything from changing in the game data
 
-\item{test-id3\\}
+\item{in-test-id3}
 
 Type: Functional, Dynamic, Automatic
 					
 Initial State: Opponent has played on a inner board and it is the user's turn
 					
-Input: The user attempts to click on a tile that has already been clicked previously
+Input: Click on a tile that has already been clicked previously
 					
 Output: The board should not change at all. The game data should not change and it is still the user's turn
 					
@@ -184,9 +184,47 @@ How test will be performed: This test will be performed automatically with the u
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Game Logic}
 
-...
+\begin{enumerate}
+
+\item{log-test-id1}
+
+Type: Functional, Dynamic, Automatic
+					
+Initial State: Inner board is almost completed by user. It is their turn to play in the inner board where they will complete it. 
+					
+Input: Clicks on the cell that will complete the inner board
+					
+Output: The inner board will be marked with the character representing the user
+					
+How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check if there is any three in a row in that inner board that the player just played in. If there is a three in a row, the entire board is deemed as completed and marked as so. The check for a three in a row is to check all 8 possible win scenarios, i.e. three rows, three columns and two diagonals
+
+\item{log-test-id2}
+
+Type: Functional, Dynamic, Automatic
+					
+Initial State: The board is in a state where an inner board only has 1 cell available to click and it will result in that board being a draw
+
+Input: Click on the only available cell
+					
+Output: The inner board will be marked with the character '-' meaning it is a draw
+					
+How test will be performed: This test will be performed automatically with the use of the Karma Unit Test. The cell element will be clicked by the tester. The logic will check all 8 possible cases for a completed three in a row. If non exist and the inner board is full it is classified as a draw.
+
+\item{log-test-id3}
+
+Type: Functional, Dynamic, Automatic
+					
+Initial State: 
+
+Input: 
+					
+Output: 
+					
+How test will be performed: 
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
