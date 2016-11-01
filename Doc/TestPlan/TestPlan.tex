@@ -273,7 +273,7 @@ How test will be performed: If the user's click was registered, it would indicat
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\subsubsection{Look and Feel}
+\subsubsection{Look and Feel} \label{LookAndFeel}
 
 \begin{enumerate}
 
@@ -373,7 +373,7 @@ How: Check all the packages that are transfered over the server
 Pass: Only game data is passed, no personal data
 \end{enumerate}
 
-\section{Tests for Proof of Concept}
+\section{Tests for Proof of Concept} \label{POC}
 
 \subsection{User Input}
 		
@@ -474,7 +474,16 @@ How test will be performed: Users clicks the following sequence on game page loa
 \end{enumerate}
 	
 \section{Comparison to Existing Implementation}
-	
+There are 8 tests that compare the program to the Existing Implementation of the program. Please refer to:\begin{itemize}
+
+\item test 1 to 6 in Tests for Proof of Concept
+
+Reference section \ref{POC} of the document
+\item test 1 to 3 in Look and Feel Nonfunctional Requirements
+
+Reference section \ref{LookAndFeel} of Tests for Nonfunctional Requirements
+
+\end{itemize}		
 				
 \section{Unit Testing Plan}
 		
@@ -534,12 +543,9 @@ Karma JS Installation Tutorial and Example source code~\citep{Karma}
   \label{fig:Test6_output}
 \end{figure}
 
-
-
 \subsection{Symbolic Parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+MAX\_PLAYERS: Maximum number of concurrent players.
 
 \subsection{Usability Survey Questions?}
 Answers will be rated from 1 to 5, 5 being the highest
