@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
 \pagestyle{fancy}
 
 \hypersetup{
@@ -83,6 +84,7 @@ outline the tools that will be utilized.
 \midrule
 JS & JavaScript\\
 UTTT & Ultimate Tic Tac Toe\\
+npm & Node Package Manager\\
 \bottomrule
 \end{tabularx}
 
@@ -387,7 +389,7 @@ Initial State: On Load
 					
 Input: click on Inner Board [B00] Cell [1] 
 					
-Output: Player1 symbol ( either X or O )
+Output: Player1 symbol ( either X or O ) Figure:\ref{fig:Test1_output}
 					
 How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
 
@@ -399,9 +401,10 @@ Initial State: On Load
 					
 Input: User click Inner Board [B03] Cell [5] 
 					
-Output:  Active Board set to Inner Board [B11]
+Output:  Active Board set to Inner Board [B11] Figure:\ref{fig:Test2_output}
 					
 How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response. 
+
 
 \item{All incomplete Inner Boards active when player sets complete inner board active \\}
 
@@ -409,7 +412,7 @@ Type: Manual
 					
 Initial State: One move till Player 1 completes inner board [B02]
 					
-Input: User click Inner Board [B02] Cell [3] 
+Input: User click Inner Board [B02] Cell [3] Figure:\ref{fig:Test3-4_output}
 					
 Output:  all Inner Boards excluding Inner Board [B02] show blue background colour
 					
@@ -422,6 +425,7 @@ How test will be performed: Users clicks the following sequence on game page loa
 	\item Player 1 clicks on Inner Board [B02] Cell [3]
 \end{enumerate}
 
+
 \subsection{Game Logic}
 
 \item{Complete Inner Board\\}
@@ -432,7 +436,7 @@ Initial State: One move till Player 1 completes inner board [B01]
 					
 Input: User click Inner Board [B01] Cell [3] 
 					
-Output:  Inner Board [B01] displays Player 1 symbol
+Output:  Inner Board [B01] displays Player 1 symbol Figure:\ref{fig:Test3-4_output}
 					
 How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
 \begin{enumerate}
@@ -449,9 +453,9 @@ Type: Manual
 					
 Initial State: One move till Player completes inner board
 					
-Input: User click to cause Inner Board to draw 
+Input: User click to cause Inner Board to draw Figure:\ref{fig:Test5_input}
 					
-Output:  Inner Board displays dash to indicate draw
+Output:  Inner Board displays dash to indicate draw Figure:\ref{fig:Test5_output}
 					
 How test will be performed: User clicks input on game page loaded on an browser. User watches for graphical response.
 
@@ -461,9 +465,9 @@ Type: Manual
 					
 Initial State: One move till Player 1 wins full game
 					
-Input: User click cell to complete last inner board needed to win Main Board
+Input: User click cell to complete last inner board needed to win Main Board Figure:\ref{fig:Test6_input}
 					
-Output:  Browser alert with player that won ( X or O )
+Output:  Browser alert with player that won ( X or O ) Figure:\ref{fig:Test6_output}
 					
 How test will be performed: Users clicks the following sequence on game page loaded on an browser. User watches for graphical response.
 
@@ -485,7 +489,52 @@ How test will be performed: Users clicks the following sequence on game page loa
 \newpage
 
 \section{Appendix}
+
 Karma JS Installation Tutorial and Example source code~\citep{Karma}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test1-output.png}
+  \caption{POC Test 1 Output}
+  \label{fig:Test1_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test2-output.png}
+  \caption{POC Test 2 Output}
+  \label{fig:Test2_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test3-4-output.png}
+  \caption{POC Test 3 and Test4 Output}
+  \label{fig:Test3_Test4_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test5-input.png}
+  \caption{POC Test 5 Example input}
+  \label{fig:Test5_intput}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test5-output.png}
+  \caption{POC Test 5 Output}
+  \label{fig:Test5_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test6-input.png}
+  \caption{POC Test 6 Example input}
+  \label{fig:Test6_intput}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test6-output.png}
+  \caption{POC Test 6 Output}
+  \label{fig:Test6_output}
+\end{figure}
+
+
 
 \subsection{Symbolic Parameters}
 
