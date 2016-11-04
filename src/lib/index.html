@@ -15,9 +15,53 @@
 		<div id="message">PLAYER gets to start.</div>
 		<!-- <div id="sirep">Waiting for first move....</div> -->
 
-		<input type="button" onclick="location.href='rules.html';" value="Rules" />
-	</div>
+		<!-- <input type="button" onclick="location.href='rules.html';" value="Rules" /> -->
 
+		<input id="Button1" type="button" value="Show Rules" onclick="switchVisible();"/>
+
+	<!-- 	<div id="HideRules"></div> -->
+		<div id="ShowRules">
+
+
+			<h1> RULES </h1>
+
+			<p>
+				Each turn, you mark one of the small squares When you get three in a row on a
+				small board, you've won that board.
+			</p>
+
+			<p>
+				You don't get to pick which of the nine boards to play on. That's determined by
+				your opponent's previous move.
+			</p>
+
+			<p>
+				Whichever square they pick, that's the board you must play in next. (And whichever square you pick will determine which board they play on next.)
+			</p>
+
+			<p>
+				FAQ:
+			</p>
+
+			<p>
+				What if my opponent sends me to a board that's already been won?<br>In that case,
+				congratulations - you get to go anywhere you like, on any of the other boards.
+				(This means you should avoid sending your opponent to an already-won board!)
+			</p>
+
+			<p>
+				What if one of the small boards results in a tie?<br>The board will count for neither X nor O.
+			</p>
+
+
+
+		</div>
+
+
+
+	</div> 	<!-- close header -->
+
+	<div id="HideRules">
 	<div class = center id="center">
 		<table class= mainTable> <!-- table of tables  -->
 			<tr id="row1"> <!-- Row 1  -->
@@ -209,6 +253,7 @@
 
 
 		<!-- <a href="javascript:void(0)" onclick="testMove();">Run Test to Fill</a> -->
+	</div>
 	</div>
 </body>
 </html>
