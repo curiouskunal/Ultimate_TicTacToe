@@ -1,5 +1,7 @@
 *.pdf
 node_modules/
+out/
+
 # LaTex Files #
 ###############
 *.aux
