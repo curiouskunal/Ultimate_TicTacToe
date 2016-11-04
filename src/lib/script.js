@@ -88,7 +88,9 @@ function nextMove() {
         }
     }
 
-// alternates player turn
+/**
+* Switch who's turn it is for the game
+*/
 function switchTurn() {
 	if (document.turn == "X") {
 		document.turn = "O";
@@ -98,7 +100,10 @@ function switchTurn() {
 	setMessage("It's " + document.turn + "'s turn!");
 
 }
-
+/**
+* Adding the colors to the inner square to indicate to the user where they can play their next move
+* param {SQUARE} square - the small square that was cloicked by the user
+*/
 function changeColour(square) {
 
 	var boardID;
@@ -179,7 +184,10 @@ function changeColour(square) {
         	}
         }
     }
-
+    /**
+    * Checks if there is a completed inner board
+    * @param {SQUARE} square - the square that was recently clicked 
+    */
     function checkCompletedBoard(square) {
     	var color = null;
     	if (square.innerText == 'O') {
