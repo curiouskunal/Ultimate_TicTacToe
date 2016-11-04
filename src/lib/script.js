@@ -13,44 +13,51 @@ fullBoard[2][2] = null;
 
 var win = null;
 
-// game setup. called at startup.
-// determines who will start
+/**
+* Will start the game and initialize the variables
+*/
 function startGame() {
 	document.turn = "X";
 	if (Math.random() < 0.5) {
 		document.turn = "O";
 	}
 	setMessage(document.turn + " gets to start.");
-
+    //creating a click listener for each element
 	var squares = document.getElementsByClassName("Square");
 	for (var s = 0; s < squares.length; s++){
-            // console.log(squares[s]);
             squares[s].addEventListener('click',nextMove,false);
         }
     }
 
-// will set status message
+/**
+* DIsplay the status message
+* @param{string} - The message to display
+*/
 function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
 
+/**
+* Button to show and hide the rules
+*/
 function switchVisible() {
-            if (document.getElementById('HideRules')) {
-
-                if (document.getElementById('HideRules').style.display == 'none') {
-                    document.getElementById('HideRules').style.display = 'block';
-                    document.getElementById('ShowRules').style.display = 'none';
-                    document.getElementById("Button1").value="Show Rules";
-                }
-                else {
-                    document.getElementById('HideRules').style.display = 'none';
-                    document.getElementById('ShowRules').style.display = 'block';
-                    document.getElementById("Button1").value="Hide Rules";
-                }
-            }
+    if (document.getElementById('HideRules')) {
+        if (document.getElementById('HideRules').style.display == 'none') {
+            document.getElementById('HideRules').style.display = 'block';
+            document.getElementById('ShowRules').style.display = 'none';
+            document.getElementById("Button1").value="Show Rules";
+        }
+        else {
+            document.getElementById('HideRules').style.display = 'none';
+            document.getElementById('ShowRules').style.display = 'block';
+            document.getElementById("Button1").value="Hide Rules";
+        }
+    }
 }
 
-// switches player and updates message
+/**
+* Called when the player makes a move
+*/
 function nextMove() {
 	square = this;
         // console.log(square.id);
