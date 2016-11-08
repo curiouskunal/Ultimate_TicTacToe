@@ -432,5 +432,3 @@ function getBoard(boardTable) {
     }
     return innerBoard;
 }
-
-
