@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+
 \pagestyle{fancy}
 
 \hypersetup{
@@ -15,6 +16,10 @@
 }
 \usepackage[round]{natbib}
 \usepackage{graphicx}
+
+\newcounter{funreq}
+\newcommand{\frthefunreq}{FR\thefunreq}
+\newcommand{\uref}[1]{FR\ref{#1}}
 
 \title{SE 3XA3: SRS\\Ultimate Tic Tac Toe}
 
@@ -145,14 +150,23 @@ which case the game will undo the user's last move. The general use case is of
 course two users playing on their devices without any flaws from start to end.
 
 \subsection{Functional Requirements}
-Some of the functional requirements are that the game will display a game board
-on the user's device, the user's move will be registered, recorded and
-reflected on the game board. In addition, the game will determine when a player
-has taken control of a square, when the square square is dumped and when the
-game is won. The game logic will also determine in which square the next player
-will make their move based on the previous player's move. In order for the game
-to be played over the internet, the game would need to communicate to both
-devices through means of a server.
+\begin{description}
+\item [\refstepcounter{funreq} \frthefunreq:] The game will display a game board on the user's device
+\item [\refstepcounter{funreq} \frthefunreq:] The user's move will be registered, recorded and reflected on the game board\\
+Fit Criteria: Game board should have the user's character at the cell that they clicked on if it is a valid move
+\item [\refstepcounter{funreq} \frthefunreq:] The game will determine when a player has taken control of a square\\
+Fit Criteria: The array for the inner board will have one of 8 possible sets of three in a row. Three columns, three rows 
+and the two diagonals
+\item [\refstepcounter{funreq} \frthefunreq:] The game will determine when the square has ended in a draw\\
+Fit Criteria: The array for the inner board will not have any of the 8 possible sets of three in a row. Three columns, three rows
+ and the two diagonals
+\item [\refstepcounter{funreq} \frthefunreq:] The game will determine when the full game is won or drawn\\
+Fit Criteria: The array for the inner board will have one of 8 possible sets of three in a row on the full board. 
+Three columns, three rows and the two diagonals
+\item [\refstepcounter{funreq} \frthefunreq:] The game will determine in which square the next player will make their move 
+based on the previous player's move\\
+Fit Criteria: Clicking on any cell on an inner board that is not allowed will not result in any move
+\end{description}
 
 \section{Non-functional Requirements}
 
@@ -325,5 +339,9 @@ modular.
 \subsection{Symbolic Parameters}
 MAX\_PLAYERS: Maximum number of concurrent players.
 
+
+%TRASH
+%\item [\refstepcounter{funreq} \frthefunreq:] The game to be played over the internet, the game would need to 
+%communicate to both devices through means of a server.\\
 
 \end{document}
