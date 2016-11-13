@@ -34,7 +34,7 @@
 \newcommand{\dref}[1]{PR\ref{#1}}
 
 \newcounter{oereq}
-\newcommand{\oetheperreq}{OE\theoereq}
+\newcommand{\oetheoereq}{OE\theoereq}
 \newcommand{\eref}[1]{OE\ref{#1}}
 
 \newcounter{msreq}
@@ -207,61 +207,66 @@ Fit Criteria: Clicking on any cell on an inner board that is not allowed will no
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
-In order to make the game easy to use, clear instructions will be provided to
-help them. With the use of unique but neutral colours, the aesthetics of the
-game will also make it an enjoyable experience. Computers using a browser with
-strong HTML5 support will be able to run the game easily. Interactive sounds
-will be played when a user makes a move and to notify them that their opponent
-has made their move. Smooth calming background music will also be played to make
-the experience enjoyable.
+\begin{description}
+\item [\refstepcounter{lfreq} \lfthelfreq:] Game should be visually appealing\\
+Fit Criteria: 90\% of surveyed users should find the colours used appealing
+\item [\refstepcounter{lfreq} \lfthelfreq:] The game should have a clean graphical interface\\
+Fit Criteria: 90\% of surveyed users should report that there no unnecessary graphics
+\end{description}
 
 \subsection{Usability and Humanity Requirements}
-The game must have an easy UI which is not difficult to use or learn. Both the
-touch interface and click interface should both work smoothly. There should a be
-a tab for instructions on both the rules of the game and the game dynamic for 
-those who do not know.
+\begin{description}
+\item [\refstepcounter{uhreq} \uhtheuhreq:] The game must be easy to learn\\
+Fit Criteria: The average time for a user to fully learn the rules must be no more than 2 minutes after reading the rules
+\item [\refstepcounter{uhreq} \uhtheuhreq:] The game should allow users to interact with the game in multiple ways\\
+Fit Criteria: The click interface must always work and on computers that have touch, that should also always work
+\item [\refstepcounter{uhreq} \uhtheuhreq:] There should a be a button for instructions on the rules of the game\\Fit Criteria: 90\% of users should state that they used or at least found the rules button
+\end{description}
 
 \subsection{Performance Requirements}
-As this game will be played over the internet, it would be necessary for the
-speed of the information transfer to be very fast. It would not be acceptable if
-there was a long delay to record the move on another player's board. The game
-board would also need to be constantly updated. If the game logic knows the
-player's move, but it is not reflected on the board, that would be an issue.
-When the user is using the touch interface, it is important to ensure that the
-layout is such that the player does not accidentally make a move they did not
-intend to make. A certain level of precision is required to ensure this doesn't
-happen. Currently the game will be run on a local server, but in the future, a
-larger server would be required to to match the demand for the game and ensure
-that the server's capacity is sufficient. The server should be reliable and
-available at all times such that it does not crash leaving people without the
-ability to play the game.
+\begin{description}
+\item [\refstepcounter{perreq} \pertheperreq:] There should be no delay in reflecting a player's move on the board\\ Fit Criteria: The maximum time for a move to be reflected on the board is 750 milliseconds
+\item [\refstepcounter{perreq} \pertheperreq:] The game should process if a player has won the game or completed an inner board quickly\\
+Fit Criteria: The maximum time for the board to reflect if a board is complete is 1 second
+\item [\refstepcounter{perreq} \pertheperreq:] The CPU/GPU should not be overtaxed by the game\\
+Fit Criteria: The maximum CPU/GPU usage on any device should be 30\%
+\end{description}
 
 \subsection{Operational and Environmental Requirements}
-In order for the user to play this game, the system requirements are not very
-high. As long as they are using a web browser (preferably Google Chrome) and
-have a stable internet connection, the game should run smoothly. If the ping of
-a user's internet is very poor, it would cause some issues in communicating with
-the other player.
+\begin{description}
+\item [\refstepcounter{oereq} \oetheoereq:] The browser should not be using too much of the CPU power\\
+Fit Criteria: The maximum browser usage on the device should be 45\%
+\item [\refstepcounter{oereq} \oetheoereq:] The browser used needs HTML5\\
+Fit Criteria: 100\% of the browsers used to play the game successfully have HTML5 support 
+\end{description}
 
 \subsection{Maintainability and Support Requirements}
+\begin{description}
+\item [\refstepcounter{msreq} \msthemsreq:]
 The game should be easy to maintain as the only factor that would need constant
 care is the server. The game logic is not complicated and would be simple to fix
 if there were an error, but the server would be a challenge. If the server were
 to reach capacity, it would take some time to transfer to a larger server. It is
 currently impractical to use a large server for this product, but should the
 demand rise, larger servers can be prepared to transfer over to.
+\end{description}
 
 \subsection{Security Requirements}
+\begin{description}
+\item [\refstepcounter{secreq} \sethesecreq:]
 Since this game is being run over the internet, there is always the matter of
 internet security. It is important that there be a certain level of encryption
 to ensure that the information being transferred is safe and protected.
+\end{description}
 
 \subsection{Cultural Requirements}
-
+\begin{description}
+\item [\refstepcounter{culreq} \cultheculreq:]
 The product shall not be offensive to religious or ethnic groups. The game user
 interface should be language ambiguous. This means, even though the game is
 provided in English, it should be able to be navigated and played by someone who
 does not know how to read, write or speak English.
+\end{description}
 
 \subsection{Legal Requirements}
 From a legal standpoint the main requirement is that we must not have access to
@@ -270,11 +275,14 @@ This game if it were to be rated by the ESRB, would have a rating of E for
 everyone.
 
 \subsection{Health and Safety Requirements}
+\begin{description}
+\item [\refstepcounter{hsreq} \hsthehsreq:]
 When the game is being played, to ensure there is no possible cause of epilepsy
 from the colors, very mild and neutral colors will be used to represent each
 player. Majority of the health and safety is on the ownness of the user to
 ensure they are not walking and playing or are not playing the game for
 prolonged periods of time which could damage their health.
+\end{description}
 
 \section{Project Issues}
 
