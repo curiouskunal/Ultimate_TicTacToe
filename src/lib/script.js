@@ -1,7 +1,7 @@
 /**
  * @constant setColour {string} - Blue
  */
-var setColor = "#79A6D8"; // blue
+var setColor = "#79A6D8";
 /**
  * @constant fullBoard {array} Array to represent the status of the full board
  */
@@ -15,6 +15,7 @@ var winningSet = null;
  */
 var win = null;
 
+// setting board to null
 fullBoard[0][0] = null;
 fullBoard[0][1] = null;
 fullBoard[0][2] = null;
@@ -27,7 +28,8 @@ fullBoard[2][2] = null;
 
 
 /**
-* Will start the game and initialize the variables
+ * Will start the game and initialize player 1 to X or O
+ *
 */
 function startGame() {
 	document.turn = "X";
@@ -35,6 +37,7 @@ function startGame() {
 		document.turn = "O";
 	}
 	setMessage(document.turn + " gets to start.");
+
     //creating a click listener for each element
 	var squares = document.getElementsByClassName("Square");
 	for (var s = 0; s < squares.length; s++){
@@ -43,16 +46,16 @@ function startGame() {
 }
 
 /**
-* Display the status message
-* @param{string} - The message to display
+* Display the status message to screen
+* @param msg The message to display {string}
 */
 function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
 
 /**
-* Button to show and hide the rules
-*/
+ * Button to show and hide the rules
+ */
 function switchVisible() {
     if (document.getElementById('HideRules')) {
         if (document.getElementById('HideRules').style.display == 'none') {
@@ -69,8 +72,15 @@ function switchVisible() {
 }
 
 /**
-* Called when the player makes a move
-*/
+ * Called when the player makes a move
+ * <ul style="list-style: none;">
+ *     <li> checks if move is valid
+ *     <li> print player move to screen
+ *     <li> check board for win
+ *     <li> change colour of active region
+ *     <li> switch turn
+ *</ul>
+ */
 function nextMove() {
 	square = this;
         // console.log(square.id);
@@ -101,9 +111,10 @@ function nextMove() {
     }
 }
 
+
 /**
-* Switch who's turn it is for the game
-*/
+ * Switch player turn
+ */
 function switchTurn() {
 	if (document.turn == "X") {
 		document.turn = "O";
@@ -115,7 +126,7 @@ function switchTurn() {
 
 /**
 * Adding the colors to the inner square to indicate to the user where they can play their next move
-* param {SQUARE} square - the small square that was cloicked by the user
+* param square the small square that was clicked by the user {square}
 */
 function changeColour(square) {
 
@@ -157,8 +168,10 @@ function changeColour(square) {
     if (win == null) {
     	for (var i = 0; i < 3; i++) {
     		for (var j = 0; j < 3; j++) {
+
+                // setting muliple active boards
     			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
-    				if (fullBoard[i][j] == null) {
+                    if (fullBoard[i][j] == null) {
                         // set all backgound colour
                         document.getElementById("B" + i + j).style.backgroundColor = setColor;
                         // set whole board clickable
@@ -171,6 +184,8 @@ function changeColour(square) {
                         document.getElementById("B" + i + j).style.pointerEvents = 'none';
                     }
                 }
+
+                // setting single active board
                 else {
                 	if (fullBoard[i][j] == null) {
                         // set all backgound colour
@@ -181,11 +196,13 @@ function changeColour(square) {
                     // set playable region backgound colour to indicate active area.
                     document.getElementById(boardID).style.backgroundColor = setColor;
                     // set region clickable
-                    document.getElementById(boardID).style.pointerEvents = 'auto'
+                    document.getElementById(boardID).style.pointerEvents = 'auto';
                 }
             }
         }
     }
+
+    // if game has been won
     else {
     	for (var i = 0; i < 3; i++) {
     		for (var j = 0; j < 3; j++) {
@@ -200,7 +217,7 @@ function changeColour(square) {
 
 /**
 * Checks if there is a completed inner board
-* @param {SQUARE} square - the square that was recently clicked 
+* @param square the square that was recently clicked {square}
 */
 function checkCompletedBoard(square) {
 	var color = null;
@@ -335,18 +352,16 @@ function checkCompletedBoard(square) {
             document.getElementById(boardID).innerHTML = "-";
         }
     }
-
     win = checkWin();
 }
+
 /**
  * Method checks if there is a winner of the game.
  *
- * @param winner {char} winner of the game
  * @returns winner {char} winner of the game
  */
 function checkWin() {
 	var winner;
-	var winLine;
     // row 1
     if (fullBoard[0][0] == fullBoard[0][1] && fullBoard[0][0] == fullBoard[0][2] && fullBoard[0][0] != null) {
     	winner = fullBoard[0][0];
@@ -415,9 +430,9 @@ function checkWin() {
 }
 
 /**
- *
- * @param boardTable
- * @returns {array}
+ * converts html table element to array
+ * @param boardTable HTML element {Table}
+ * @returns innerBoard {array}
  */
 function getBoard(boardTable) {
 	var innerBoard = [[], [], []];
