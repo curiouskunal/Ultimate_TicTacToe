@@ -67,6 +67,9 @@ November 13 & 1.0 & Rev0 Submission\\
 
 \section{Introduction}
 
+
+
+
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
@@ -132,8 +135,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] Currently the game is running on a local machine anticipate to move game to server.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] 
+\item[\refstepcounter{acnum} \actheacnum \label{ac1}:] The hardware on which the software is running.
+\item[\refstepcounter{acnum} \actheacnum \label{ac2}:] Draw / tie logic handling
+\item[\refstepcounter{acnum} \actheacnum \label{ac3}:] Online muli-player support
+\item[\refstepcounter{acnum} \actheacnum :\label{ac4}] Game user interface layout ( responsiveness based on device screen size  )
+\item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The language in which the game rules is presented.
+
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -146,11 +153,9 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{uc1}:] Input devices ( touch and mouse)
+\item[\refstepcounter{ucnum} \uctheucnum \label{uc2}:] Win and loss logic
+\item[\refstepcounter{ucnum} \uctheucnum \label{uc3}:] Data structures holding game state information
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -161,8 +166,11 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{m1}:] User Interface Module
+\item [\refstepcounter{mnum} \mthemnum \label{m2} :] Move module
+\item [\refstepcounter{mnum} \mthemnum \label{m3}:] Player turn module
+\item [\refstepcounter{mnum} \mthemnum \label{m4}:] Active region module
+\item [\refstepcounter{mnum} \mthemnum \label{m5}:] Win check module
 \end{description}
 
 
@@ -173,22 +181,15 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} & User Interface Module \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{2}{0.3\textwidth}{Behaviour-Hiding Module} & Player turn module\\
+& Move module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{2}{0.3\textwidth}{Software Decision Module} & {Active region module}\\
+& Win check module\\
 \bottomrule
 
 \end{tabular}
@@ -283,17 +284,12 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{m1}\\
+FR2 & \mref{m1}, \mref{m2}, \mref{m4}\\
+FR3 & \mref{m4}, \mref{m5}\\
+FR4 & \mref{m1}, \mref{m5}\\
+FR5 & \mref{m5}\\
+FR6 & \mref{m1}, \mref{m3}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -306,18 +302,11 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{ac1} & \mref{m1}\\
+\acref{ac2} & \mref{m5}\\
+\acref{ac3} & \mref{m3}\\
+\acref{ac4} & \mref{m1}\\
+\acref{ac5} & \mref{m1}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -339,7 +328,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UseHierarchy_Diagram.pdf}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
