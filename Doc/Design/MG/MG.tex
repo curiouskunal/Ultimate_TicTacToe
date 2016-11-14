@@ -55,7 +55,8 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 November 8  & 0.0 & Initial set up\\
-November 11 & 0.5 & adding content \\
+November 11 & 0.2 & introduction \\
+November 11 & 0.4 & updated all sections \\
 November 13 & 1.0 & Rev0 Submission\\
 \bottomrule
 \end{tabularx}
@@ -65,10 +66,20 @@ November 13 & 1.0 & Rev0 Submission\\
 
 \pagenumbering{arabic}
 
+\section*{Abstract}
+Ultimate Tic Tac Toe is a variation on the classic game of Tic Tac Toe. It is 
+simply multiple games of Tic Tac Toe running simultaneously to make a classic 
+game that often ends in a draw have an exciting ending.\\\\
+The primary purpose of the Module Guide (MG) is to describe, justify, and
+contextualize the module decomposition of the system. The document also provides
+a conceptual view of each module and its context in the broader system. Before
+the MG is written, the Software Requirements Specification (SRS) document should
+be completed. The SRS describes requirements for the software system that the MG
+should relate to the implemented design. By completing the SRS beforehand, it
+is more likely that the selected system design will comply with all compulsory
+requirements and the chosen module decomposition is appropriately structured.
+
 \section{Introduction}
-
-
-
 
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
@@ -215,69 +226,53 @@ entry is \emph{OS}, this means that the module is provided by the operating
 system or by standard programming language libraries.  Also indicate if the
 module will be implemented specifically for the software.
 
-Only the leaf modules in the
-hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
-that the module is not a leaf and will not have to be implemented. Whether or
-not this module is implemented depends on the programming language
-selected.
-
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-
+\subsection{Hardware Hiding Modules}
+\subsubsection{User Interface Module (\mref{m1})}
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item[Secrets:]The data structure and algorithm used to implement the Ultimate Tic Tac Toe game.
+\item[Services:]This module provides the interface between the script and User. So, the script can use it to display outputs and to accept inputs from User.
+\item[Implemented By:] HTML user interface
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
+\subsubsection{Player Turn Module (\mref{m3})}
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
+\item[Secrets:] current player state
+\item[Services:]Includes programs that provide externally visible player symbol
   the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+  documents. This module indicates the player which square the next player will make their move based on the previous player's move
+\item[Implemented By:] Player Turn Module
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\subsubsection{Move Module (\mref{m2})}
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Services:] This module is responsible for translating user input and sending to the game logic data structure.
+\item[Implemented By:] Move Module
 \end{description}
-
-\subsubsection{Etc.}
-
 
 \subsection{Software Decision Module}
-
+\subsubsection{Active Region Module (\mref{m4})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:] Next Active region
+\item[Services:] This module is responsible for updating the board to the new active region based on previous player interactions after receiving information from the move module
+\item[Implemented By:] Active Region Module
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Win Check Module (\mref{m5})}
+\begin{description}
+\item[Secrets:] Current game state
+  \emph{not} described in the SRS.
+\item[Services:] This module is responsible for taking care of checking if the player has won the game, and updating the board after receiving information from the move module. This means if player has won or drawn an inner or game board.
+\item[Implemented By:] Win Check Module
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
 
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
@@ -316,15 +311,13 @@ FR6 & \mref{m1}, \mref{m3}\\
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
 In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
+provided. \citet{Parnas1978} said of two modules A and B that A {\em uses} B if
 correct execution of B may be necessary for A to complete the task described in
 its specification. That is, A {\em uses} B if there exist situations in which
 the correct functioning of A depends upon the availability of a correct
 implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
+the modules. It can be seen that the each level of the hierarchy offers a testable
+and usable subset of the system.
 
 \begin{figure}[H]
 \centering
