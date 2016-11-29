@@ -10,8 +10,12 @@
     "chai": "^2.1.0",
     "istanbul": "^0.3.6",
     "jshint": "^2.6.0",
+    "jasmine": "2.5.2",
     "jasmine-core": "2.5.2",
+    "mocha": "2.5.3",
     "karma": "^0.12.31",
+    "karma-jasmine": "1.0.2",
+    "karma-mocha": "0.1.10",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "^0.1.7",
     "karma-cli": "0.0.4",
@@ -20,9 +24,6 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-spec-reporter":"^0.0.26",
     "karma-coverage": "0.2.7",
-    "jsdoc": "3.4.2",
-    "karma-jasmine": "1.0.2",
-    "mocha": "2.5.3",
-    "karma-mocha": "0.1.10"
+    "jsdoc": "3.4.2"
   }
 }
