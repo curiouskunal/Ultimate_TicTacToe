@@ -302,6 +302,9 @@ describe('InitialTests', function() {
         clickCell: function(id) {
             document.getElementById(id).click();
         }
+        get message(){
+            return document.getElementById("message").innerText;
+        }
     };
 
     // inject the HTML fixture for the tests
@@ -359,5 +362,36 @@ describe('InitialTests', function() {
 
         expect(controls.B11).toBe('-');
         expect(controls.fullBoard[1][1]).toBe('-');
+    });
+
+    it('Win the full game',function(){
+        controls.clickCell('11s6');
+        controls.clickCell('12s8');
+        controls.clickCell('21s5');
+        controls.clickCell('11s9');
+        controls.clickCell('22s5');
+        controls.clickCell('11s5');
+        controls.clickCell('11s8');
+        controls.clickCell('21s9');
+        controls.clickCell('22s9');
+        controls.clickCell('22s8');
+        controls.clickCell('21s4');
+        controls.clickCell('10s8');
+        controls.clickCell('21s6');
+        controls.clickCell('12s9');
+        controls.clickCell('22s1');
+        controls.clickCell('00s8');
+        controls.clickCell('20s5');
+        controls.clickCell('11s1');
+        controls.clickCell('00s9');
+        controls.clickCell('20s9');
+        controls.clickCell('20s7');
+        controls.clickCell('20s8');
+        controls.clickCell('20s3');
+
+        expect(controls.B20).toBe(controls.turn);
+        expect(controls.B21).toBe(controls.turn);
+        expect(controls.B22).toBe(controls.turn);
+        expect(controls.message).toBe(controls.turn + ' wins the game!');
     });
 });    
