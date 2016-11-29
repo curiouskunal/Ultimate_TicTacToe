@@ -297,7 +297,7 @@ describe('InitialTests', function() {
                 return 'X'
         },
         get fullBoard() {
-            return fullBoard
+            return fullBoard    
         },
         clickCell: function(id) {
             document.getElementById(id).click();
@@ -321,6 +321,17 @@ describe('InitialTests', function() {
     // // remove the html fixture from the DOM
     afterEach(function() {
         fixture.cleanup();
+        fullBoard[0][0] = null;
+        fullBoard[0][1] = null;
+        fullBoard[0][2] = null;
+        fullBoard[1][0] = null;
+        fullBoard[1][1] = null;
+        fullBoard[1][2] = null;
+        fullBoard[2][0] = null;
+        fullBoard[2][1] = null;
+        fullBoard[2][2] = null;
+        win = null;
+        winningSet = null;
     });
 
     it('Click should set tile', function() {
@@ -397,83 +408,64 @@ describe('InitialTests', function() {
 
 
     it('Draw the full game',function(){
+
+        controls.clickCell('11s6');
         controls.clickCell('12s5');
-        controls.clickCell('11s3');
-        controls.clickCell('02s9');
-        controls.clickCell('22s3');
-        controls.clickCell('02s7');
+        controls.clickCell('11s4');
+        controls.clickCell('10s5');
+        controls.clickCell('11s5');
+        controls.clickCell('10s4');
+        controls.clickCell('10s7');
         controls.clickCell('20s6');
         controls.clickCell('12s7');
-        controls.clickCell('20s4');
-        controls.clickCell('10s5');
-        controls.clickCell('11s1');
-        controls.clickCell('00s3');
-        controls.clickCell('02s8');
-        controls.clickCell('21s6');
-        controls.clickCell('12s3');
-        controls.clickCell('02s2');
-        controls.clickCell('01s5');
-        controls.clickCell('11s5');
-        controls.clickCell('11s8');
-        controls.clickCell('21s1');
-        controls.clickCell('00s5');
-        controls.clickCell('11s2');
-        controls.clickCell('01s8');
-        controls.clickCell('21s7');
-        controls.clickCell('20s8');
-        controls.clickCell('21s5');
-        controls.clickCell('11s9');
-        controls.clickCell('22s1');
-        controls.clickCell('00s7');
-        controls.clickCell('20s9');
-        controls.clickCell('22s7');
-        controls.clickCell('20s7');
-        controls.clickCell('20s2');
-        controls.clickCell('01s6');
-        controls.clickCell('12s1');
-        controls.clickCell('00s1');
-        controls.clickCell('00s9');
-        controls.clickCell('22s8');
-        controls.clickCell('21s4');
-        controls.clickCell('10s8');
-        controls.clickCell('21s2');
-        controls.clickCell('01s2');
-        controls.clickCell('01s9');
-        controls.clickCell('22s5');
-        controls.clickCell('11s4');
-        controls.clickCell('10s1');
-        controls.clickCell('00s2');
-        controls.clickCell('01s4');
-        controls.clickCell('10s2');
-        controls.clickCell('01s3');
-        controls.clickCell('02s5');
-        controls.clickCell('11s7');
-        controls.clickCell('20s1');
-        controls.clickCell('00s8');
-        controls.clickCell('21s9');
-        controls.clickCell('22s9');
-        controls.clickCell('10s9');
         controls.clickCell('20s5');
-        controls.clickCell('11s6');
-        controls.clickCell('12s9');
-        controls.clickCell('12s8');
-        controls.clickCell('21s8');
-        controls.clickCell('21s3');
-        controls.clickCell('02s6');
-        controls.clickCell('12s6');
-        controls.clickCell('12s2');
-        controls.clickCell('01s7');
-        controls.clickCell('20s3');
-        controls.clickCell('02s3');
-        controls.clickCell('02s4');
-        controls.clickCell('10s7');
-        controls.clickCell('10s3');
-        controls.clickCell('02s1');
-        controls.clickCell('00s6');
         controls.clickCell('12s4');
         controls.clickCell('10s6');
+        controls.clickCell('12s1');
+        controls.clickCell('00s8');
+        controls.clickCell('21s9');
+        controls.clickCell('22s8');
+        controls.clickCell('21s8');
+        controls.clickCell('21s7');
+        controls.clickCell('20s4');
+        controls.clickCell('21s5');
+        controls.clickCell('20s3');
+        controls.clickCell('02s8');
+        controls.clickCell('21s4');
+        controls.clickCell('21s3');
+        controls.clickCell('02s7');
+        controls.clickCell('20s7');
+        controls.clickCell('20s9');
+        controls.clickCell('22s4');
+        controls.clickCell('00s5');
+        controls.clickCell('20s8');
+        controls.clickCell('20s2');
+        controls.clickCell('01s6');
+        controls.clickCell('20s1');
+        controls.clickCell('00s6');
+        controls.clickCell('02s5');
+        controls.clickCell('02s3');
+        controls.clickCell('02s4');
+        controls.clickCell('02s1');
+        controls.clickCell('00s9');
+        controls.clickCell('22s5');
+        controls.clickCell('02s2');
+        controls.clickCell('01s3');
+        controls.clickCell('02s9');
+        controls.clickCell('22s6');
+        controls.clickCell('01s9');
+        controls.clickCell('02s6');
+        controls.clickCell('01s7');
         controls.clickCell('00s4');
-        controls.clickCell('10s4');
+        controls.clickCell('01s2');
+        controls.clickCell('01s8');
+        controls.clickCell('00s7');
+        controls.clickCell('00s1');
+        controls.clickCell('00s2');
+        controls.clickCell('01s1');
+        controls.clickCell('00s3');
+        controls.clickCell('01s4');
+        controls.clickCell('01s5');
 
         expect(controls.message).toBe('Game has ended in draw');
     });

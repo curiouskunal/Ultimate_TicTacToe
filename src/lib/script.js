@@ -137,8 +137,7 @@ function switchTurn() {
 	}
     if (win == null){
         setMessage("It's " + document.turn + "'s turn!");
-    }
-    else{
+    } else{
         if (win == '-'){
             setMessage("Game has ended in draw");
         }
@@ -447,7 +446,8 @@ function checkWin() {
         fullBoard[2][1] != null &&
         fullBoard[2][2] != null
     ){
-        winner = "-";
+        winner = '-';
+
     }
 
 
