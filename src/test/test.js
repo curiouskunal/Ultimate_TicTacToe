@@ -316,6 +316,8 @@ describe('InitialTests', function() {
 
         // init js lib
         window.startGame();
+
+        controls.clickCell('play');
     });
 
     // // remove the html fixture from the DOM
