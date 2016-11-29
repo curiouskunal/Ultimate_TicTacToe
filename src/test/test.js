@@ -4,7 +4,7 @@
  * Unit tests for lib/calculator.js
  */
 
-describe('UTTT', function() {
+describe('InitialTests', function() {
 
     // API for interacting with the page.
     var fix;

@@ -94,6 +94,7 @@ function nextMove() {
 
             // log player move.
             // console.log("player: " + document.turn + " Played at: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id);
+            console.log("player: " + document.turn + " Played at: " + "B" + square.id);
 
             // display as last move
             // document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;

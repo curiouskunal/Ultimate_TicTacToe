@@ -38,6 +38,7 @@
 
 \date{\today}
 
+% To hide comments
 \input{../../Comments}
 
 \begin{document}
@@ -50,7 +51,7 @@
 \listoffigures
 
 \begin{table}[bp]
-\caption{\bf Revision History \textcolor{red}{ Try adding clearpage or something to make this go into correct place - CM}}
+\caption{\bf Revision History \cm{ Try adding clear page or something to make this go into correct place}}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
@@ -86,7 +87,7 @@ software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
 based on the principle of information hiding~\citep{Parnas1972a}.  This
 principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC \textcolor{red}{(SC not defined) - CM},
+hides represent likely future changes.  Design for change is valuable in SC \cm{(SC not defined)},
 where modifications are frequent, especially during initial development as the
 solution space is explored.  
 
@@ -208,7 +209,7 @@ actually be implemented.
 \label{TblMH}
 \end{table}
 
-\textcolor{red}{Is your Win Check Module not satisfying your requirements? Does your active region not satisfy your NF requirements? SD modules are used for non-requirement bases software. Think holding the board in storage or memory, sorting... etc.  - CM} \\
+\cm{Is your Win Check Module not satisfying your requirements? Does your active region not satisfy your NF requirements? SD modules are used for non-requirement bases software. Think holding the board in storage or memory, sorting... etc. } \\
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
@@ -235,7 +236,7 @@ module will be implemented specifically for the software.
 \item[Services:]This module provides the interface between the script and User. So, the script can use it to display outputs and to accept inputs from User.
 \item[Implemented By:] HTML user interface
 \end{description}
-\textcolor{red}{For above, perhaps talking about the clicking, hovering and displaying of the game. I understand the intent, it just isn't clear - CM} \\
+\cm{For above, perhaps talking about the clicking, hovering and displaying of the game. I understand the intent, it just isn't clear} \\
 
 \subsection{Behaviour-Hiding Module}
 
@@ -247,14 +248,14 @@ module will be implemented specifically for the software.
   documents. This module indicates the player which square the next player will make their move based on the previous player's move
 \item[Implemented By:] Player Turn Module
 \end{description}
-\textcolor{red}{Couldn't understand Services, try rewording and being more clear - CM} \\
+\cm{Couldn't understand Services, try rewording and being more clear} \\
 \subsubsection{Move Module (\mref{m2})}
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
 \item[Services:] This module is responsible for translating user input and sending to the game logic data structure.
 \item[Implemented By:] Move Module
 \end{description}
-\textcolor{red}{Really like this one! Perfect scope and descriptions. Other than implemented by, try saying which app would do it. This makes more sense when considering multi-app programs where separation of work is more essential  - CM} \\
+\cm{Really like this one! Perfect scope and descriptions. Other than implemented by, try saying which app would do it. This makes more sense when considering multi-app programs where separation of work is more essential } \\
 \subsection{Software Decision Module}
 \subsubsection{Active Region Module (\mref{m4})}
 \begin{description}
@@ -323,11 +324,12 @@ and usable subset of the system.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{component-hierarchy.png}
+\includegraphics[width=0.7\textwidth]{UseHierarchy_Diagram.pdf}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
-\textcolor{red}{PDF wasn't included in any commits. I don't really like it though. I don't see how the Win Check Model uses the UI. Perhaps more detail on the structure or rework it. I also threw in a sample module hierarchy so that the TeX compiles - CM} \\
+\cm{PDF wasn't included in any commits. I don't really like it though. I don't see how the Win Check Model uses the UI. Perhaps more detail on the structure or rework it. I also threw in a sample module hierarchy so that the TeX compiles} \\
+
 %\section*{References}
 
 \bibliographystyle {plainnat}
