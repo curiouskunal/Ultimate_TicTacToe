@@ -43,6 +43,8 @@ function startGame() {
 	for (var s = 0; s < squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
     }
+    //open overlay
+    openNav();    
 }
 
 /**
@@ -480,4 +482,12 @@ function getBoard(boardTable) {
         }
     }
     return innerBoard;
+}
+
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
 }
