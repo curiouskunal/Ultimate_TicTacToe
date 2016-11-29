@@ -10,12 +10,16 @@
     "chai": "^2.1.0",
     "istanbul": "^0.3.6",
     "jshint": "^2.6.0",
+    "jasmine-core": "2.5.2",
     "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.7",
     "karma-cli": "0.0.4",
     "karma-fixture": "^0.2.1-1",
     "karma-html2js-preprocessor": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
-    "karma-spec-reporter":"^0.0.26"
+    "karma-spec-reporter":"^0.0.26",
+    "karma-coverage": "0.2.7",
+    "jsdoc": "3.4.2",
+    "karma-jasmine": "1.0.2"
   }
 }
