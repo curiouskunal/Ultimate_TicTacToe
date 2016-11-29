@@ -4,6 +4,8 @@
 	<title>Ultimate TicTacToe</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="script.js"></script>
+	<!-- tab icon -->
+	<link rel="icon" href="./assets/Icon.ico">
 </head>
 <body onload="startGame()">
 
@@ -14,36 +16,39 @@
 		<div id="message">PLAYER gets to start.</div>
 		<!-- <div id="sirep">Waiting for first move....</div> -->
 
-		<input id="Button1" type="button" value="Show Rules" onclick="switchVisible();"/>
+		<button id="RulesButton" onclick="showRules()"> Show Rules </button>
 
 		<!-- 	<div id="HideRules"></div> -->
-		<div id="ShowRules">
+		<div id="ShowRules" class="modal">
+			<div class="modal-content">
+				<span class="close">x</span>
 
-			<h1> RULES </h1>
+				<h1> RULES </h1>
 
-			<p>
-				Each turn, you mark one of the small squares <br> When you get three in a row on a
-				small board, you've won that board.
-			</p>
+				<p>
+					Each turn, you mark one of the small squares <br> When you get three in a row on a
+					small board, you've won that board.
+				</p>
 
-			<p>
-				You don't get to pick which of the nine boards to play on. That's determined by
-				your opponent's previous move. Whichever square they pick, that's the board you
-				must play in next. <br>(And whichever square you pick will determine which board they play on next.)
-			</p>
+				<p>
+					You don't get to pick which of the nine boards to play on. That's determined by
+					your opponent's previous move. Whichever square they pick, that's the board you
+					must play in next. <br>(And whichever square you pick will determine which board they play on next.)
+				</p>
 
-			<h2>FAQ:</h2>
+				<h2>FAQ:</h2>
 
-			<p>
-				<b>What if my opponent sends me to a board that's already been won?</b> <br>In that case,
-				congratulations - you get to go anywhere you like, on any of the other boards. <br>
-				(This means you should avoid sending your opponent to an already-won board!)
-			</p>
+				<p>
+					<b>What if my opponent sends me to a board that's already been won?</b> <br>In that case,
+					congratulations - you get to go anywhere you like, on any of the other boards. <br>
+					(This means you should avoid sending your opponent to an already-won board!)
+				</p>
 
-			<p>
-				<b>What if one of the small boards results in a tie?</b><br>The board will count for neither X nor O.
-			</p>
-
+				<p>
+					<b>What if one of the small boards results in a tie?</b><br>The board will count for neither X nor
+					O.
+				</p>
+			</div>
 		</div>
 
 

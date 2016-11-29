@@ -1,7 +1,7 @@
 /**
  * @constant setColour {string} - Blue
  */
-var setColor = "#79A6D8";
+var setColor = "#FFAC7F";
 /**
  * @constant fullBoard {array} Array to represent the status of the full board
  */
@@ -56,17 +56,30 @@ function setMessage(msg) {
 /**
  * Button to show and hide the rules
  */
-function switchVisible() {
-    if (document.getElementById('HideRules')) {
-        if (document.getElementById('HideRules').style.display == 'none') {
-            document.getElementById('HideRules').style.display = 'block';
-            document.getElementById('ShowRules').style.display = 'none';
-            document.getElementById("Button1").value="Show Rules";
-        }
-        else {
-            document.getElementById('HideRules').style.display = 'none';
-            document.getElementById('ShowRules').style.display = 'block';
-            document.getElementById("Button1").value="Hide Rules";
+function showRules() {
+// Get the modal
+    var modal = document.getElementById('ShowRules');
+
+// Get the button that opens the modal
+    var btn = document.getElementById("RulesButton");
+
+// Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+
+    modal.style.display = "block";
+
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     }
 }
@@ -93,7 +106,8 @@ function nextMove() {
             square.innerText = document.turn;
 
             // log player move.
-            console.log("player: " + document.turn + " Played at: " + "B" + square.id);
+            // console.log("player: " + document.turn + " Played at: " + "B" + square.id);
+            console.log("player: " + document.turn + " Played at: " + square.id);
 
             // display as last move
             // document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
@@ -125,8 +139,14 @@ function switchTurn() {
         setMessage("It's " + document.turn + "'s turn!");
     }
     else{
-        setMessage(win +  " has won the game!");
+        if (win == '-'){
+            setMessage("Game has ended in draw");
+        }
+        else {
+            setMessage(win + " has won the game!");
+        }
     }
+
 }
 
 /**
@@ -194,7 +214,7 @@ function changeColour(square) {
                 else {
                 	if (fullBoard[i][j] == null) {
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = 'white';
+                        document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
                         // set whole board clickable
                         document.getElementById("B" + i + j).style.pointerEvents = 'none';
                     }
@@ -212,7 +232,7 @@ function changeColour(square) {
     	for (var i = 0; i < 3; i++) {
     		for (var j = 0; j < 3; j++) {
     			if (fullBoard[i][j] == null) {
-    				document.getElementById("B" + i + j).style.backgroundColor = 'white';
+    				document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
     			}
     			document.getElementById("B" + i + j).style.pointerEvents = 'none';
     		}
@@ -227,10 +247,10 @@ function changeColour(square) {
 function checkCompletedBoard(square) {
 	var color = null;
 	if (square.innerText == 'O') {
-		color = 'red'
+		color = '#ED76AF' // pink
 	}
 	else {
-		color = 'pink';
+		color = '#76edb4'; // mint
 	}
 
     //id of the inner board
@@ -415,6 +435,23 @@ function checkWin() {
     	// setMessage(fullBoard[0][2] + " wins the game!!!");
     	winningSet = ['02', '11', '20'];
     }
+    // full game ends in draws
+    else if (
+        fullBoard[0][0] != null &&
+        fullBoard[0][1] != null &&
+        fullBoard[0][2] != null &&
+        fullBoard[1][0] != null &&
+        fullBoard[1][1] != null &&
+        fullBoard[1][2] != null &&
+        fullBoard[2][0] != null &&
+        fullBoard[2][1] != null &&
+        fullBoard[2][2] != null
+    ){
+        winner = "-";
+    }
+
+
+
     if (winningSet != null) {
     	for (var i = 0; i < winningSet.length; i++) {
             // set all backgound colour
