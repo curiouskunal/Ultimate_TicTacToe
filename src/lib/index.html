@@ -2,25 +2,33 @@
 
 <head>
 	<title>Ultimate TicTacToe</title>
+
 	<link rel="stylesheet" href="style.css">
 	<script src="script.js"></script>
+
 	<!-- animation for modal -->
-	<script src="assets/classie.js"></script>
-	<script src="assets/modalEffects.js"></script>
-	<script src="assets/modernizr.custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/ModalWindowEffects/css/component.css" />
+	<script src="assets/ModalWindowEffects/js/modernizr.custom.js"></script>
+
 	<!-- tab icon -->
 	<link rel="icon" href="./assets/Icon.ico">
 </head>
+
+
 <body onload="startGame()">
-	<!-- The overlay -->
+
+	<!-- Welcome Page overlay -->
 	<div id="myNav" class="overlay">
 	  <!-- Overlay content -->
 	  <div class="overlay-content">
-	    <a id="play" href="#" onclick="closeNav()">Play</a>
-
+		  <h1> Hello World</h1>
+		  <a id="play" href="#" onclick="closeNav()">Play</a>
+		  <p> Made by: Kunal Shah & Pareek Ravi</p>
 	  </div>
 
-	</div>
+	</div> 	<!--end overlay-->
+
+
 	<div class = header >
 
 		<h1>Ultimate Tic-Tac-Toe</h1>
@@ -28,7 +36,46 @@
 		<div id="message">PLAYER gets to start.</div>
 		<!-- <div id="sirep">Waiting for first move....</div> -->
 
-		<button id="RulesButton" onclick="showRules()" data-modal="modal-9"> Show Rules </button>
+		<!--<button id="RulesButton" onclick="showRules()" data-modal="modal-9"> Show Rules </button>-->
+
+		<div class="md-modal md-effect-9" id="modal-9">
+			<div class="md-content">
+				<h3>Rules</h3>
+				<div>
+					<p>
+						Each turn, you mark one of the small squares <br> When you get three in a row on a
+						small board, you've won that board.
+					</p>
+
+					<p>
+						You don't get to pick which of the nine boards to play on. That's determined by
+						your opponent's previous move. Whichever square they pick, that's the board you
+						must play in next. <br>(And whichever square you pick will determine which board they play on next.)
+					</p>
+
+				</div>
+
+				<h3>FAQ:</h3>
+				<div>
+					<p>
+						<b>What if my opponent sends me to a board that's already been won?</b> <br>In that case,
+						congratulations - you get to go anywhere you like, on any of the other boards. <br>
+						(This means you should avoid sending your opponent to an already-won board!)
+					</p>
+
+					<p>
+						<b>What if one of the small boards results in a tie?</b><br>The board will count for neither X nor
+						O.
+					</p>
+					<button class="md-close">Close Rules</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="main clearfix">
+			<button class="md-trigger" data-modal="modal-9">3D Flip (vertical)</button>
+		</div><!-- /container -->
+		<div class="md-overlay"></div><!-- the overlay element -->
 
 		<div id="ShowRules" class="modal">
 
@@ -39,7 +86,7 @@
 							Each turn, you mark one of the small squares <br> When you get three in a row on a
 							small board, you've won that board.
 						</p>
-	
+
 						<p>
 							You don't get to pick which of the nine boards to play on. That's determined by
 							your opponent's previous move. Whichever square they pick, that's the board you
@@ -55,7 +102,7 @@
 							congratulations - you get to go anywhere you like, on any of the other boards. <br>
 							(This means you should avoid sending your opponent to an already-won board!)
 						</p>
-		
+
 						<p>
 							<b>What if one of the small boards results in a tie?</b><br>The board will count for neither X nor
 							O.
@@ -66,10 +113,9 @@
 			</div>
 		</div>
 
-		<div class="modal-overlay"></div>
 	</div> 	<!-- close header -->
 
-	<div id="HideRules">
+	<div id="Game-Board">
 		<div class = center id="center">
 			<table class= mainTable> <!-- table of tables  -->
 				<tr id="row1"> <!-- Row 1  -->
@@ -261,5 +307,12 @@
 			
 		</div>
 	</div>
+
+
+	<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+	<script src="assets/ModalWindowEffects/js/classie.js"></script>
+	<script src="assets/ModalWindowEffects/js/modalEffects.js"></script>
+
+
 </body>
 </html>
