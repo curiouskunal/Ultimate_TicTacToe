@@ -29,12 +29,28 @@ html {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	padding-bottom: 10px; 
+	padding-bottom: 10px;
 }
 
 .header h1{
 	font-size: 20px;
 }
+.header a{
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	font-weight: bold;
+	color: black;
+	display: block;
+	-webkit-text-stroke: 0.5px black;
+	transition: 0.5s;
+}
+.header a:hover, .overlay a:focus {
+	color: #025C96;
+	transition: 0.5s;
+}
+
+
 #message{
 	font-size: 20px;
 	padding-bottom: 20px;
