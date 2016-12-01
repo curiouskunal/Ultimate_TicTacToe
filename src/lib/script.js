@@ -203,7 +203,7 @@ function changeColour(square) {
     			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
                     if (fullBoard[i][j] == null) {
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = setColor;
+                        document.getElementById("B" + i + j).style.backgroundColor = setColor; //active highlight
                         // set whole board clickable
                         document.getElementById("B" + i + j).style.pointerEvents = 'auto';
                     }
@@ -231,17 +231,23 @@ function changeColour(square) {
             }
         }
     }
-
-    // if game has been won
+    // if game has been won remove color of all non winning set boards
     else {
-    	for (var i = 0; i < 3; i++) {
-    		for (var j = 0; j < 3; j++) {
-    			if (fullBoard[i][j] == null) {
-    				document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
-    			}
-    			document.getElementById("B" + i + j).style.pointerEvents = 'none';
-    		}
-    	}
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if (winningSet != null) {
+                    for (var k = 0; k < winningSet.length; k++) {
+                        if (winningSet[k].charAt(0) != i && winningSet[k].charAt(1) != j) {
+                            document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
+                        }
+                    }
+                }
+                else{
+                    document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
+                }
+                document.getElementById("B" + i + j).style.pointerEvents = 'none';
+            }
+        }
     }
 }
 
@@ -456,16 +462,17 @@ function checkWin() {
 
     }
 
+    // set green color to the winning line
 
+    // if (winningSet != null) {
+    //     for (var i = 0; i < winningSet.length; i++) {
+    //         // set all backgound colour
+    //         document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.backgroundColor = 'green';
+    //         // set whole board clickable
+    //         document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.pointerEvents = 'none';
+    //     }
+    // }
 
-    if (winningSet != null) {
-    	for (var i = 0; i < winningSet.length; i++) {
-            // set all backgound colour
-            document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.backgroundColor = 'green';
-            // set whole board clickable
-            document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.pointerEvents = 'none';
-        }
-    }
     return winner;
 }
 

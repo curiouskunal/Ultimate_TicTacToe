@@ -5,6 +5,7 @@
 }
 html {
 	background-color: var(--colour3);
+	/*overflow: hidden;*/
 }
 .Square {
 	width: 40px;
@@ -15,6 +16,8 @@ html {
 	font-family: Verdana;
 /*	border: 1px solid black;*/
 	background-color: transparent;
+	margin: 0 auto;
+	padding: 0px;
 }
 
 .center{
@@ -370,12 +373,54 @@ button:hover {
     color: #ff6e21;
 }
 
-@media screen and (max-height: 450px) {
-  .overlay {overflow-y: auto;}
-  .overlay a {font-size: 20px}
-  .overlay .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
+@media only screen and (max-width: 768px) {
+
+	html {
+		overflow: visible;
+	}
+
+	.Square {
+		width: 30px;
+		height: 30px;
+		font-size: 9pt;
+	}
+
+	.box {
+		font-size: 40pt;
+		width: 120px;
+		height: 100px;
+		margin:0px;
+		padding: 0px;
+
+	}
+
+	.overlay h1 {
+		font-size: 3em;
+	}
+	.overlay p {
+		font-size: 1em;
+	}
+
+	.md-modal {
+		height: 100%;
+		max-width: 768px;
+		min-width: 100%;
+	}
+
+	.md-content h3 {
+		font-size: 2em;
+	}
+
+	.md-content > div {
+		padding: 15px 40px 30px;
+		margin: 0;
+		font-weight: 300;
+		font-size: 1em;
+	}
+
+	.md-content > div p {
+		margin: 0;
+		padding: 10px 0;
+	}
+
 }

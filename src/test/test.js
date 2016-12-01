@@ -262,31 +262,31 @@ describe('InitialTests', function() {
         },
         //---------------------------------------------------
         get B00() {
-            return document.getElementById('B00').innerHTML;
+            return document.getElementById('B00');
         },
         get B01() {
-            return document.getElementById('B01').innerHTML;
+            return document.getElementById('B01');
         },
         get B02() {
-            return document.getElementById('B02').innerHTML;
+            return document.getElementById('B02');
         },
         get B10() {
-            return document.getElementById('B10').innerHTML;
+            return document.getElementById('B10');
         },
         get B11() {
-            return document.getElementById('B11').innerHTML;
+            return document.getElementById('B11');
         },
         get B12() {
-            return document.getElementById('B12').innerHTML;
+            return document.getElementById('B12');
         },
         get B20() {
-            return document.getElementById('B20').innerHTML;
+            return document.getElementById('B20');
         },
         get B21() {
-            return document.getElementById('B21').innerHTML;
+            return document.getElementById('B21');
         },
         get B22() {
-            return document.getElementById('B22').innerHTML;
+            return document.getElementById('B22');
         },
         //---------------------------------------------------
         get turn() {
@@ -350,7 +350,7 @@ describe('InitialTests', function() {
         controls.clickCell('12s5');
         controls.clickCell('11s2');
 
-        expect(controls.B11).toBe(controls.turn);
+        expect(controls.B11.innerHTML).toBe(controls.turn);
         expect(controls.fullBoard[1][1]).toBe(controls.turn);
     });
 
@@ -373,7 +373,7 @@ describe('InitialTests', function() {
         controls.clickCell('12s5');
         controls.clickCell('11s7');
 
-        expect(controls.B11).toBe('-');
+        expect(controls.B11.innerHTML).toBe('-');
         expect(controls.fullBoard[1][1]).toBe('-');
     });
 
@@ -402,9 +402,9 @@ describe('InitialTests', function() {
         controls.clickCell('20s8');
         controls.clickCell('20s3');
 
-        expect(controls.B20).toBe(controls.turn);
-        expect(controls.B21).toBe(controls.turn);
-        expect(controls.B22).toBe(controls.turn);
+        expect(controls.B20.innerHTML).toBe(controls.turn);
+        expect(controls.B21.innerHTML).toBe(controls.turn);
+        expect(controls.B22.innerHTML).toBe(controls.turn);
         expect(controls.message).toBe(controls.turn + ' has won the game!');
     });
 
@@ -468,8 +468,20 @@ describe('InitialTests', function() {
         controls.clickCell('00s3');
         controls.clickCell('01s4');
         controls.clickCell('01s5');
+        
+        expect((controls.B00).style.backgroundColor).toBe("transparent");
+        expect((controls.B01).style.backgroundColor).toBe("transparent");
+        expect((controls.B02).style.backgroundColor).toBe("transparent");
+        expect((controls.B10).style.backgroundColor).toBe("transparent");
+        expect((controls.B11).style.backgroundColor).toBe("transparent");
+        expect((controls.B12).style.backgroundColor).toBe("transparent");
+        expect((controls.B00).style.backgroundColor).toBe("transparent");
+        expect((controls.B20).style.backgroundColor).toBe("transparent");
+        expect((controls.B21).style.backgroundColor).toBe("transparent");
+        expect((controls.B22).style.backgroundColor).toBe("transparent");
 
         expect(controls.message).toBe('Game has ended in draw');
+
     });
 
 });    
