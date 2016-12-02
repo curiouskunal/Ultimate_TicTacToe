@@ -51,6 +51,7 @@ function newGame(){
     setMessage(document.turn + " gets to start.");
 
     setupListeners();
+
 }
 
 function setupListeners(){
@@ -217,12 +218,14 @@ function changeColour(square) {
                 // setting muliple active boards
     			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
                     if (fullBoard[i][j] == null) {
+                        console.log('here1');
                         // set all backgound colour
                         document.getElementById("B" + i + j).style.backgroundColor = setColor; //active highlight
                         // set whole board clickable
                         document.getElementById("B" + i + j).style.pointerEvents = 'auto';
                     }
                     else {
+                        console.log('here2');
                         // set all backgound colour
                         document.getElementById("B" + i + j).style.backgroundColor = 'none';
                         // set whole board clickable
@@ -233,11 +236,13 @@ function changeColour(square) {
                 // setting single active board
                 else {
                 	if (fullBoard[i][j] == null) {
+                        console.log('here3');
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
+                        document.getElementById('B' + i + j).style.backgroundColor = 'transparent';
                         // set whole board clickable
-                        document.getElementById("B" + i + j).style.pointerEvents = 'none';
+                        document.getElementById('B' + i + j).style.pointerEvents = 'none';
                     }
+                    console.log('here4' + boardID);
                     // set playable region backgound colour to indicate active area.
                     document.getElementById(boardID).style.backgroundColor = setColor;
                     // set region clickable
@@ -498,70 +503,92 @@ function getBoard(boardTable) {
     }
     return innerBoard;
 }
-
+//open the nav at the start of loading the page
 function openNav() {
     document.getElementById("myNav").style.height = "100%";
 }
-
+// close the nav to play the game
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 }
+//open the nav when a game has ended or when the ultimate button is clicked
 function openEndNav() {
+    //when the game is won (not a draw and game ended)
     if (win != '-' && win != null){
         document.getElementById('gameWinner').innerText = 'The winner is ' + win;
     }
-    if (win == null){
+    //if the game has not yet ended
+    else if (win == null){
         document.getElementById('gameWinner').innerText = '';
     }
-    else{
+    //if the game has ended in a draw
+    else {
         document.getElementById('gameWinner').innerText = 'The game has ended in a draw'
     }
+    //make the nav to full height
     document.getElementById("endNav").style.height = "100%";
 }
-
+//close the nav
 function closeEndNav() {
     document.getElementById("endNav").style.height = "0%";
 }
 
 function playAgainNav(){
+    //resetting the variables
     win = null;
     winningSet = null;
-
-    closeEndNav();    
+    //close the nav
+    closeEndNav(); 
+    //loop 3 times for the number of row   
     for(var i = 0; i<3;i++){
+        // get a new row element
         var row = document.getElementById('row' + (i+1));
+        // delete all children of this row
         while (row.firstChild) {
             row.removeChild(row.firstChild);
         }
+        // loop for the number of columns
         for (var j = 0; j<3;j++){
+            //create the inner board and set al id and class
             var innerBoard = document.createElement('td');
             innerBoard.id = 'B' + i + j;
             innerBoard.className = 'box';
             innerBoard.align = 'center';
-
+            // setup the inner elements
             var innerTable = document.createElement('table');
             var tbody = document.createElement('tbody');
+            //count for the number of cells created
             var cellCount = 1;
+            //loop for the rows of the inner board
             for(var x = 0; x<3;x++){
+                //ceting the inner row
                 var innerRow = document.createElement('tr');
+                //loop for the inner columns
                 for(var k = 0; k < 3; k++){
+                    //creating the cell and the attribues
                     var cell = document.createElement('td');
                     cell.id = i+''+j+'s'+cellCount;
                     cell.className = 'Square';
-                    cell.style.pointerEvents = 'auto'
                     cellCount++;
-
+                    //add the cell to the row
                     innerRow.appendChild(cell);
                 }
+                //add the row to the body
                 tbody.appendChild(innerRow);
             }
+            //addng the tbody as a child of the inner table
             innerTable.appendChild(tbody);
+            //adding innertable as a child of the inner board
+            innerBoard.style.pointerEvents = 'auto';
             innerBoard.appendChild(innerTable);
+            //adding the innertable as a child of the row
             row.appendChild(innerBoard);
-
+            //setting the variable of the full board to null
             fullBoard[i][j] = null;
         }
     }
+    //call to run a new game
     newGame();
+    console.log(fullBoard)
 
 }
