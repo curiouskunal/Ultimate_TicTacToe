@@ -11,7 +11,7 @@ var fullBoard = [[], [], []];
  */
 var winningSet = null;
 /**
- * @constant win {string} string of winning player, null untill winner is determined
+ * @constant win {string} string of winning player, null until winner is determined
  */
 var win = null;
 
@@ -38,13 +38,27 @@ function startGame() {
 	}
 	setMessage(document.turn + " gets to start.");
 
+    setupListeners();
+    //open overlay
+    openNav();
+}
+
+function newGame(){
+    document.turn = "X";
+    if (Math.random() < 0.5) {
+        document.turn = "O";
+    }
+    setMessage(document.turn + " gets to start.");
+
+    setupListeners();
+}
+
+function setupListeners(){
     //creating a click listener for each element
-	var squares = document.getElementsByClassName("Square");
-	for (var s = 0; s < squares.length; s++){
+    var squares = document.getElementsByClassName("Square");
+    for (var s = 0; s < squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
     }
-    //open overlay
-    openNav();    
 }
 
 /**
@@ -150,6 +164,7 @@ function switchTurn() {
         else {
             setMessage(win + " has won the game!");
         }
+        openEndNav();
     }
 
 }
@@ -462,17 +477,6 @@ function checkWin() {
 
     }
 
-    // set green color to the winning line
-
-    // if (winningSet != null) {
-    //     for (var i = 0; i < winningSet.length; i++) {
-    //         // set all backgound colour
-    //         document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.backgroundColor = 'green';
-    //         // set whole board clickable
-    //         document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.pointerEvents = 'none';
-    //     }
-    // }
-
     return winner;
 }
 
@@ -501,4 +505,63 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
+}
+function openEndNav() {
+    if (win != '-' && win != null){
+        document.getElementById('gameWinner').innerText = 'The winner is ' + win;
+    }
+    if (win == null){
+        document.getElementById('gameWinner').innerText = '';
+    }
+    else{
+        document.getElementById('gameWinner').innerText = 'The game has ended in a draw'
+    }
+    document.getElementById("endNav").style.height = "100%";
+}
+
+function closeEndNav() {
+    document.getElementById("endNav").style.height = "0%";
+}
+
+function playAgainNav(){
+    win = null;
+    winningSet = null;
+
+    closeEndNav();    
+    for(var i = 0; i<3;i++){
+        var row = document.getElementById('row' + (i+1));
+        while (row.firstChild) {
+            row.removeChild(row.firstChild);
+        }
+        for (var j = 0; j<3;j++){
+            var innerBoard = document.createElement('td');
+            innerBoard.id = 'B' + i + j;
+            innerBoard.className = 'box';
+            innerBoard.align = 'center';
+
+            var innerTable = document.createElement('table');
+            var tbody = document.createElement('tbody');
+            var cellCount = 1;
+            for(var x = 0; x<3;x++){
+                var innerRow = document.createElement('tr');
+                for(var k = 0; k < 3; k++){
+                    var cell = document.createElement('td');
+                    cell.id = i+''+j+'s'+cellCount;
+                    cell.className = 'Square';
+                    cell.style.pointerEvents = 'auto'
+                    cellCount++;
+
+                    innerRow.appendChild(cell);
+                }
+                tbody.appendChild(innerRow);
+            }
+            innerTable.appendChild(tbody);
+            innerBoard.appendChild(innerTable);
+            row.appendChild(innerBoard);
+
+            fullBoard[i][j] = null;
+        }
+    }
+    newGame();
+
 }

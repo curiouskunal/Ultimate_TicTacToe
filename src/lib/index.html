@@ -31,10 +31,25 @@
 
 	</div> 	<!--end overlay-->
 
+	<!-- Welcome Page overlay -->
+	<div id="endNav" class="overlay">
+	  <!-- Overlay content -->
+	  <div class="overlay-content">
+		  <h1> Ultimate TicTacToe </h1>
+		  <h2 id='gameWinner'></h2>
+		  <a id="play" href="#" onclick="playAgainNav()">Play Again</a>
+		  <a id="play" href="#" onclick="closeEndNav()">Return to Board</a>
+
+		  <a href="https://docs.google.com/forms/d/e/1FAIpQLSekvLCrBR4rCmp-UyowbEf6BMYrye7hVo7iVt2xwzaER1xcng/viewform"> <p> Thank you for playing <p> </a>
+
+	  </div>
+
+	</div> 	<!--end overlay-->
+
 
 	<div class = header >
 
-		<a id="title" href="#" onclick="openNav()">Ultimate Tic-Tac-Toe</a>
+		<a id="title" href="#" onclick="openEndNav()">Ultimate Tic-Tac-Toe</a>
 
 		<div id="message">PLAYER gets to start.</div>
 
@@ -85,8 +100,8 @@
 		<div class = center id="center">
 			<table class= mainTable> <!-- table of tables  -->
 				<tr id="row1"> <!-- Row 1  -->
-					<td id="B00" class = box align = "center">
-						<table id="a1"> <!-- Col 1  -->
+					<td id="B00" class = 'box' align = "center">
+						<table > <!-- Col 1  -->
 							<tr>
 								<td id="00s1" class="Square"></td>
 								<td id="00s2" class="Square"></td>
@@ -105,7 +120,7 @@
 						</table>
 					</td>
 
-					<td id="B01" class = box align = "center">
+					<td id="B01" class = 'box' align = "center">
 						<table > <!-- Col 2  -->
 							<tr>
 								<td id="01s1" class="Square"></td>
@@ -125,7 +140,7 @@
 						</table>
 					</td>
 
-					<td id="B02" class = box align = "center">
+					<td id="B02" class = 'box' align = "center">
 						<table > <!-- Col 3  -->
 							<tr>
 								<td id="02s1" class="Square"></td>
@@ -147,7 +162,7 @@
 				</tr>
 
 				<tr id="row2"> <!-- Row 2  -->
-					<td id="B10" class = box align = "center">
+					<td id="B10" class = 'box' align = "center">
 						<table > <!-- Col 1  -->
 							<tr>
 								<td id="10s1" class="Square"></td>
@@ -167,7 +182,7 @@
 						</table>
 					</td>
 
-					<td id="B11" class = box align = "center">
+					<td id="B11" class = 'box' align = "center">
 						<table > <!-- Col 2  -->
 							<tr>
 								<td id="11s1" class="Square"></td>
@@ -187,7 +202,7 @@
 						</table>
 					</td>
 
-					<td id="B12" class = box align = "center">
+					<td id="B12" class = 'box' align = "center">
 						<table > <!-- Col 3  -->
 							<tr>
 								<td id="12s1" class="Square"></td>
@@ -209,7 +224,7 @@
 				</tr>
 
 				<tr id="row3"> <!-- Row 3 -->
-					<td id="B20" class = box align = "center">
+					<td id="B20" class = 'box' align = "center">
 						<table > <!-- Col 1  -->
 							<tr>
 								<td id="20s1" class="Square"></td>
@@ -229,7 +244,7 @@
 						</table>
 					</td>
 
-					<td id="B21" class = box align = "center" >
+					<td id="B21" class = 'box' align = "center" >
 						<table > <!-- Col 2  -->
 							<tr>
 								<td id="21s1" class="Square"></td>
@@ -249,7 +264,7 @@
 						</table>
 					</td>
 
-					<td id="B22" class = box align = "center" >
+					<td id="B22" class = 'box' align = "center" >
 						<table > <!-- Col 3  -->
 							<tr>
 								<td id="22s1" class="Square"></td>
