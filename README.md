@@ -1,7 +1,5 @@
 # Ultimate_TicTacToe
 
-Team Name: ?
-
 Team Members: Pareek Ravi, Kunal Shah
 
 This project is a reimplementation of [Ultimate Tic Tac Toe](https://github.com/kennycason/ultimate_tictactoe)
@@ -14,5 +12,9 @@ Project description:
 
 The folders and files for this project are as follows:
 
-Doc - Documentation for the project
-Code - Implementation
+| **Directory**                               |  **Description**       |
+| :--------:                                  | :--------:             |
+| [Doc/](Doc)                                 |  Project Documentation |
+| [src/](src)                                 |  Source Code           |
+| [ProjectSchedule/](ProjectSchedule)         |  Project Schedule      |
+<!--| [ReferenceMaterial/](ReferenceMaterial)     |  Reference Material    |-->

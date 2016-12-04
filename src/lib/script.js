@@ -60,6 +60,7 @@ function setupListeners(){
     for (var s = 0; s < squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
     }
+    return false;
 }
 
 /**

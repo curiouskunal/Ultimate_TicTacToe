@@ -242,6 +242,10 @@ td[id$='s9']{
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
+	overflow: auto;
+	/*height: 250px;*/
+	overflow-y: auto;
+	overflow-y: initial !important
 }
 
 .md-content h3 {
@@ -353,6 +357,13 @@ button:hover {
 	font-weight: 300;
 }
 
+.overlay h2 {
+	color: #ff6e21;
+	text-align: center;
+	font-size: 3em;
+	font-weight: 300;
+}
+
 .overlay p {
 	color: #FFF;
 	text-align: center;
@@ -396,6 +407,9 @@ button:hover {
 
 	.overlay h1 {
 		font-size: 3em;
+	}
+	.overlay h2 {
+		font-size: 2em;
 	}
 	.overlay p {
 		font-size: 1em;
