@@ -17,4 +17,4 @@ The folders and files for this project are as follows:
 | [Doc/](Doc)                                 |  Project Documentation |
 | [src/](src)                                 |  Source Code           |
 | [ProjectSchedule/](ProjectSchedule)         |  Project Schedule      |
-<!--| [ReferenceMaterial/](ReferenceMaterial)     |  Reference Material    |-->
+| [ReferenceMaterial/](ReferenceMaterial)     |  Reference Material    |
