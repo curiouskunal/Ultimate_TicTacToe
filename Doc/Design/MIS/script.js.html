@@ -27,9 +27,17 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @constant setColour {string} - Blue
+ * @constant activeColor {string} - Orange
  */
-var setColor = "#79A6D8";
+var activeColor = "#FFAC7F";
+/**
+ * @constant Ocolor {string} - Player O winning color: Pink
+ */
+var Ocolor = '#ED76AF';
+/**
+ * @constant Xcolor {string} - Player XO winning color: Mint
+ */
+var Xcolor = '#76edb4';
 /**
  * @constant fullBoard {array} Array to represent the status of the full board
  */
@@ -39,7 +47,7 @@ var fullBoard = [[], [], []];
  */
 var winningSet = null;
 /**
- * @constant win {string} string of winning player, null untill winner is determined
+ * @constant win {string} string of winning player, null until winner is determined
  */
 var win = null;
 
@@ -56,21 +64,35 @@ fullBoard[2][2] = null;
 
 
 /**
- * Will start the game and initialize player 1 to X or O
+ * Will start the game
+ * set up click listeners
+ * and randomly initializes player 1 to X or O
+ *
+ * @param gameState 1: new instance of game (onload), 0:play again (newgame) {boolean}
  *
 */
-function startGame() {
+function startGame(gameState) {
 	document.turn = "X";
 	if (Math.random() &lt; 0.5) {
 		document.turn = "O";
 	}
 	setMessage(document.turn + " gets to start.");
 
+    setupListeners();
+
+    //open overlay
+    if (gameState){
+        openNav();
+    }
+}
+
+function setupListeners(){
     //creating a click listener for each element
-	var squares = document.getElementsByClassName("Square");
-	for (var s = 0; s &lt; squares.length; s++){
+    var squares = document.getElementsByClassName("Square");
+    for (var s = 0; s &lt; squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
     }
+    return false;
 }
 
 /**
@@ -84,17 +106,34 @@ function setMessage(msg) {
 /**
  * Button to show and hide the rules
  */
-function switchVisible() {
-    if (document.getElementById('HideRules')) {
-        if (document.getElementById('HideRules').style.display == 'none') {
-            document.getElementById('HideRules').style.display = 'block';
-            document.getElementById('ShowRules').style.display = 'none';
-            document.getElementById("Button1").value="Show Rules";
-        }
-        else {
-            document.getElementById('HideRules').style.display = 'none';
-            document.getElementById('ShowRules').style.display = 'block';
-            document.getElementById("Button1").value="Hide Rules";
+function showRules() {
+// Get the modal
+    var modal = document.getElementById('ShowRules');
+
+// Get the button that opens the modal
+    var btn = document.getElementById("RulesButton");
+
+// Get the &lt;span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+    modal.style.display='block';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+
+// When the user clicks on &lt;span> (x), close the modal
+    span.onclick = function () {
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = '0';
+        // modal.style.display='none';
+    }
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.visibility = 'hidden';
+            modal.style.opacity = '0' ;
+            // modal.style.display='none';
         }
     }
 }
@@ -121,7 +160,8 @@ function nextMove() {
             square.innerText = document.turn;
 
             // log player move.
-            // console.log("player: " + document.turn + " Played at: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id);
+            // console.log("player: " + document.turn + " Played at: " + "B" + square.id);
+            console.log("player: " + document.turn + " Played at: " + square.id);
 
             // display as last move
             // document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
@@ -141,20 +181,41 @@ function nextMove() {
 
 
 /**
- * Switch player turn
+ * Switch player turn,
+ *
+ * alternate between X and O, set msg accordingly
+ *
+ * if player has won set win message
  */
 function switchTurn() {
+    // turn swtich
 	if (document.turn == "X") {
 		document.turn = "O";
 	} else {
 		document.turn = "X";
 	}
-	setMessage("It's " + document.turn + "'s turn!");
+	// set user messages
+    // if not won set player turn message
+    if (win == null){
+        setMessage("It's " + document.turn + "'s turn!");
+    }
+    // if game is won set win or draw message
+    else{
+        if (win == '-'){
+            setMessage("Game has ended in draw");
+        }
+        else {
+            setMessage(win + " has won the game!");
+        }
+        // open end screen at end of game
+        openEndNav();
+    }
+
 }
 
 /**
 * Adding the colors to the inner square to indicate to the user where they can play their next move
-* param square the small square that was clicked by the user {square}
+* @param square the small square that was clicked by the user {square}
 */
 function changeColour(square) {
 
@@ -162,7 +223,7 @@ function changeColour(square) {
     var tileID = square.id;
     tileID = tileID.substring(2);
 
-    // set Next move's playable region boardID
+    // set Next players's active region's boardID
 
     switch (tileID) {
     	case "s1":
@@ -193,6 +254,11 @@ function changeColour(square) {
     	boardID = 'B22';
     	break;
     }
+
+    // if the game is still in play loop through all game inner boards and
+    //      set color of the active board(s)
+    //      set only active board(s) clickable
+    //
     if (win == null) {
     	for (var i = 0; i &lt; 3; i++) {
     		for (var j = 0; j &lt; 3; j++) {
@@ -201,7 +267,7 @@ function changeColour(square) {
     			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
                     if (fullBoard[i][j] == null) {
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = setColor;
+                        document.getElementById("B" + i + j).style.backgroundColor = activeColor; //active highlight
                         // set whole board clickable
                         document.getElementById("B" + i + j).style.pointerEvents = 'auto';
                     }
@@ -217,29 +283,37 @@ function changeColour(square) {
                 else {
                 	if (fullBoard[i][j] == null) {
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = 'white';
+                        document.getElementById('B' + i + j).style.backgroundColor = 'transparent';
                         // set whole board clickable
-                        document.getElementById("B" + i + j).style.pointerEvents = 'none';
+                        document.getElementById('B' + i + j).style.pointerEvents = 'none';
                     }
                     // set playable region backgound colour to indicate active area.
-                    document.getElementById(boardID).style.backgroundColor = setColor;
+                    document.getElementById(boardID).style.backgroundColor = activeColor;
                     // set region clickable
                     document.getElementById(boardID).style.pointerEvents = 'auto';
                 }
             }
         }
     }
-
-    // if game has been won
+    // if game has been won remove color of all non winning set boards
+    //      if null, clear all color from board
+    // set full board non-clickable
     else {
-    	for (var i = 0; i &lt; 3; i++) {
-    		for (var j = 0; j &lt; 3; j++) {
-    			if (fullBoard[i][j] == null) {
-    				document.getElementById("B" + i + j).style.backgroundColor = 'white';
-    			}
-    			document.getElementById("B" + i + j).style.pointerEvents = 'none';
-    		}
-    	}
+        for (var i = 0; i &lt; 3; i++) {
+            for (var j = 0; j &lt; 3; j++) {
+                if (winningSet != null) {
+                    for (var k = 0; k &lt; winningSet.length; k++) {
+                        if (winningSet[k].charAt(0) != i &amp;&amp; winningSet[k].charAt(1) != j) {
+                            document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
+                        }
+                    }
+                }
+                else{
+                    document.getElementById("B" + i + j).style.backgroundColor = 'transparent';
+                }
+                document.getElementById("B" + i + j).style.pointerEvents = 'none';
+            }
+        }
     }
 }
 
@@ -250,10 +324,10 @@ function changeColour(square) {
 function checkCompletedBoard(square) {
 	var color = null;
 	if (square.innerText == 'O') {
-		color = 'red'
+		color = Ocolor; // pink
 	}
 	else {
-		color = 'pink';
+		color = Xcolor; // mint
 	}
 
     //id of the inner board
@@ -362,24 +436,32 @@ function checkCompletedBoard(square) {
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
-    else {
-    	var flag = true;
 
+    // draw board
+    else {
+        // draw state flag, if true -> draw
+    	var drawFlag = true;
+
+        // loop through inner board
     	for (var i = 0; i &lt; 3; i++) {
     		for (var j = 0; j &lt; 3; j++) {
+                // if any square has not been played yet
     			if (innerBoard[i][j] == "") {
-    				flag = false;
+                    // inner board not draw yet
+    				drawFlag = false;
     				break;
     			}
     		}
     	}
 
-    	if (flag) {
+        // if inner board is draw set fullboard and user view accordingly
+    	if (drawFlag) {
     		fullBoard[row][col] = "-";
             // console.log(fullBoard)
             document.getElementById(boardID).innerHTML = "-";
         }
     }
+    // check if game has been won
     win = checkWin();
 }
 
@@ -394,66 +476,66 @@ function checkWin() {
     if (fullBoard[0][0] == fullBoard[0][1] &amp;&amp; fullBoard[0][0] == fullBoard[0][2] &amp;&amp; fullBoard[0][0] != null) {
     	winner = fullBoard[0][0];
     	// setMessage(fullBoard[0][0] + " wins the game!!!");
-    	window.alert(fullBoard[0][0] + " wins the game!!!");
     	winningSet = ['00', '01', '02'];
     }
     //row 2
     else if (fullBoard[1][0] == fullBoard[1][1] &amp;&amp; fullBoard[1][0] == fullBoard[1][2] &amp;&amp; fullBoard[1][0] != null) {
     	winner = fullBoard[1][0];
     	// setMessage(fullBoard[1][0] + " wins the game!!!");
-    	window.alert(fullBoard[1][0] + " wins the game!!!");
     	winningSet = ['10', '11', '12'];
     }
     //row 3
     else if (fullBoard[2][0] == fullBoard[2][1] &amp;&amp; fullBoard[2][0] == fullBoard[2][2] &amp;&amp; fullBoard[2][0] != null) {
     	winner = fullBoard[2][0];
     	// setMessage(fullBoard[2][0] + " wins the game!!!");
-    	window.alert(fullBoard[2][0] + " wins the game!!!");
     	winningSet = ['20', '21', '22'];
     }
     //col 1
     else if (fullBoard[0][0] == fullBoard[1][0] &amp;&amp; fullBoard[0][0] == fullBoard[2][0] &amp;&amp; fullBoard[0][0] != null) {
     	winner = fullBoard[0][0];
     	// setMessage(fullBoard[0][0] + " wins the game!!!");
-    	window.alert(fullBoard[0][0] + " wins the game!!!");
     	winningSet = ['00', '10', '20'];
     }
     //col 2
     else if (fullBoard[0][1] == fullBoard[1][1] &amp;&amp; fullBoard[0][1] == fullBoard[2][1] &amp;&amp; fullBoard[0][1] != null) {
     	winner = fullBoard[0][1];
     	// setMessage(fullBoard[0][1] + " wins the game!!!");
-    	window.alert(fullBoard[0][1] + " wins the game!!!");
     	winningSet = ['01', '11', '21'];
     }
     //col 3
     else if (fullBoard[0][2] == fullBoard[1][2] &amp;&amp; fullBoard[0][2] == fullBoard[2][2] &amp;&amp; fullBoard[0][2] != null) {
     	winner = fullBoard[0][2];
     	// setMessage(fullBoard[0][2] + " wins the game!!!");
-    	window.alert(fullBoard[0][2] + " wins the game!!!");
     	winningSet = ['02', '12', '22'];
     }
     // diagonal
     else if (fullBoard[0][0] == fullBoard[1][1] &amp;&amp; fullBoard[0][0] == fullBoard[2][2] &amp;&amp; fullBoard[0][0] != null) {
     	winner = fullBoard[0][0];
     	// setMessage(fullBoard[0][0] + " wins the game!!!");
-    	window.alert(fullBoard[0][0] + " wins the game!!!");
     	winningSet = ['00', '11', '22'];
     }
     //diagonal
     else if (fullBoard[0][2] == fullBoard[1][1] &amp;&amp; fullBoard[0][2] == fullBoard[2][0] &amp;&amp; fullBoard[0][2] != null) {
     	winner = fullBoard[0][2];
     	// setMessage(fullBoard[0][2] + " wins the game!!!");
-    	window.alert(fullBoard[0][2] + " wins the game!!!");
     	winningSet = ['02', '11', '20'];
     }
-    if (winningSet != null) {
-    	for (var i = 0; i &lt; winningSet.length; i++) {
-            // set all backgound colour
-            document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.backgroundColor = 'green';
-            // set whole board clickable
-            document.getElementById("B" + winningSet[i].charAt(0) + winningSet[i].charAt(1)).style.pointerEvents = 'none';
-        }
+    // full game ends in draws
+    else if (
+        fullBoard[0][0] != null &amp;&amp;
+        fullBoard[0][1] != null &amp;&amp;
+        fullBoard[0][2] != null &amp;&amp;
+        fullBoard[1][0] != null &amp;&amp;
+        fullBoard[1][1] != null &amp;&amp;
+        fullBoard[1][2] != null &amp;&amp;
+        fullBoard[2][0] != null &amp;&amp;
+        fullBoard[2][1] != null &amp;&amp;
+        fullBoard[2][2] != null
+    ){
+        winner = '-';
+
     }
+
     return winner;
 }
 
@@ -474,6 +556,107 @@ function getBoard(boardTable) {
         }
     }
     return innerBoard;
+}
+
+/**
+ * open the welcome page at the start of loading the page
+ */
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+/**
+ * close the welcome page to play the game
+ */
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+/**
+ * open the nav when a game has ended or when the ultimate button is clicked
+ */
+function openEndNav() {
+    //when the game is won (not a draw and game ended)
+    if (win != '-' &amp;&amp; win != null){
+        document.getElementById('gameWinner').innerText = 'The winner is ' + win;
+    }
+    //if the game has not yet ended
+    else if (win == null){
+        document.getElementById('gameWinner').innerText = '';
+    }
+    //if the game has ended in a draw
+    else {
+        document.getElementById('gameWinner').innerText = 'The game has ended in a draw'
+    }
+    //make the nav to full height
+    document.getElementById("endNav").style.height = "100%";
+}
+/**
+ * close the end nav to see game board again
+ */
+function closeEndNav() {
+    document.getElementById("endNav").style.height = "0%";
+}
+/**
+ * Play again, resets full game back to beginning,
+ * set all global and local variables to null
+ * loop though and reconstruct all HTML tables
+ */
+function playAgainNav(){
+    //resetting the variables
+    win = null;
+    winningSet = null;
+    //close the nav
+    closeEndNav(); 
+    //loop 3 times for the number of row   
+    for(var i = 0; i&lt;3;i++){
+        // get a new row element
+        var row = document.getElementById('row' + (i+1));
+        // delete all children of this row
+        while (row.firstChild) {
+            row.removeChild(row.firstChild);
+        }
+        // loop for the number of columns
+        for (var j = 0; j&lt;3;j++){
+            //create the inner board and set al id and class
+            var innerBoard = document.createElement('td');
+            innerBoard.id = 'B' + i + j;
+            innerBoard.className = 'box';
+            innerBoard.align = 'center';
+            // setup the inner elements
+            var innerTable = document.createElement('table');
+            var tbody = document.createElement('tbody');
+            //count for the number of cells created
+            var cellCount = 1;
+            //loop for the rows of the inner board
+            for(var x = 0; x&lt;3;x++){
+                //ceting the inner row
+                var innerRow = document.createElement('tr');
+                //loop for the inner columns
+                for(var k = 0; k &lt; 3; k++){
+                    //creating the cell and the attribues
+                    var cell = document.createElement('td');
+                    cell.id = i+''+j+'s'+cellCount;
+                    cell.className = 'Square';
+                    cellCount++;
+                    //add the cell to the row
+                    innerRow.appendChild(cell);
+                }
+                //add the row to the body
+                tbody.appendChild(innerRow);
+            }
+            //addng the tbody as a child of the inner table
+            innerTable.appendChild(tbody);
+            //adding innertable as a child of the inner board
+            innerBoard.style.pointerEvents = 'auto';
+            innerBoard.appendChild(innerTable);
+            //adding the innertable as a child of the row
+            row.appendChild(innerBoard);
+            //setting the variable of the full board to null
+            fullBoard[i][j] = null;
+        }
+    }
+    //call to run a new game
+    startGame(0);
+    console.log('New Game')
 }</code></pre>
         </article>
     </section>
@@ -484,13 +667,13 @@ function getBoard(boardTable) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#setColour">setColour</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#switchVisible">switchVisible</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activeColor">activeColor</a></li><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#closeEndNav">closeEndNav</a></li><li><a href="global.html#closeNav">closeNav</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#Ocolor">Ocolor</a></li><li><a href="global.html#openEndNav">openEndNav</a></li><li><a href="global.html#openNav">openNav</a></li><li><a href="global.html#playAgainNav">playAgainNav</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#showRules">showRules</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li><li><a href="global.html#Xcolor">Xcolor</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 13 2016 00:20:20 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Dec 06 2016 17:22:57 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

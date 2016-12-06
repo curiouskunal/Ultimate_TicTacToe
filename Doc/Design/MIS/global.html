@@ -96,85 +96,13 @@
 
         
             
-<h4 class="name" id="fullBoard"><span class="type-signature">(constant) </span>fullBoard<span class="type-signature"> :array</span></h4>
+<h4 class="name" id="activeColor"><span class="type-signature">(constant) </span>activeColor<span class="type-signature"> :string</span></h4>
 
 
 
 
 <div class="description">
-    Array to represent the status of the full board
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">array</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="setColour"><span class="type-signature">(constant) </span>setColour<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    Blue
+    Orange
 </div>
 
 
@@ -240,13 +168,85 @@
 
         
             
-<h4 class="name" id="win"><span class="type-signature">(constant) </span>win<span class="type-signature"> :string</span></h4>
+<h4 class="name" id="fullBoard"><span class="type-signature">(constant) </span>fullBoard<span class="type-signature"> :array</span></h4>
 
 
 
 
 <div class="description">
-    string of winning player, null untill winner is determined
+    Array to represent the status of the full board
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">array</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Ocolor"><span class="type-signature">(constant) </span>Ocolor<span class="type-signature"> :string</span></h4>
+
+
+
+
+<div class="description">
+    Player O winning color: Pink
 </div>
 
 
@@ -294,7 +294,79 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line13">line 13</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="win"><span class="type-signature">(constant) </span>win<span class="type-signature"> :string</span></h4>
+
+
+
+
+<div class="description">
+    string of winning player, null until winner is determined
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -366,6 +438,78 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Xcolor"><span class="type-signature">(constant) </span>Xcolor<span class="type-signature"> :string</span></h4>
+
+
+
+
+<div class="description">
+    Player XO winning color: Mint
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
         <a href="script.js.html">script.js</a>, <a href="script.js.html#line9">line 9</a>
     </li></ul></dd>
     
@@ -393,7 +537,7 @@
 
     
 
-    <h4 class="name" id="changeColour"><span class="type-signature"></span>changeColour<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="changeColour"><span class="type-signature"></span>changeColour<span class="signature">(square)</span><span class="type-signature"></span></h4>
 
     
 
@@ -401,7 +545,6 @@
 
 <div class="description">
     Adding the colors to the inner square to indicate to the user where they can play their next move
-param square the small square that was clicked by the user {square}
 </div>
 
 
@@ -410,6 +553,55 @@ param square the small square that was clicked by the user {square}
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>square</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">square</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the small square that was clicked by the user</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -445,7 +637,7 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line131">line 131</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line192">line 192</a>
     </li></ul></dd>
     
 
@@ -576,7 +768,7 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line222">line 222</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line296">line 296</a>
     </li></ul></dd>
     
 
@@ -658,7 +850,7 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line363">line 363</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line445">line 445</a>
     </li></ul></dd>
     
 
@@ -703,6 +895,170 @@ param square the small square that was clicked by the user {square}
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="closeEndNav"><span class="type-signature"></span>closeEndNav<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    close the end nav to see game board again
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line567">line 567</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="closeNav"><span class="type-signature"></span>closeNav<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    close the welcome page to play the game
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line542">line 542</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -811,7 +1167,7 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line437">line 437</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line519">line 519</a>
     </li></ul></dd>
     
 
@@ -922,7 +1278,255 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line84">line 84</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="openEndNav"><span class="type-signature"></span>openEndNav<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    open the nav when a game has ended or when the ultimate button is clicked
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line548">line 548</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="openNav"><span class="type-signature"></span>openNav<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    open the welcome page at the start of loading the page
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line536">line 536</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="playAgainNav"><span class="type-signature"></span>playAgainNav<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Play again, resets full game back to beginning,
+set all global and local variables to null
+loop though and reconstruct all HTML tables
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line575">line 575</a>
     </li></ul></dd>
     
 
@@ -1053,7 +1657,7 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line52">line 52</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1084,171 +1688,7 @@ param square the small square that was clicked by the user {square}
 
     
 
-    <h4 class="name" id="startGame"><span class="type-signature"></span>startGame<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Will start the game and initialize player 1 to X or O
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="switchTurn"><span class="type-signature"></span>switchTurn<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Switch player turn
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line118">line 118</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="switchVisible"><span class="type-signature"></span>switchVisible<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="showRules"><span class="type-signature"></span>showRules<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -1299,7 +1739,226 @@ param square the small square that was clicked by the user {square}
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="script.js.html">script.js</a>, <a href="script.js.html#line59">line 59</a>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="startGame"><span class="type-signature"></span>startGame<span class="signature">(gameState)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Will start the game
+set up click listeners
+and randomly initializes player 1 to X or O
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>gameState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">1: new instance of game (onload), 0:play again (newgame)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="switchTurn"><span class="type-signature"></span>switchTurn<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Switch player turn,
+
+alternate between X and O, set msg accordingly
+
+if player has won set win message
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -1341,13 +2000,13 @@ param square the small square that was clicked by the user {square}
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#setColour">setColour</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#switchVisible">switchVisible</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activeColor">activeColor</a></li><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#closeEndNav">closeEndNav</a></li><li><a href="global.html#closeNav">closeNav</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#Ocolor">Ocolor</a></li><li><a href="global.html#openEndNav">openEndNav</a></li><li><a href="global.html#openNav">openNav</a></li><li><a href="global.html#playAgainNav">playAgainNav</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#showRules">showRules</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li><li><a href="global.html#Xcolor">Xcolor</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 13 2016 00:20:20 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Dec 06 2016 17:22:57 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

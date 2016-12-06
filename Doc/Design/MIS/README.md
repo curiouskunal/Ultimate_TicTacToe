@@ -1,5 +1,13 @@
 # Module Interface Specification #
 
-Suggest following something like the example used in Lab 11 (Box 3D).
+Using [JsDoc](https://github.com/jsdoc3/jsdoc) 
 
-Use doxygen (or equivalent) to document the interface for your modules.
+#### How To Generate MIS
+
+```
+$ cd ../../../scr
+$ npm install jsdoc
+$ ./node_modules/.bin/jsdoc lib/script.js -d ../../Doc/Design/MIS
+$ open ../../Doc/Design/MIS/index.html
+```
+

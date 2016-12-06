@@ -1,7 +1,15 @@
 /**
- * @constant setColour {string} - Blue
+ * @constant activeColor {string} - Orange
  */
-var setColor = "#FFAC7F";
+var activeColor = "#FFAC7F";
+/**
+ * @constant Ocolor {string} - Player O winning color: Pink
+ */
+var Ocolor = '#ED76AF';
+/**
+ * @constant Xcolor {string} - Player XO winning color: Mint
+ */
+var Xcolor = '#76edb4';
 /**
  * @constant fullBoard {array} Array to represent the status of the full board
  */
@@ -28,10 +36,14 @@ fullBoard[2][2] = null;
 
 
 /**
- * Will start the game and initialize player 1 to X or O
+ * Will start the game
+ * set up click listeners
+ * and randomly initializes player 1 to X or O
+ *
+ * @param gameState 1: new instance of game (onload), 0:play again (newgame) {boolean}
  *
 */
-function startGame() {
+function startGame(gameState) {
 	document.turn = "X";
 	if (Math.random() < 0.5) {
 		document.turn = "O";
@@ -39,19 +51,11 @@ function startGame() {
 	setMessage(document.turn + " gets to start.");
 
     setupListeners();
+
     //open overlay
-    openNav();
-}
-
-function newGame(){
-    document.turn = "X";
-    if (Math.random() < 0.5) {
-        document.turn = "O";
+    if (gameState){
+        openNav();
     }
-    setMessage(document.turn + " gets to start.");
-
-    setupListeners();
-
 }
 
 function setupListeners(){
@@ -149,23 +153,33 @@ function nextMove() {
 
 
 /**
- * Switch player turn
+ * Switch player turn,
+ *
+ * alternate between X and O, set msg accordingly
+ *
+ * if player has won set win message
  */
 function switchTurn() {
+    // turn swtich
 	if (document.turn == "X") {
 		document.turn = "O";
 	} else {
 		document.turn = "X";
 	}
+	// set user messages
+    // if not won set player turn message
     if (win == null){
         setMessage("It's " + document.turn + "'s turn!");
-    } else{
+    }
+    // if game is won set win or draw message
+    else{
         if (win == '-'){
             setMessage("Game has ended in draw");
         }
         else {
             setMessage(win + " has won the game!");
         }
+        // open end screen at end of game
         openEndNav();
     }
 
@@ -173,7 +187,7 @@ function switchTurn() {
 
 /**
 * Adding the colors to the inner square to indicate to the user where they can play their next move
-* param square the small square that was clicked by the user {square}
+* @param square the small square that was clicked by the user {square}
 */
 function changeColour(square) {
 
@@ -181,7 +195,7 @@ function changeColour(square) {
     var tileID = square.id;
     tileID = tileID.substring(2);
 
-    // set Next move's playable region boardID
+    // set Next players's active region's boardID
 
     switch (tileID) {
     	case "s1":
@@ -212,6 +226,11 @@ function changeColour(square) {
     	boardID = 'B22';
     	break;
     }
+
+    // if the game is still in play loop through all game inner boards and
+    //      set color of the active board(s)
+    //      set only active board(s) clickable
+    //
     if (win == null) {
     	for (var i = 0; i < 3; i++) {
     		for (var j = 0; j < 3; j++) {
@@ -219,14 +238,12 @@ function changeColour(square) {
                 // setting muliple active boards
     			if (fullBoard[boardID.charAt(1)][boardID.charAt(2)] != null) {
                     if (fullBoard[i][j] == null) {
-                        console.log('here1');
                         // set all backgound colour
-                        document.getElementById("B" + i + j).style.backgroundColor = setColor; //active highlight
+                        document.getElementById("B" + i + j).style.backgroundColor = activeColor; //active highlight
                         // set whole board clickable
                         document.getElementById("B" + i + j).style.pointerEvents = 'auto';
                     }
                     else {
-                        console.log('here2');
                         // set all backgound colour
                         document.getElementById("B" + i + j).style.backgroundColor = 'none';
                         // set whole board clickable
@@ -237,15 +254,13 @@ function changeColour(square) {
                 // setting single active board
                 else {
                 	if (fullBoard[i][j] == null) {
-                        console.log('here3');
                         // set all backgound colour
                         document.getElementById('B' + i + j).style.backgroundColor = 'transparent';
                         // set whole board clickable
                         document.getElementById('B' + i + j).style.pointerEvents = 'none';
                     }
-                    console.log('here4' + boardID);
                     // set playable region backgound colour to indicate active area.
-                    document.getElementById(boardID).style.backgroundColor = setColor;
+                    document.getElementById(boardID).style.backgroundColor = activeColor;
                     // set region clickable
                     document.getElementById(boardID).style.pointerEvents = 'auto';
                 }
@@ -253,6 +268,8 @@ function changeColour(square) {
         }
     }
     // if game has been won remove color of all non winning set boards
+    //      if null, clear all color from board
+    // set full board non-clickable
     else {
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
@@ -279,10 +296,10 @@ function changeColour(square) {
 function checkCompletedBoard(square) {
 	var color = null;
 	if (square.innerText == 'O') {
-		color = '#ED76AF' // pink
+		color = Ocolor; // pink
 	}
 	else {
-		color = '#76edb4'; // mint
+		color = Xcolor; // mint
 	}
 
     //id of the inner board
@@ -391,24 +408,32 @@ function checkCompletedBoard(square) {
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
-    else {
-    	var flag = true;
 
+    // draw board
+    else {
+        // draw state flag, if true -> draw
+    	var drawFlag = true;
+
+        // loop through inner board
     	for (var i = 0; i < 3; i++) {
     		for (var j = 0; j < 3; j++) {
+                // if any square has not been played yet
     			if (innerBoard[i][j] == "") {
-    				flag = false;
+                    // inner board not draw yet
+    				drawFlag = false;
     				break;
     			}
     		}
     	}
 
-    	if (flag) {
+        // if inner board is draw set fullboard and user view accordingly
+    	if (drawFlag) {
     		fullBoard[row][col] = "-";
             // console.log(fullBoard)
             document.getElementById(boardID).innerHTML = "-";
         }
     }
+    // check if game has been won
     win = checkWin();
 }
 
@@ -504,15 +529,22 @@ function getBoard(boardTable) {
     }
     return innerBoard;
 }
-//open the nav at the start of loading the page
+
+/**
+ * open the welcome page at the start of loading the page
+ */
 function openNav() {
     document.getElementById("myNav").style.height = "100%";
 }
-// close the nav to play the game
+/**
+ * close the welcome page to play the game
+ */
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 }
-//open the nav when a game has ended or when the ultimate button is clicked
+/**
+ * open the nav when a game has ended or when the ultimate button is clicked
+ */
 function openEndNav() {
     //when the game is won (not a draw and game ended)
     if (win != '-' && win != null){
@@ -529,11 +561,17 @@ function openEndNav() {
     //make the nav to full height
     document.getElementById("endNav").style.height = "100%";
 }
-//close the nav
+/**
+ * close the end nav to see game board again
+ */
 function closeEndNav() {
     document.getElementById("endNav").style.height = "0%";
 }
-
+/**
+ * Play again, resets full game back to beginning,
+ * set all global and local variables to null
+ * loop though and reconstruct all HTML tables
+ */
 function playAgainNav(){
     //resetting the variables
     win = null;
@@ -589,7 +627,6 @@ function playAgainNav(){
         }
     }
     //call to run a new game
-    newGame();
-    console.log(fullBoard)
-
+    startGame(0);
+    console.log('New Game')
 }
