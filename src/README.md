@@ -13,6 +13,7 @@ The folders and files for this project are as follows:
 
 ## Game
 open [index.html](lib/index.html) in a web browser
+
 Compatible with:
 * Safari
 * Google Chrome
@@ -20,4 +21,5 @@ Compatible with:
 
 ## Tests
 `$ npm install` to install project dependencies
+
 `$ npm test` to run Karma Jasmine automated tests
