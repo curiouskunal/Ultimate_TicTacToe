@@ -38,13 +38,16 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\newpage
+\begin{table}[hp]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 October 19 & 0.0 & Initial setup\\
 October 31 & 1.0 & Finished Document \\
+November 28 & 1.1 & Changed survey questions slightly\\
+December 5 & 1.2 & Made changes Chris suggested\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -309,7 +312,7 @@ explorer. If they are able to see a blank UTTT board, the game has launched.
 
 Type: Functional, Dynamic, Manual
 					
-Initial State: User has just openned game \textcolor{red}{Spelling - CM} \\
+Initial State: User has just opened game\\ %\textcolor{red}{Spelling - CM}
 					
 Input: User clicks on any cell
 					
@@ -547,11 +550,11 @@ Reference section \ref{LookAndFeel} of Tests for Nonfunctional Requirements
 \end{itemize}		
 				
 \section{Unit Testing Plan}
-\textcolor{red}{Spelling below - CM} \\
+%\textcolor{red}{Spelling below - CM} \\
 The Karma and Jasmine framework will be used to implement unit testing for
 this project. This will require the installation of multiple dependencies that
-cam be found in a .json file. Using the npm framework these can all be easily
-installed.
+can be found in a json file. Using the npm (Node Package Manager) framework 
+these can all be easily installed.
 \subsection{Unit testing of internal functions}
 In order to unit test the internal functions of the game, the values of the
 arrays will be checked after the function is run. There are arrays which are
