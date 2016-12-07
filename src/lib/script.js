@@ -11,15 +11,19 @@ var Ocolor = '#ED76AF';
  */
 var Xcolor = '#76edb4';
 /**
- * @constant fullBoard {array} Array to represent the status of the full board
+ * @constant MAX_PLAYERS {int}
+ */
+var MAX_PLAYERS = 2;
+/**
+ * @var fullBoard {array} Array to represent the status of the full board
  */
 var fullBoard = [[], [], []];
 /**
- * @constant winningSet {array} array of won boards
+ * @var winningSet {array} array of won boards
  */
 var winningSet = null;
 /**
- * @constant win {string} string of winning player, null until winner is determined
+ * @var win {string} string of winning player, null until winner is determined
  */
 var win = null;
 
