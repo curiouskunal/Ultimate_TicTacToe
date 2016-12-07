@@ -78,42 +78,6 @@ function setupListeners(){
 function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
-
-/**
- * Button to show and hide the rules
- */
-function showRules() {
-// Get the modal
-    var modal = document.getElementById('ShowRules');
-
-// Get the button that opens the modal
-    var btn = document.getElementById("RulesButton");
-
-// Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-    modal.style.display='block';
-    modal.style.visibility = 'visible';
-    modal.style.opacity = '1';
-
-// When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.visibility = 'hidden';
-        modal.style.opacity = '0';
-        // modal.style.display='none';
-    }
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.visibility = 'hidden';
-            modal.style.opacity = '0' ;
-            // modal.style.display='none';
-        }
-    }
-}
-
 /**
  * Called when the player makes a move
  * <ul style="list-style: none;">
