@@ -4,6 +4,9 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{graphicx}
 
 \pagestyle{fancy}
 \hypersetup{
@@ -82,6 +85,7 @@ in the following table \ref{TbTestList}.
 \tthetnum\refstepcounter{tnum} \label{test5} & Draw the full game\\
 \tthetnum\refstepcounter{tnum} \label{test6} & Play Again\\
 \tthetnum\refstepcounter{tnum} \label{test7} & Return to Board\\
+\tthetnum\refstepcounter{tnum} \label{test8} & Click on a cell that is already occupied \\
 
 \bottomrule
 \end{tabularx}
@@ -250,9 +254,30 @@ development of the game, and usability survey after revision 0 demonstration.
 \subsection{Performance}
 
 	
-\section{Comparison to Existing Implementation}	
+\section{Comparison to Existing Implementation}
+This project is a reimplementation of the original Ultimate tic tac toe game ~\citep{githubREF}. Prior to starting this project we investigated the existing implementation. There were 3 main elements we wanted to change for our reimplementation of Ultimate Tic Tac Toe which can been seen in Figure~\ref{fig:Comparison}.
+\begin{enumerate}
+\item Rules explaining how to play the game
+\item User interface (colours and ascetic)
+\item Ability to repay the game
+\end{enumerate}
 
-This section will not be appropriate for every project.
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{../../ReferenceMaterial/SourceGame_screenshot.png}
+  \caption{Original Game}
+  \label{fig:sub1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{../../ReferenceMaterial/XwinInnerBoard_screenshot.png}
+  \caption{Reimplemented Game}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Implementation Comparison}
+\label{fig:Comparison}
+\end{figure}
 
 \section{Unit Testing}
 \subsection{How to Test}
