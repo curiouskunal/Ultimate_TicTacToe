@@ -59,8 +59,8 @@ This document describes the results of all the testing done for Ultimate Tic Tac
 \section{Functional Requirements Evaluation}
 
 \section{Nonfunctional Requirements Evaluation}
-Nonfunctional Requirements where tested using 2 methods, self testing  
-
+Nonfunctional Requirements where tested using two methods, manual testing during the development of the game, and usability survey
+after revision 0 demonstration.
 \subsection{Usability}
 		
 \subsection{Performance}
@@ -72,15 +72,26 @@ Nonfunctional Requirements where tested using 2 methods, self testing
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+\subsection{How to Test}
 Unit testing was done using Karma and Jasmine frameworks. There is a folder called test
 located in the src directory which contains the JavaScript file. In order to execute the testing framework, 
 npm is required and all required packages are in a json file. Once all packages are installed, 
-executing 'npm test' will run all the tests that are written in the test.js file. The unit testing was done on all the various game states and on all the possible outcomes.
+executing 'npm test' will run all the tests that are written in the test.js file.
+\subsection{Tests}
+The unit testing was done on the game logic which includes testing click functionality and some additional functionality such as the dropdown menus.
 
 \section{Changes Due to Testing}
-
+After performing unit testing on multiple browsers i.e.(Google Chrome, Safari, Firefox, Opera),
+it was apparent that the game would not work on Firefox. The surveys also indicated that the game did
+not work in Firefox. This was the only browser that was having issues with this. Unfortunately,
+the reason for the incompatibility with Firefox is due to a click listener thus it could not be fixed. From
+surveys, it was made clear that there was a scaling issue when playing on smaller displays, as such
+changes were made to accommodate smaller devices screen sizes. The game board would adjust 
+accordingly to the size of the display. 
 \section{Automated Testing}
-
+The automated testing was implemented with the Karma framework. This involved forcing Karma
+to various game states and verifying if the results matched what was expected. The various 
+states were a game ending in a win and ending in a draw.
 \section{Trace to Requirements}
 		
 \section{Trace to Modules}		
