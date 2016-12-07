@@ -299,6 +299,9 @@ describe('functionalTests', function() {
         get fullBoard() {
             return fullBoard    
         },
+        get win(){
+            return win
+        },
         clickCell: function(id) {
             document.getElementById(id).click();
         },
@@ -406,6 +409,8 @@ describe('functionalTests', function() {
         expect(controls.B21.innerHTML).toBe(controls.turn);
         expect(controls.B22.innerHTML).toBe(controls.turn);
         expect(controls.message).toBe(controls.turn + ' has won the game!');
+        expect(controls.win).toBe(controls.turn);
+
     });
 
 
@@ -481,6 +486,13 @@ describe('functionalTests', function() {
         expect((controls.B22).style.backgroundColor).toBe("transparent");
 
         expect(controls.message).toBe('Game has ended in draw');
+
+        expect(controls.win).toBe('-');
+
+    });
+
+    it('Rules show', function() {
+        controls.clickCell('01s5');
 
     });
 
