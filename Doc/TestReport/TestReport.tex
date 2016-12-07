@@ -3,6 +3,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -25,6 +28,9 @@
 
 \begin{document}
 
+\lhead{Team 3 - Test Report}
+\rhead{Ultimate Tic Tac Toe}
+
 \maketitle
 
 \pagenumbering{roman}
@@ -32,7 +38,8 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\newpage
+\begin{table}[hp]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -46,7 +53,8 @@ December 5 & 0.0 & Initial commit\\
 
 \pagenumbering{arabic}
 
-This document ...
+\section*{Abstract}
+This document describes the results of all the testing done for Ultimate Tic Tac Toe.
 
 \section{Functional Requirements Evaluation}
 
@@ -63,6 +71,10 @@ This document ...
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+Unit testing was done using Karma and Jasmine frameworks. There is a folder called test
+located in the src directory which contains the JavaScript file. In order to execute the testing framework, 
+npm is required and all required packages are in a json file. Once all packages are installed, 
+executing 'npm test' will run all the tests that are written in the test.js file. The unit testing was done on all the various game states and on all the possible outcomes.
 
 \section{Changes Due to Testing}
 
