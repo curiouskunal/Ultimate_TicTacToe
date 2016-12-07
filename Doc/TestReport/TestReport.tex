@@ -67,8 +67,7 @@ This document describes the results of all the testing done for Ultimate Tic Tac
 
 \section*{List of Test}
 
-This section provides an overview of the tests completed. Tests are summarized
-in the following table \ref{TbTestList}. 
+This section provides an overview of the tests completed. Tests are summarized in Table \ref{TbTestList}. 
 
 \refstepcounter{tnum}
 \begin{table}[hp]
@@ -86,6 +85,7 @@ in the following table \ref{TbTestList}.
 \tthetnum\refstepcounter{tnum} \label{test6} & Play Again\\
 \tthetnum\refstepcounter{tnum} \label{test7} & Return to Board\\
 \tthetnum\refstepcounter{tnum} \label{test8} & Click on a cell that is already occupied \\
+\tthetnum\refstepcounter{tnum} \label{test9} & Users are alternating turns\\
 
 \bottomrule
 \end{tabularx}
@@ -202,7 +202,7 @@ Actual Output: The character was the opposite
 Result: The test passed
 
 \end{enumerate}
-
+%\newpage
 \subsection{Game Logistics}
 
 \begin{enumerate}
@@ -218,7 +218,9 @@ Expected Output: The game launches in all browsers and shows the welcome dropdow
 
 Actual Output: The game launches to the welcome dropdown in the user's preferred browser
 
-Result: The test passed. Note: though the game does not work in Firefox, it has no issues in launching
+Result: The test passed. 
+
+Note: though the game does not work in Firefox, it has no issues in launching
 
 \item{logistic-test-id2\\}
 \textbf{Test if user input shows in window}

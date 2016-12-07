@@ -305,7 +305,7 @@ describe('functionalTests', function() {
     	controls.clickCell('11s5');
     	var currentChar = controls.getElement('11s5').innerHTML;
     	controls.clickCell('11s1');
-    	expect((controls.getElement('11s1').innerHTML)).toNotBe(currentChar);
+    	expect((controls.getElement('11s1').innerHTML)).not.toBe(currentChar);
     });
 
 });    
