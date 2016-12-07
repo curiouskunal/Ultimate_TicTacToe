@@ -484,4 +484,31 @@ describe('functionalTests', function() {
 
     });
 
+    it('Play Again', function{
+    	// game is won
+    	controls.clickCell('11s6');
+        controls.clickCell('12s8');
+        controls.clickCell('21s5');
+        controls.clickCell('11s9');
+        controls.clickCell('22s5');
+        controls.clickCell('11s5');
+        controls.clickCell('11s8');
+        controls.clickCell('21s9');
+        controls.clickCell('22s9');
+        controls.clickCell('22s8');
+        controls.clickCell('21s4');
+        controls.clickCell('10s8');
+        controls.clickCell('21s6');
+        controls.clickCell('12s9');
+        controls.clickCell('22s1');
+        controls.clickCell('00s8');
+        controls.clickCell('20s5');
+        controls.clickCell('11s1');
+        controls.clickCell('00s9');
+        controls.clickCell('20s9');
+        controls.clickCell('20s7');
+        controls.clickCell('20s8');
+        controls.clickCell('20s3');
+    });
+
 });    
