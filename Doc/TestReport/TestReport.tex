@@ -92,7 +92,7 @@ in the following table \ref{TbTestList}.
 \end{table}
 
 \section{Functional Requirements Evaluation}
-\subsubsection{User Input}
+\subsection{User Input}
 
 \begin{enumerate}
 
@@ -122,7 +122,7 @@ and it is still the user's turn
 
 Actual Output: Nothing happens
 
-Resut: The test passed
+Result: The test passed
 
 \item{in-test-id3\\}
 \textbf{Testing if user's input on cell already clicked}
@@ -131,119 +131,107 @@ Initial State: Opponent has played on a inner board and it is the user's turn
 					
 Input: Click on a tile that has already been clicked previously
 					
-Output: The board should not change at all. The game data should not change
+Expected Output: The board should not change at all. The game data should not change
 and it is still the user's turn
+
+Actual Output: The cell doesn't change
+
+Result: The test passed
 
 \end{enumerate}
 
-\subsubsection{Game Logic}
+\subsection{Game Logic}
 
 \begin{enumerate}
 
 \item{log-test-id1\\}
 \textbf{Test if inner board gets completed}
-
-Type: Functional, Dynamic, Automatic
 					
 Initial State: Inner board is almost completed by user. It is their turn to
 play in the inner board where they will complete it.
 					
 Input: Clicks on the cell that will complete the inner board
 					
-Output: The inner board will be marked with the character representing the
+Expected Output: The inner board will be marked with the character representing the
 user
-					
-How test will be performed: This test will be performed automatically with the
-use of the Karma Unit Test. The cell element will be clicked by the tester.
-The logic will check if there is any three in a row in that inner board that
-the player just played in. If there is a three in a row, the entire board is
-deemed as completed and marked as so. The check for a three in a row is to
-check all 8 possible win scenarios, i.e. three rows, three columns and two
-diagonals
+
+Actual Output: The inner board is marked with the character representing the player 
+who completed the board
+
+Result: The test passed
 
 \item{log-test-id2\\}
 \textbf{Test if inner board ends in draw}
-
-Type: Functional, Dynamic, Automatic
 					
 Initial State: The board is in a state where an inner board only has 1 cell
 available to click and it will result in that board being a draw
 
 Input: Click on the only available cell
 					
-Output: The inner board will be marked with the character '-' meaning it is a
+Expected Output: The inner board will be marked with the character '-' meaning it is a
 draw
-					
-How test will be performed: This test will be performed automatically with the
-use of the Karma Unit Test. The cell element will be clicked by the tester.
-The logic will check all 8 possible cases for a completed three in a row. If
-non exist and the inner board is full it is classified as a draw.
+
+Actual Output: The inner board is marked with '-'
+
+Result: The test passed
 
 \item{log-test-id3\\}
 \textbf{Test if next move can be made on any incomplete inner board}
-
-Type: Functional, Dynamic, Automatic
 					
 Initial State: Game board is partially filled with one inner board completed
 
 Input: Click at a cell corresponding to a completed inner board
 					
-Output: All incomplete inner boards active
-					
-How test will be performed: When the click is made on the inner board, the
-background of all inner boards that are not completed is set to blue. Based on
-the array which contains a map of the board, a loop through all the inner
-board elements and check their background colors. Any inner board that is not
-complete will have a background style blue.
+Expected Output: All incomplete inner boards active
+
+Actual Output: All the incomplete inner boards changed to an active board color
+
+Result: The test passed
 
 \item{log-test-id4\\}
 \textbf{Test if user turns are alternating}
-
-Type: Functional, Dynamic, Automatic
 					
-Initial State: Player with character O just made a move
+Initial State: Player with character O or X just made a move
 
 Input: Click at any available cell
 					
-Output: The character changes to X
-					
-How test will be performed: When a click is made, the character should change
-and the innerHTML should represent the other one.
+Expected Output: The character on the other cell is the opposite
+
+Actual Output: The character was the opposite
+
+Result: The test passed
 
 \end{enumerate}
 
-\subsubsection{Game Logistics}
+\subsection{Game Logistics}
 
 \begin{enumerate}
 
 \item{logistic-test-id1\\}
 \textbf{Test if game launches}
-
-Type: Functional, Dynamic, Manual
 					
 Initial State: User is in the file explorer
 					
 Input: User launches the html file in browser
 					
-Output: The game launches in all browsers and shows an empty UTTT game board.
-					
-How test will be performed: The user will launch the game from their file
-explorer. If they are able to see a blank UTTT board, the game has launched.
+Expected Output: The game launches in all browsers and shows the welcome dropdown
+
+Actual Output: The game launches to the welcome dropdown in the user's preferred browser
+
+Result: The test passed. Note: though the game does not work in Firefox, it has no issues in launching
 
 \item{logistic-test-id2\\}
 \textbf{Test if user input shows in window}
-
-Type: Functional, Dynamic, Manual
 					
-Initial State: User has just opened game\\ %\textcolor{red}{Spelling - CM}
+Initial State: User has just opened game
 					
 Input: User clicks on any cell
 					
-Output: Cell they clicked on should change appearance
-					
-How test will be performed: If the user's click was registered, it would
-indicate that to the user by changing the cell they clicked on to the
-character that represents them. This will be seen graphically.
+Expected Output: Cell they clicked on should change appearance
+
+Actual Output: The cell on the game board shows the user's character
+
+Result: The test passed
 
 \end{enumerate}
 \section{Nonfunctional Requirements Evaluation}
