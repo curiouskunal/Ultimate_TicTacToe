@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{verbatim}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \pagestyle{fancy}
@@ -444,7 +445,7 @@ Initial State: On Load
 					
 Input: click on Inner Board [B00] Cell [1] 
 					
-Output: Player1 symbol ( either X or O ) Figure:\ref{fig:Test1_output}
+Output: Player1 symbol ( either X or O ) Figure: \ref{fig:Test1_output}
 					
 How test will be performed: User clicks input on game page loaded on an
 browser. User watches for graphical response.
@@ -457,7 +458,7 @@ Initial State: On Load
 					
 Input: User click Inner Board [B03] Cell [5] 
 					
-Output:  Active Board set to Inner Board [B11] Figure:\ref{fig:Test2_output}
+Output:  Active Board set to Inner Board [B11] Figure: \ref{fig:Test2_output}
 					
 How test will be performed: User clicks input on game page loaded on an
 browser. User watches for graphical response.
@@ -469,7 +470,7 @@ Type: Manual
 					
 Initial State: One move till Player 1 completes inner board [B02]
 					
-Input: User click Inner Board [B02] Cell [3] Figure:\ref{fig:Test3-4_output}
+Input: User click Inner Board [B02] Cell [3] Figure: \ref{fig:Test3-4_output}
 					
 Output:  all Inner Boards excluding Inner Board [B02] show blue background colour
 					
@@ -494,7 +495,7 @@ Initial State: One move till Player 1 completes inner board [B01]
 					
 Input: User click Inner Board [B01] Cell [3] 
 					
-Output:  Inner Board [B01] displays Player 1 symbol Figure:\ref{fig:Test3-4_output}
+Output:  Inner Board [B01] displays Player 1 symbol Figure: \ref{fig:Test3-4_output}
 					
 How test will be performed: Users clicks the following sequence on game page
 loaded on an browser. User watches for graphical response.
@@ -512,9 +513,9 @@ Type: Manual
 					
 Initial State: One move till Player completes inner board
 					
-Input: User click to cause Inner Board to draw Figure:\ref{fig:Test5_input}
+Input: User click to cause Inner Board to draw Figure: \ref{fig:Test5_input}
 					
-Output:  Inner Board displays dash to indicate draw Figure:\ref{fig:Test5_output}
+Output:  Inner Board displays dash to indicate draw Figure: \ref{fig:Test5_output}
 					
 How test will be performed: User clicks input on game page loaded on an
 browser. User watches for graphical response.
@@ -526,9 +527,9 @@ Type: Manual
 Initial State: One move till Player 1 wins full game
 					
 Input: User click cell to complete last inner board needed to win Main Board
-Figure:\ref{fig:Test6_input}
+Figure: \ref{fig:Test6_input}
 					
-Output:  Browser alert with player that won ( X or O ) Figure:\ref{fig:Test6_output}
+Output:  Browser alert with player that won ( X or O ) Figure: \ref{fig:Test6_output}
 					
 How test will be performed: Users clicks the following sequence on game page
 loaded on an browser. User watches for graphical response.
@@ -645,24 +646,29 @@ Karma JS Installation Tutorial and Example source code~\citep{Karma}
 MAX\_PLAYERS: Maximum number of concurrent players.
 
 \subsection{Usability Survey Questions?}
+\begin{comment}
 \textcolor{red}{Metrics for users may be helpful. I am not sure what constitutes a 5 on the understanding rules scale for example. Also some answers are ambiguous for the user, see question \ref{question:q6}. Take out some things that do not require a scale and have in separate section of survey - CM} \\
-Answers will be rated from 1 to 5, 5 being the highest
+\end{comment}
+
+Please provide a rating from 1 to 5, 1 representing strongly disagreeing with the statement, and 5 strongly agreeing.
 \begin{enumerate}
 \item
-Is it easy to find the rules of the game? \label{question:q1}
+The rules were very easy to find. \label{question:q1}
 \item
-Are the rules easy to understand? \label{question:q2}
+The rules are easy to understand. \label{question:q2}
 \item
-Is it clear which player's turn it is? (X or O) \label{question:q3}
+The color pallet is visually appealing .\label{question:q4}
 \item
-Is the color pallet visually appealing? \label{question:q4}
+The response time was satisfying. \label{question:q5}
+\end{enumerate}
+Please select True or False and provide details where requested
+\begin{enumerate}
 \item
-Is the response time satisfying? \label{question:q5}
+It is clear which player's turn it is. (X or O). \label{question:q3}
 \item
-Was the game able to run on your browser? Please indicate the browser you used
-\label{question:q6}
+The game run smoothly on my browser. Please indicate the browser you used. \label{question:q6}
 \item
-Was the game able to run smoothly on your device. Please indicate the computer
+the game was able to run smoothly on your device. Please indicate the computer
 used and the manufactured year \label{question:q7}
 \item
 Were you offended by anything in the game. Please provide details \label{question:q8}
@@ -674,8 +680,6 @@ Did anything unexpected appear on the screen while playing. Please describe
 \item
 Is the entire game board visible on the screen? Are there any aspects that are
 cut off? Please describe \label{question:q11}
-
-
 \end{enumerate}
 
 \end{document}
