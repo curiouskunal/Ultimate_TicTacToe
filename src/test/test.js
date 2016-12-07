@@ -307,6 +307,9 @@ describe('functionalTests', function() {
         },
         get message(){
             return document.getElementById("message").innerText;
+        },
+        get endNav(){
+        	return document.getElementById('endNav');
         }
     };
 
@@ -521,6 +524,20 @@ describe('functionalTests', function() {
         controls.clickCell('20s7');
         controls.clickCell('20s8');
         controls.clickCell('20s3');
+
+        controls.clickCell('playAgain');
+
+        expect(controls.win).toBe(null);
+        expect(controls.winningSet).toBe(null);
+        expect(controls.endNav).style.height.toBe('0%');
+        for (var i = 0; i < 3; i++){
+        	for (var j = 0; j < 3; j++){
+        		expect(controls.fullBoard[i][j]).toBe(null);
+        		for(var k = 0; k < 9; k++){
+        			// expect(controls.)
+        		}
+        	}
+        }
     });
 
 });    
