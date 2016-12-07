@@ -308,13 +308,11 @@ describe('functionalTests', function() {
         get message(){
             return document.getElementById("message").innerText;
         },
-<<<<<<< HEAD
         get endNav(){
         	return document.getElementById('endNav');
-=======
+        },
         getHTML: function(id){
             return document.getElementById(id).innerHTML;
->>>>>>> 117ef51657bd61fb140ae579ae9f08396ccd3d38
         }
     };
 
