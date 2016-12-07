@@ -307,6 +307,9 @@ describe('functionalTests', function() {
         },
         get message(){
             return document.getElementById("message").innerText;
+        },
+        getHTML: function(id){
+            return document.getElementById(id).innerHTML;
         }
     };
 
@@ -492,7 +495,8 @@ describe('functionalTests', function() {
     });
 
     it('Rules show', function() {
-        controls.clickCell('01s5');
+        controls.clickCell('rules');
+        expect(controls.getHTML('rules')).toBe("Rules")
 
     });
 
