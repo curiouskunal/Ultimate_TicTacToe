@@ -68,9 +68,12 @@ describe('functionalTests', function() {
         winningSet = null;
     });
 
-    it('Click should set tile', function() {
-        controls.clickCell('01s1');
-        expect(controls.getElement('01s1').innerHTML).toBe(controls.turn);
+    it('Click should set random tile', function() {
+    	var x = Math.floor(Math.random()*3);
+    	var y = Math.floor(Math.random()*3);
+    	var z = Math.floor(Math.random()*9)+1;
+        controls.clickCell(x+''+y+'s'+z);
+        expect(controls.getElement(x+''+y+'s'+z).innerHTML).toBe(controls.turn);
     });
 
     it('Win inner board', function(){
