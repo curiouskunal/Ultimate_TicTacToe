@@ -294,4 +294,18 @@ describe('functionalTests', function() {
 	    expect((controls.endNav).style.height).toBe('0%');
     });
 
+    it('Click on a cell that is already occupied',function(){
+    	controls.clickCell('11s5');
+    	var currentChar = controls.getElement('11s5').innerHTML;
+    	controls.clickCell('11s5');
+    	expect((controls.getElement('11s5').innerHTML)).toBe(currentChar);
+    });
+
+    it('Users are alternating turns',function(){
+    	controls.clickCell('11s5');
+    	var currentChar = controls.getElement('11s5').innerHTML;
+    	controls.clickCell('11s1');
+    	expect((controls.getElement('11s1').innerHTML)).toNotBe(currentChar);
+    });
+
 });    
