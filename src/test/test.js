@@ -311,8 +311,8 @@ describe('functionalTests', function() {
         get endNav(){
         	return document.getElementById('endNav');
         },
-        getHTML: function(id){
-            return document.getElementById(id).innerHTML;
+        getElement: function(id){
+            return document.getElementById(id);
         }
     };
 
@@ -347,7 +347,7 @@ describe('functionalTests', function() {
 
     it('Click should set tile', function() {
         controls.clickCell('01s1');
-        expect(controls.s1_01).toBe(controls.turn);
+        expect(controls.getElement('01s1')).toBe(controls.turn);
     });
 
     it('Win inner board', function(){
@@ -359,7 +359,7 @@ describe('functionalTests', function() {
         controls.clickCell('12s5');
         controls.clickCell('11s2');
 
-        expect(controls.B11.innerHTML).toBe(controls.turn);
+        expect((controls.getElement('B11')).innerHTML).toBe(controls.turn);
         expect(controls.fullBoard[1][1]).toBe(controls.turn);
     });
 
@@ -382,7 +382,7 @@ describe('functionalTests', function() {
         controls.clickCell('12s5');
         controls.clickCell('11s7');
 
-        expect(controls.B11.innerHTML).toBe('-');
+        expect((controls.getElement('B11')).innerHTML).toBe('-');
         expect(controls.fullBoard[1][1]).toBe('-');
     });
 
@@ -411,9 +411,9 @@ describe('functionalTests', function() {
         controls.clickCell('20s8');
         controls.clickCell('20s3');
 
-        expect(controls.B20.innerHTML).toBe(controls.turn);
-        expect(controls.B21.innerHTML).toBe(controls.turn);
-        expect(controls.B22.innerHTML).toBe(controls.turn);
+        expect((controls.getElement('B20')).innerHTML).toBe(controls.turn);
+        expect((controls.getElement('B21')).innerHTML).toBe(controls.turn);
+        expect((controls.getElement('B22')).innerHTML).toBe(controls.turn);
         expect(controls.message).toBe(controls.turn + ' has won the game!');
         expect(controls.win).toBe(controls.turn);
 
@@ -480,16 +480,16 @@ describe('functionalTests', function() {
         controls.clickCell('01s4');
         controls.clickCell('01s5');
         
-        expect((controls.B00).style.backgroundColor).toBe("transparent");
-        expect((controls.B01).style.backgroundColor).toBe("transparent");
-        expect((controls.B02).style.backgroundColor).toBe("transparent");
-        expect((controls.B10).style.backgroundColor).toBe("transparent");
-        expect((controls.B11).style.backgroundColor).toBe("transparent");
-        expect((controls.B12).style.backgroundColor).toBe("transparent");
-        expect((controls.B00).style.backgroundColor).toBe("transparent");
-        expect((controls.B20).style.backgroundColor).toBe("transparent");
-        expect((controls.B21).style.backgroundColor).toBe("transparent");
-        expect((controls.B22).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B00')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B01')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B02')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B10')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B11')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B12')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B00')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B20')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B21')).style.backgroundColor).toBe("transparent");
+        expect((controls.getElement('B22')).style.backgroundColor).toBe("transparent");
 
         expect(controls.message).toBe('Game has ended in draw');
 
@@ -538,10 +538,14 @@ describe('functionalTests', function() {
         	for (var j = 0; j < 3; j++){
         		expect(controls.fullBoard[i][j]).toBe(null);
         		for(var k = 0; k < 9; k++){
-        			// expect(controls.)
+        			expect((controls.getElement(i+''+j+'s'+k)).innerHTML).toBe(null);
         		}
         	}
         }
+    });
+
+    it('Return to Board',function{
+	    expect(controls.endNav).style.height.toBe('0%');
     });
 
 });    
