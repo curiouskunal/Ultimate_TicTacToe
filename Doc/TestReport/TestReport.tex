@@ -15,6 +15,10 @@
 }
 \usepackage[round]{natbib}
 
+\newcounter{tnum}
+\newcommand{\tthetnum}{T\thetnum}
+\newcommand{\tref}[1]{T\ref{#1}}
+
 \title{SE 3XA3: Test Report\\Ultimate Tic Tac Toe}
 
 \author{Team 3,
@@ -45,6 +49,8 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 December 5 & 0.0 & Initial commit\\
+December 6 & 0.2 & list of all tests\\
+
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -55,6 +61,31 @@ December 5 & 0.0 & Initial commit\\
 
 \section*{Abstract}
 This document describes the results of all the testing done for Ultimate Tic Tac Toe.
+
+\section*{List of Test}
+
+This section provides an overview of the tests completed. Tests are summarized
+in the following table \ref{TbTestList}. 
+
+\refstepcounter{tnum}
+\begin{table}[hp]
+\caption{\textbf{Table of Tests}} \label{TbTestList}
+\begin{tabularx}{\textwidth}{p{1cm}X}
+\toprule
+\textbf{id} & \textbf{Test} \\
+\midrule
+
+\tthetnum\refstepcounter{tnum} \label{test1} & Click should set random tile \\
+\tthetnum\refstepcounter{tnum} \label{test2} & Win inner board \\
+\tthetnum\refstepcounter{tnum} \label{test3} & Draw inner board (tie) \\
+\tthetnum\refstepcounter{tnum} \label{test4} & Win the full game\\
+\tthetnum\refstepcounter{tnum} \label{test5} & Draw the full game\\
+\tthetnum\refstepcounter{tnum} \label{test6} & Play Again\\
+\tthetnum\refstepcounter{tnum} \label{test7} & Return to Board\\
+
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Functional Requirements Evaluation}
 \subsubsection{User Input}
@@ -218,7 +249,6 @@ development of the game, and usability survey after revision 0 demonstration.
 		
 \subsection{Performance}
 
-\subsection{etc.}
 	
 \section{Comparison to Existing Implementation}	
 
