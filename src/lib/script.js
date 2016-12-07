@@ -7,9 +7,13 @@ var activeColor = "#FFAC7F";
  */
 var Ocolor = '#ED76AF';
 /**
- * @constant Xcolor {string} - Player XO winning color: Mint
+ * @constant Xcolor {string} - Player X winning color: Mint
  */
 var Xcolor = '#76edb4';
+/**
+ * @constant Xcolor {string} - Player hover color: Grey
+ */
+var hoverColor = 'grey';
 /**
  * @constant MAX_PLAYERS {int}
  */
@@ -62,13 +66,48 @@ function startGame(gameState) {
     }
 }
 
+
+/**
+ * Set up click listeners for each cell
+ * Set up the onmouseover listener for each cell
+ * Set up the onmouseleave listener for each cell
+ *
+*/
 function setupListeners(){
     //creating a click listener for each element
     var squares = document.getElementsByClassName("Square");
     for (var s = 0; s < squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
+        squares[s].addEventListener('mouseover',function(){
+            hover(this);
+        });
+        squares[s].addEventListener('mouseleave',function(){
+            offHover(this);
+        });
     }
-    return false;
+}
+/**
+ * Shows the current player's character when hovering over a cell
+ * 
+ * @param square the small square that was clicked by the user {square}
+ *
+*/
+function hover(square){
+    if (square.innerHTML == ""){
+        square.innerHTML = document.turn;
+        square.style.color = hoverColor;
+    }
+}
+/**
+ * Removed the current player's character when no longer hovering over a cell
+ * 
+ * @param square the small square that was clicked by the user {square}
+ *
+*/
+function offHover(square){
+    if (square.innerHTML == document.turn && square.style.color == hoverColor){
+        square.innerHTML = null;
+    }
 }
 
 /**
@@ -90,14 +129,15 @@ function setMessage(msg) {
  */
 function nextMove() {
 	square = this;
-        // console.log(square.id);
+    // console.log(square.id);
 
     if (win == null) {
         // if tile is empty
-        if (square.innerText == "") {
+        if (square.innerHTML == document.turn && square.style.color == hoverColor) {
 
             // Print move to board
             square.innerText = document.turn;
+            square.style.color = 'black';
 
             // log player move.
             // console.log("player: " + document.turn + " Played at: " + "B" + square.id);
@@ -576,6 +616,7 @@ function playAgainNav(){
                     var cell = document.createElement('td');
                     cell.id = i+''+j+'s'+cellCount;
                     cell.className = 'Square';
+                    cell.innerHTML = '';
                     cellCount++;
                     //add the cell to the row
                     innerRow.appendChild(cell);
