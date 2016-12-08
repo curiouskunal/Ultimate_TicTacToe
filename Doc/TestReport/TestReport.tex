@@ -258,7 +258,7 @@ Result: The test passed
 Nonfunctional Requirements were tested using two methods, manual testing during the 
 development of the game, and usability survey~\citep{survey} after revision 0 demonstration. After receiving feedback from beta testers' usability survey, changes where made to the application accordingly. Refer to section~\ref{ChangesAfterTesting} for details.
 
-\subsection* {List of Survey Questions}
+\subsection* {List of Survey Questions} \label{ListQuestions}
 
 This section provides an overview of the survey questions asked in the usability survey. Questions are summarized in Table \ref{TbQuestionsList}. 
 
@@ -287,28 +287,117 @@ This section provides an overview of the survey questions asked in the usability
 \end{table}
 
 \subsection{Usability}
+The following figures show that all of out non functional fit criteria(refer to \href{run:../SRS/SRS.pdf}{SRS}) where met though the usability survey beta test.
 
 \begin{itemize}
 
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq1}\\}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_1}
+\caption{The rules were very easy to find }
+\label{fig1}
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq2}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_2.png}
+\caption{The rules are easy to understand }
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq3}\\}
-\item {\refstepcounter{USnum}\ttheUSnum \label{USq4}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_3.png}
+\caption{The color pallet is visually appealing }
+\end{figure}
+\newpage
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq5}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_5}
+\caption{It is clear which player?s turn it is. (X or O)? }
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq7}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_9}
+\caption{Were you offended by anything in the game? }
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq8}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_10}
+\caption{Did you encounter epileptic symptoms while playing the game? }
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq9}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_11}
+\caption{Did anything unexpected appear on the screen while playing?}
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq10}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_12}
+\caption{Did you have fun playing this game? }
+\end{figure}
+
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq11}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_13}
+\caption{Any Additional Comments?}
+\end{figure}
 
 \end{itemize}
 		
 \subsection{Performance}
 \begin{itemize}
 
+\item {\refstepcounter{USnum}\ttheUSnum \label{USq4}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_4}
+\caption{The response time was satisfying. }
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_8}
+\caption{Model of computer}
+\end{figure}
+\newpage
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq6}\\}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_6}
+\caption{The game runs smoothly on your browser}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{../../ReferenceMaterial/Survey_Results/Survey_Question_7}
+\caption{Browser Used }
+\end{figure}
+
 \end{itemize}
-	
+\newpage
 \section{Comparison to Existing Implementation}
 This project is a reimplementation of the original Ultimate tic tac toe game ~\citep{githubREF}. Prior to starting this project we investigated the existing implementation. There were 3 main elements we wanted to change for our reimplementation of Ultimate Tic Tac Toe which can been seen in Figure~\ref{fig:Comparison}.
 
@@ -442,6 +531,7 @@ This section shows a traceability matrix between the functional tests and module
 \end{table}		
 
 \section{Code Coverage Metrics}
+In the Test Plan document, we strove to achieve 80\% coverage with our automated, unit testing and manual tests . While not every unit test possible was executed, most were, as all of our functional and non functional metrics where validated as well as edge cases. Due to the nature of Ultimate Tic Tac Toe it was easy to validate functionality though a usability survey (refer to section ~\ref{ListQuestions}) where beta testers confirmed real world performance and user experience. Because the game was so heavily tested in real world and automated tests we feel that our 80\% coverage metric was reached.
 
 \bibliographystyle{plainnat}
 
