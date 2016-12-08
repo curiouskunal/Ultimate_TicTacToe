@@ -385,7 +385,7 @@ This will be tested by survey question~\ref{question:q5}.
 
 Pass: 4.5/5 average rating on this question.
 \item{pr-test-id2\\}
-This will be tested by survey question~\ref{question:q7}.
+This will be tested by survey question~\ref{question:q6}.
 
 Pass: 4.5/5 average rating on this question. The details could lead to optimization
 \end{enumerate}
@@ -471,7 +471,7 @@ Type: Manual
 					
 Initial State: One move till Player 1 completes inner board [B02]
 					
-Input: User click Inner Board [B02] Cell [3] Figure: \ref{fig:Test3-4_output}
+Input: User click Inner Board [B02] Cell [3] Figure: \ref{fig:Test3_Test4_output}
 					
 Output:  all Inner Boards excluding Inner Board [B02] show blue background colour
 					
@@ -496,7 +496,7 @@ Initial State: One move till Player 1 completes inner board [B01]
 					
 Input: User click Inner Board [B01] Cell [3] 
 					
-Output:  Inner Board [B01] displays Player 1 symbol Figure: \ref{fig:Test3-4_output}
+Output:  Inner Board [B01] displays Player 1 symbol Figure: \ref{fig:Test3_Test4_output}
 					
 How test will be performed: Users clicks the following sequence on game page
 loaded on an browser. User watches for graphical response.
@@ -600,67 +600,7 @@ Entire game results in a draw
 
 Karma JS Installation Tutorial and Example source code~\citep{Karma}
 
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test1-output.png}
-  \caption{POC Test 1 Output}
-  \label{fig:Test1_output}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test2-output.png}
-  \caption{POC Test 2 Output}
-  \label{fig:Test2_output}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test3-4-output.png}
-  \caption{POC Test 3 and Test4 Output}
-  \label{fig:Test3_Test4_output}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test5-input.png}
-  \caption{POC Test 5 Example input}
-  \label{fig:Test5_intput}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test5-output.png}
-  \caption{POC Test 5 Output}
-  \label{fig:Test5_output}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test6-input.png}
-  \caption{POC Test 6 Example input}
-  \label{fig:Test6_intput}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{Figures/Test6-output.png}
-  \caption{POC Test 6 Output}
-  \label{fig:Test6_output}
-\end{figure}
-
-\subsection{Symbolic Parameters}
-
-\begin{table}[hbp]
-\caption{\textbf{Table of Symbolic Parameters}} \label{TableSP}
-
-\begin{tabularx}{\textwidth}{p{5cm}X}
-\toprule
-\textbf{Symbolic Parameters} & \textbf{Description} \\
-\midrule
-MAX\_PLAYERS & Maximum number of concurrent players\\
-activeColor & Active region Color\\
-Ocolor &Player O winning inner board color\\
-Xcolor & Player X winning inner board color\\
-\bottomrule
-\end{tabularx}
-
-\end{table}
-
-\subsection{Usability Survey Questions?}
+\subsection{Usability Survey Questions}
 
 \begin{comment}
 \textcolor{red}{Metrics for users may be helpful. I am not sure what constitutes a 5 on the understanding rules scale for example. Also some answers are ambiguous for the user, see question \ref{question:q6}. Take out some things that do not require a scale and have in separate section of survey - CM} \\
@@ -694,5 +634,68 @@ Did anything unexpected appear on the screen while playing. Please describe
 Is the entire game board visible on the screen? Are there any aspects that are
 cut off? Please describe. \label{question:q11}
 \end{enumerate}
+
+\newpage
+
+\subsection{Symbolic Parameters}
+
+\begin{table}[h]
+\caption{\textbf{Table of Symbolic Parameters}} \label{TableSP}
+
+\begin{tabularx}{\textwidth}{p{5cm}X}
+\toprule
+\textbf{Symbolic Parameters} & \textbf{Description} \\
+\midrule
+MAX\_PLAYERS & Maximum number of concurrent players\\
+activeColor & Active region Color\\
+Ocolor &Player O winning inner board color\\
+Xcolor & Player X winning inner board color\\
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test1-output.png}
+  \caption{POC Test 1 Output}
+  \label{fig:Test1_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test2-output.png}
+  \caption{POC Test 2 Output}
+  \label{fig:Test2_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test3-4-output.png}
+  \caption{POC Test 3 and Test4 Output}
+  \label{fig:Test3_Test4_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test5-input.png}
+  \caption{POC Test 5 Example input}
+  \label{fig:Test5_input}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test5-output.png}
+  \caption{POC Test 5 Output}
+  \label{fig:Test5_output}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test6-input.png}
+  \caption{POC Test 6 Example input}
+  \label{fig:Test6_input}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Figures/Test6-output.png}
+  \caption{POC Test 6 Output}
+  \label{fig:Test6_output}
+\end{figure}
 
 \end{document}

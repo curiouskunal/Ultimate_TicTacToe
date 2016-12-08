@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{graphicx}
+\usepackage{multicol}
 
 \pagestyle{fancy}
 \hypersetup{
@@ -69,6 +70,7 @@ December 6 & 0.1 & list of all tests\\
 December 6 & 0.2 & Added figs to comparison section\\
 December 7 & 0.3 & Fixed test counter\\
 December 7 & 0.4 & Test trace to FR and MG\\
+December 7 & 0.5 & Finished comparison section\\
 
 \bottomrule
 \end{tabularx}
@@ -311,11 +313,28 @@ This section provides an overview of the survey questions asked in the usability
 	
 \section{Comparison to Existing Implementation}
 This project is a reimplementation of the original Ultimate tic tac toe game ~\citep{githubREF}. Prior to starting this project we investigated the existing implementation. There were 3 main elements we wanted to change for our reimplementation of Ultimate Tic Tac Toe which can been seen in Figure~\ref{fig:Comparison}.
+
 \begin{enumerate}
 \item Rules explaining how to play the game
 \item User interface (colours and ascetic)
 \item Ability to repay the game
 \end{enumerate}
+There where 7 tests performed to ensure that core functionality was maintained after the reimplementation of the original source. Please refer to the following tests: 
+\begin{multicols}{2}
+
+\begin{enumerate}
+
+\item \UIref{UItest1}
+\item \UIref{UItest3}
+\item \UIref{UItest3}
+\item \LOGref{LOGtest1}
+\item \LOGref{LOGtest2}
+\item \GLref{GLtest1}
+\item \GLref{GLtest2}
+\item[] 
+
+\end{enumerate}
+\end{multicols}	
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
@@ -400,7 +419,29 @@ This section shows two traceability matrices. These are between the survey quest
 \end{tabularx}
 \end{table}
 		
-\section{Trace to Modules}		
+\section{Trace to Modules}
+This section shows a traceability matrix between the functional tests and modules in \href{run:../Design/MG/MG.pdf}{Module Guide}.
+
+\begin{table}[H]
+\caption{\textbf{Trace to Modules}} \label{TbMTrace}
+\begin{tabularx}{\textwidth}{p{3.1cm}X}
+\toprule
+\textbf{Test ID} & \textbf{Non-Functional Requirements ID} \\
+\midrule
+
+\UIref{UItest1} & M1, M2, M3  \\
+\UIref{UItest2} & M4, M5, M6 \\
+\UIref{UItest3} & M6 \\
+\LOGref{LOGtest1} & M6\\
+\LOGref{LOGtest2} & M6\\
+\LOGref{LOGtest3} & M1, M2, M3 ,M4, M6\\
+\LOGref{LOGtest4}  & M1\\
+\GLref{GLtest1} & M2, M4\\
+\GLref{GLtest2} & M4\\
+
+\bottomrule
+\end{tabularx}
+\end{table}		
 
 \section{Code Coverage Metrics}
 
