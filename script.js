@@ -106,7 +106,7 @@ function hover(square){
 */
 function offHover(square){
     if (square.innerHTML == document.turn && square.style.color == hoverColor){
-        square.innerHTML = null;
+        square.innerHTML = "";
     }
 }
 
