@@ -361,16 +361,17 @@ executing 'npm test' will run all the tests that are written in the test.js file
 The unit testing was done on the game logic which includes testing click functionality and some additional functionality such as the dropdown menus.
 \section{Changes Due to Testing} \label{ChangesAfterTesting}
 After performing unit testing on multiple browsers i.e.(Google Chrome, Safari, Firefox, Opera),
-it was apparent that the game would not work on Firefox. The surveys also indicated that the game did
-not work in Firefox. This was the only browser that was having issues with this. Unfortunately,
-the reason for the incompatibility with Firefox is due to a click listener thus it could not be fixed. From
-surveys, it was made clear that there was a scaling issue when playing on smaller displays, as such
+it was apparent that the game would not work on Firefox.This was the only browser that was having issues with this. Unfortunately, the reason for the incompatibility with Firefox is due to a click listener thus it could not be fixed. From surveys, it was made clear that there was a scaling issue when playing on smaller displays, as such
 changes were made to accommodate smaller devices screen sizes. The game board would adjust 
-accordingly to the size of the display. The most common suggestion was to make it clear to the player whose turn it was. Some people were unsure even though it said it at the top. As a result of this, we added in a feature of the user's character hovering over the cell their mouse is over.
+accordingly to the size of the display. The most common suggestion was to make it clear to the player whose turn it was. Some people were unsure even though it said it at the top. As a result of this, we added a feature to show 
+the character that would populate the game board if they were to click on that cell in a light grey color. This 
+grey character is based on where the user's mouse is positioned. 
 \section{Automated Testing}
-The automated testing was implemented with the Karma framework. This involved forcing Karma
-to various game states and verifying if the results matched what was expected. The various 
-states were a game ending in a win and ending in a draw.
+The automated testing was implemented with the Karma framework. This involved forcing the game
+to various states and verifying if the results matched what was expected. Examples of the various 
+states were a game ending in a win and ending in a draw. The automated testing was also done to
+make sure the smaller core functionality of the game worked. These include ensuring the players
+alternated turns, a player could only click on a cell that had not yet ben populated. 
 
 \section{Trace to Requirements}
 This section shows two traceability matrices. These are between the survey questions and the functional (Table~\ref{TbFRTrace}) and non-functional (Table~\ref{TbNFRTrace}) requirements in \href{run:../SRS/SRS.pdf}{SRS} respectively.
