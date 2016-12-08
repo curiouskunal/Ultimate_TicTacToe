@@ -295,7 +295,6 @@ This section provides an overview of the survey questions asked in the usability
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq3}\\}
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq4}\\}
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq5}\\}
-\item {\refstepcounter{USnum}\ttheUSnum \label{USq6}\\}
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq7}\\}
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq8}\\}
 \item {\refstepcounter{USnum}\ttheUSnum \label{USq9}\\}
@@ -307,8 +306,7 @@ This section provides an overview of the survey questions asked in the usability
 \subsection{Performance}
 \begin{itemize}
 
-\item {\refstepcounter{USnum}\ttheUSnum \label{USqxx}\\}
-
+\item {\refstepcounter{USnum}\ttheUSnum \label{USq6}\\}
 \end{itemize}
 	
 \section{Comparison to Existing Implementation}
@@ -368,7 +366,7 @@ not work in Firefox. This was the only browser that was having issues with this.
 the reason for the incompatibility with Firefox is due to a click listener thus it could not be fixed. From
 surveys, it was made clear that there was a scaling issue when playing on smaller displays, as such
 changes were made to accommodate smaller devices screen sizes. The game board would adjust 
-accordingly to the size of the display. 
+accordingly to the size of the display. The most common suggestion was to make it clear to the player whose turn it was. Some people were unsure even though it said it at the top. As a result of this, we added in a feature of the user's character hovering over the cell their mouse is over.
 \section{Automated Testing}
 The automated testing was implemented with the Karma framework. This involved forcing Karma
 to various game states and verifying if the results matched what was expected. The various 
