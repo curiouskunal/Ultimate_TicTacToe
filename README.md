@@ -1,8 +1,9 @@
-# Ultimate_TicTacToe
+# Ultimate TicTacToe
+Team Members: [Pareek Ravi](https://github.com/ravipareek), [Kunal Shah](https://github.com/curiouskunal)
 
-Team Members: Pareek Ravi, Kunal Shah
+Migrated from gitlab repo: [gitlab.cas.mcmaster.ca/shahk24/Ultimate_TicTacToe](https://gitlab.cas.mcmaster.ca/shahk24/Ultimate_TicTacToe)
 
-This project is a reimplementation of [Ultimate Tic Tac Toe](https://github.com/kennycason/ultimate_tictactoe)
+This project is a reimplementation of [kennycason/ultimate_tictactoe](https://github.com/kennycason/ultimate_tictactoe)
 
 Project description:
 
