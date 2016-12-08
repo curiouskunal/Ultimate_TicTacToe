@@ -303,7 +303,11 @@ This section provides an overview of the survey questions asked in the usability
 \end{itemize}
 		
 \subsection{Performance}
+\begin{itemize}
 
+\item {\refstepcounter{USnum}\ttheUSnum \label{USqxx}\\}
+
+\end{itemize}
 	
 \section{Comparison to Existing Implementation}
 This project is a reimplementation of the original Ultimate tic tac toe game ~\citep{githubREF}. Prior to starting this project we investigated the existing implementation. There were 3 main elements we wanted to change for our reimplementation of Ultimate Tic Tac Toe which can been seen in Figure~\ref{fig:Comparison}.
@@ -352,10 +356,10 @@ to various game states and verifying if the results matched what was expected. T
 states were a game ending in a win and ending in a draw.
 
 \section{Trace to Requirements}
-This section shows two traceability matrices: between the tests performed and the functional and non-functional requirements in \href{run:../SRS/SRS.pdf}{SRS}
+This section shows two traceability matrices. These are between the survey questions and the functional (Table~\ref{TbFRTrace}) and non-functional (Table~\ref{TbNFRTrace}) requirements in \href{run:../SRS/SRS.pdf}{SRS} respectively.
 
 \begin{table}[H]
-\caption{\textbf{Trace to Functional Requirements}} \label{TbTrace}
+\caption{\textbf{Trace to Functional Requirements}} \label{TbFRTrace}
 \begin{tabularx}{\textwidth}{p{3cm}X}
 \toprule
 \textbf{Test ID} & \textbf{Functional Requirements ID} \\
@@ -376,23 +380,21 @@ This section shows two traceability matrices: between the tests performed and th
 \end{table}
 
 \begin{table}[H]
-\caption{\textbf{Trace to Non-Functional Requirements}} \label{TbTrace}
+\caption{\textbf{Trace to Non-Functional Requirements}} \label{TbNFRTrace}
 \begin{tabularx}{\textwidth}{p{3.1cm}X}
 \toprule
 \textbf{Test ID} & \textbf{Non-Functional Requirements ID} \\
 \midrule
 
-\USref{USq1} & FR1 , FR2,  \\
-\USref{USq2} & FR3 \\
-\USref{USq3} & FR4 \\
-\USref{USq4} & FR5\\
-\USref{USq5} & FR5\\
-\USref{USq6} & FR1\\
-\USref{USq7} & FR1\\
-\USref{USq8} & FR2, FR6\\
-\USref{USq9} & FR6\\
-\USref{USq10} & FR6\\
-\USref{USq11} & FR6\\
+\USref{USq1} & UH3 \\
+\USref{USq2} & UH1 \\
+\USref{USq3} & LF1, LF2 \\
+\USref{USq4} & PR1, PR2 \\
+\USref{USq5} & UH3\\
+\USref{USq6} & OE1, OE2, PR1, PR2, PR3\\
+\USref{USq7} & CU1, CU2\\
+\USref{USq8} & HS1\\
+\USref{USq9} & LF2 \\
 
 \bottomrule
 \end{tabularx}
