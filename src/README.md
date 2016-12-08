@@ -12,7 +12,9 @@ The folders and files for this project are as follows:
 # How to run
 
 ## Game
-open [index.html](lib/index.html) in a web browser
+[Ultimate Tic Tac Toe Online ](http://www.ultimatetictactoe.tk)
+
+OR open [index.html](lib/index.html) in a web browser
 
 Compatible with:
 * Safari

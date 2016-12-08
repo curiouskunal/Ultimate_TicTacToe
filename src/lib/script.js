@@ -11,7 +11,7 @@ var Ocolor = '#ED76AF';
  */
 var Xcolor = '#76edb4';
 /**
- * @constant Xcolor {string} - Player hover color: Grey
+ * @constant hoverColor {string} - Player hover color: Grey
  */
 var hoverColor = 'grey';
 /**
@@ -448,7 +448,7 @@ function checkCompletedBoard(square) {
 /**
  * Method checks if there is a winner of the game.
  *
- * @returns winner {char} winner of the game
+ * @returns winner {char} winner of the game X,O or -
  */
 function checkWin() {
 	var winner;

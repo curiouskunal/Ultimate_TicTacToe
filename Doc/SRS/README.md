@@ -1,5 +1,3 @@
 # Software Requirements Specification
 
-The folders and files for this folder are as follows:
-
-Describe ...
+The folders and files for the software requirements specification (SRS).

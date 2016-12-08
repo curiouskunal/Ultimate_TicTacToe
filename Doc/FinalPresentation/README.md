@@ -1,5 +1,3 @@
 # Final Presentation
 
-The folders and files for this folder are as follows:
-
-Describe ...
+The folders and files for the final presentation.

@@ -35,9 +35,13 @@ var activeColor = "#FFAC7F";
  */
 var Ocolor = '#ED76AF';
 /**
- * @constant Xcolor {string} - Player XO winning color: Mint
+ * @constant Xcolor {string} - Player X winning color: Mint
  */
 var Xcolor = '#76edb4';
+/**
+ * @constant hoverColor {string} - Player hover color: Grey
+ */
+var hoverColor = 'grey';
 /**
  * @constant MAX_PLAYERS {int}
  */
@@ -90,13 +94,48 @@ function startGame(gameState) {
     }
 }
 
+
+/**
+ * Set up click listeners for each cell
+ * Set up the onmouseover listener for each cell
+ * Set up the onmouseleave listener for each cell
+ *
+*/
 function setupListeners(){
     //creating a click listener for each element
     var squares = document.getElementsByClassName("Square");
     for (var s = 0; s &lt; squares.length; s++){
         squares[s].addEventListener('click',nextMove,false);
+        squares[s].addEventListener('mouseover',function(){
+            hover(this);
+        });
+        squares[s].addEventListener('mouseleave',function(){
+            offHover(this);
+        });
     }
-    return false;
+}
+/**
+ * Shows the current player's character when hovering over a cell
+ * 
+ * @param square the small square that was clicked by the user {square}
+ *
+*/
+function hover(square){
+    if (square.innerHTML == ""){
+        square.innerHTML = document.turn;
+        square.style.color = hoverColor;
+    }
+}
+/**
+ * Removed the current player's character when no longer hovering over a cell
+ * 
+ * @param square the small square that was clicked by the user {square}
+ *
+*/
+function offHover(square){
+    if (square.innerHTML == document.turn &amp;&amp; square.style.color == hoverColor){
+        square.innerHTML = null;
+    }
 }
 
 /**
@@ -118,14 +157,15 @@ function setMessage(msg) {
  */
 function nextMove() {
 	square = this;
-        // console.log(square.id);
+    // console.log(square.id);
 
     if (win == null) {
         // if tile is empty
-        if (square.innerText == "") {
+        if (square.innerHTML == document.turn &amp;&amp; square.style.color == hoverColor) {
 
             // Print move to board
             square.innerText = document.turn;
+            square.style.color = 'black';
 
             // log player move.
             // console.log("player: " + document.turn + " Played at: " + "B" + square.id);
@@ -436,7 +476,7 @@ function checkCompletedBoard(square) {
 /**
  * Method checks if there is a winner of the game.
  *
- * @returns winner {char} winner of the game
+ * @returns winner {char} winner of the game X,O or -
  */
 function checkWin() {
 	var winner;
@@ -604,6 +644,7 @@ function playAgainNav(){
                     var cell = document.createElement('td');
                     cell.id = i+''+j+'s'+cellCount;
                     cell.className = 'Square';
+                    cell.innerHTML = '';
                     cellCount++;
                     //add the cell to the row
                     innerRow.appendChild(cell);
@@ -635,13 +676,13 @@ function playAgainNav(){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activeColor">activeColor</a></li><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#closeEndNav">closeEndNav</a></li><li><a href="global.html#closeNav">closeNav</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#MAX_PLAYERS">MAX_PLAYERS</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#Ocolor">Ocolor</a></li><li><a href="global.html#openEndNav">openEndNav</a></li><li><a href="global.html#openNav">openNav</a></li><li><a href="global.html#playAgainNav">playAgainNav</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li><li><a href="global.html#Xcolor">Xcolor</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activeColor">activeColor</a></li><li><a href="global.html#changeColour">changeColour</a></li><li><a href="global.html#checkCompletedBoard">checkCompletedBoard</a></li><li><a href="global.html#checkWin">checkWin</a></li><li><a href="global.html#closeEndNav">closeEndNav</a></li><li><a href="global.html#closeNav">closeNav</a></li><li><a href="global.html#fullBoard">fullBoard</a></li><li><a href="global.html#getBoard">getBoard</a></li><li><a href="global.html#hover">hover</a></li><li><a href="global.html#hoverColor">hoverColor</a></li><li><a href="global.html#MAX_PLAYERS">MAX_PLAYERS</a></li><li><a href="global.html#nextMove">nextMove</a></li><li><a href="global.html#Ocolor">Ocolor</a></li><li><a href="global.html#offHover">offHover</a></li><li><a href="global.html#openEndNav">openEndNav</a></li><li><a href="global.html#openNav">openNav</a></li><li><a href="global.html#playAgainNav">playAgainNav</a></li><li><a href="global.html#setMessage">setMessage</a></li><li><a href="global.html#setupListeners">setupListeners</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#switchTurn">switchTurn</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winningSet">winningSet</a></li><li><a href="global.html#Xcolor">Xcolor</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Dec 06 2016 21:21:39 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Wed Dec 07 2016 22:49:49 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

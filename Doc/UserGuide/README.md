@@ -1,5 +1,3 @@
 # User Guide (Optional)
 
-The folders and files for this folder are as follows:
-
-Describe ...
+the folders and files for the user guide.
