@@ -43,6 +43,6 @@ io.on('connection', function(socket){
 // 	console.log('listening on *:3000');
 // });
 
-http.listen((procress.env.PORT || 8080), function(){
+http.listen((process.env.PORT || 8080), function(){
 	console.log('listening in azure');
 });
