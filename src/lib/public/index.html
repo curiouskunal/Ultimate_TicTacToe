@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 
+<html>
+
 <head>
 	<title>Ultimate TicTacToe</title>
 
 	<link rel="stylesheet" href="style.css">
+	<script src="/socket.io/socket.io.js"></script>
 	<script src="script.js"></script>
 
 	<!-- animation for modal -->
@@ -21,28 +24,28 @@
 
 	<!-- Welcome Page overlay -->
 	<div id="myNav" class="overlay">
-	  <!-- Overlay content -->
-	  <div class="overlay-content">
-		  <h1> Ultimate TicTacToe </h1>
-		  <p> by: Kunal Shah & Pareek Ravi</p>
-		  <a id="play" href="#" onclick="closeNav()">Play</a>
+		<!-- Overlay content -->
+		<div class="overlay-content">
+			<h1> Ultimate TicTacToe </h1>
+			<p> by: Kunal Shah & Pareek Ravi</p>
+			<a id="play" href="#" onclick="closeNav()">Play</a>
 
-	  </div>
+		</div>
 
 	</div> 	<!--end overlay-->
 
 	<!-- Welcome Page overlay -->
 	<div id="endNav" class="overlay">
-	  <!-- Overlay content -->
-	  <div class="overlay-content">
-		  <h1> Ultimate TicTacToe </h1>
-		  <h2 id='gameWinner'></h2>
-		  <a id = 'playAgain' href="#" onclick="playAgainNav()">Play Again</a>
-       	  <a id = 'return2board' href="#" onclick="closeEndNav()">Return to Board</a>
+		<!-- Overlay content -->
+		<div class="overlay-content">
+			<h1> Ultimate TicTacToe </h1>
+			<h2 id='gameWinner'></h2>
+			<a id = 'playAgain' href="#" onclick="playAgainNav()">Play Again</a>
+			<a id = 'return2board' href="#" onclick="closeEndNav()">Return to Board</a>
 
-		  <a href="https://docs.google.com/forms/d/e/1FAIpQLSekvLCrBR4rCmp-UyowbEf6BMYrye7hVo7iVt2xwzaER1xcng/viewform"> <p> Thank you for playing <p> </a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSekvLCrBR4rCmp-UyowbEf6BMYrye7hVo7iVt2xwzaER1xcng/viewform"> <p> Thank you for playing </p> </a>
 
-	  </div>
+		</div>
 
 	</div> 	<!--end overlay-->
 

@@ -42,7 +42,9 @@ fullBoard[2][0] = null;
 fullBoard[2][1] = null;
 fullBoard[2][2] = null;
 
+var socket = io();
 
+var myChar;
 /**
  * Will start the game
  * set up click listeners
@@ -52,11 +54,8 @@ fullBoard[2][2] = null;
  *
 */
 function startGame(gameState) {
-	document.turn = "X";
-	if (Math.random() < 0.5) {
-		document.turn = "O";
-	}
-	setMessage(document.turn + " gets to start.");
+    document.turn = '';
+	setMessage("Waiting for other player");
 
     setupListeners();
 
@@ -77,7 +76,14 @@ function setupListeners(){
     //creating a click listener for each element
     var squares = document.getElementsByClassName("Square");
     for (var s = 0; s < squares.length; s++){
-        squares[s].addEventListener('click',nextMove,false);
+        squares[s].addEventListener('click',function(){
+            if (document.turn == myChar){
+                square = this;
+                var message = {'move': square.id, 'turn': document.turn};
+                socket.emit("new move", message);
+                nextMove(square);
+            }
+        });
         squares[s].addEventListener('mouseover',function(){
             hover(this);
         });
@@ -93,7 +99,7 @@ function setupListeners(){
  *
 */
 function hover(square){
-    if (square.innerHTML == ""){
+    if (square.innerHTML == "" && document.turn == myChar){
         square.innerHTML = document.turn;
         square.style.color = hoverColor;
     }
@@ -106,7 +112,7 @@ function hover(square){
 */
 function offHover(square){
     if (square.innerHTML == document.turn && square.style.color == hoverColor){
-        square.innerHTML = null;
+        square.innerHTML = "";
     }
 }
 
@@ -117,34 +123,16 @@ function offHover(square){
 function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
-/**
- * Called when the player makes a move
- * <ul style="list-style: none;">
- *     <li> checks if move is valid
- *     <li> print player move to screen
- *     <li> check board for win
- *     <li> change colour of active region
- *     <li> switch turn
- *</ul>
- */
-function nextMove() {
-	square = this;
-    // console.log(square.id);
+
+function nextMove(square) {
 
     if (win == null) {
         // if tile is empty
         if (square.innerHTML == document.turn && square.style.color == hoverColor) {
 
             // Print move to board
-            square.innerText = document.turn;
             square.style.color = 'black';
-
-            // log player move.
-            // console.log("player: " + document.turn + " Played at: " + "B" + square.id);
-            console.log("player: " + document.turn + " Played at: " + square.id);
-
-            // display as last move
-            // document.getElementById("sirep").innerText = "last move: " + square.parentNode.parentNode.parentNode.parentNode.id + " || " + square.id;
+            square.innerText = document.turn;
 
 
             // Check if win then change turn
@@ -549,6 +537,7 @@ function openNav() {
  */
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
+    socket.emit('room');
 }
 /**
  * open the nav when a game has ended or when the ultimate button is clicked
@@ -636,6 +625,29 @@ function playAgainNav(){
         }
     }
     //call to run a new game
+    console.log('New Game');
+    socket.emit('room');
     startGame(0);
-    console.log('New Game')
 }
+
+socket.on('new move', function(msg){
+    // msg = JSON.parse(msg);
+    var square = document.getElementById(msg.move);
+    square.innerHTML = msg.turn;
+    square.style.color = hoverColor;
+    if (myChar == 'X'){
+        document.turn = 'O';
+    }
+    else{
+        document.turn = 'X';
+    }
+    nextMove(square);
+});
+
+socket.on('setCharacter', function(msg){
+    console.log('user char: ' + msg.userChar);
+    console.log('start: ' + msg.start);
+    document.turn = msg.start;
+    myChar = msg.userChar;
+    setMessage(document.turn + ' gets to start');
+});

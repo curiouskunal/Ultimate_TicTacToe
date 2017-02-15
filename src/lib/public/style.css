@@ -4,6 +4,8 @@
 	--colour3: #D2EBEF /* light blue */
 }
 html {
+	background-color:  #D2EBEF;
+	
 	background-color: var(--colour3);
 	/*overflow: hidden;*/
 }
@@ -85,67 +87,108 @@ table{
 /*Row 1 */
 
 #B00{
-	border-right: 5px solid var(--colour);
+	border-bottom: 5px solid blue;
+	border-right: 5px solid blue;
+
 	border-bottom: 5px solid var(--colour);
+	border-right: 5px solid var(--colour);
 }
 #B01{
-	border-left: 5px solid var(--colour);
+	border-right: 5px solid blue;
+	border-left: 5px solid blue;
+
 	border-right: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 }
 #B02{
-	border-left: 5px solid var(--colour);
+	border-bottom: 5px solid blue;
+	border-left: 5px solid blue;
+
 	border-bottom: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 }
 
 /*Row 2 */
 
 #B10{
-	border-right: 5px solid var(--colour);
+	border-bottom: 5px solid blue;
+	border-right: 5px solid blue;
+	border-top: 5px solid blue;
+
 	border-bottom: 5px solid var(--colour);
+	border-right: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
 #B11{
-	border-left: 5px solid var(--colour);
+	border-right: 5px solid blue;
+	border-left: 5px solid blue;
+	border-bottom: 5px solid blue;
+	border-top: 5px solid blue;
+
 	border-right: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 	border-bottom: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
 #B12{
-	border-left: 5px solid var(--colour);
+	border-bottom: 5px solid blue;
+	border-left: 5px solid blue;
+	border-top: 5px solid blue;
+
 	border-bottom: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
 
 /*Row 3*/
 
 #B20{
-	border-right: 5px solid var(--colour);
+	border-top: 5px solid blue;
+	border-right: 5px solid blue;
+
 	border-top: 5px solid var(--colour);
+	border-right: 5px solid var(--colour);
 }
 #B21{
-	border-left: 5px solid var(--colour);
+	border-right: 5px solid blue;
+	border-left: 5px solid blue;
+
 	border-right: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 	border-top: 5px solid var(--colour);
 }
 #B22{
-	border-left: 5px solid var(--colour);
+	border-top: 5px solid blue;
+	border-left: 5px solid blue;
+
 	border-top: 5px solid var(--colour);
+	border-left: 5px solid var(--colour);
 }
 
 /* Inside Border*/
 
 
 td[id$='s1']{
+	border-right: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
 td[id$='s2']{
+	border-left: 3px solid #2D2A32;
+	border-right: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
 td[id$='s3']{
+	border-left: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 }
@@ -153,17 +196,30 @@ td[id$='s3']{
 /*Row 2 */
 
 td[id$='s4']{
+	border-right: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
 td[id$='s5']{
+	border-left: 3px solid #2D2A32;
+	border-right: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
 td[id$='s6']{
+	border-left: 3px solid #2D2A32;
+	border-bottom: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-bottom: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
@@ -172,15 +228,25 @@ td[id$='s6']{
 /*Row 3*/
 
 td[id$='s7']{
+	border-right: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-right: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
 td[id$='s8']{
+	border-left: 3px solid #2D2A32;
+	border-right: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-right: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
 td[id$='s9']{
+	border-left: 3px solid #2D2A32;
+	border-top: 3px solid #2D2A32;
+
 	border-left: 3px solid var(--colour2);
 	border-top: 3px solid var(--colour2);
 }
