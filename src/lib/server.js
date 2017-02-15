@@ -11,7 +11,6 @@ app.use(express.static(__dirname+"\\public\\"));
 
 io.on('connection', function(socket){
 	console.log('a user connected');
-	// console.log(numUsers + ' users in room');
 
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
@@ -21,6 +20,7 @@ io.on('connection', function(socket){
 	socket.on('room', function(){
 		socket.join(roomNum);
 		var room = io.nsps['/'].adapter.rooms[roomNum];
+		console.log(room.sockets);
 		if (room.length == 2){
 			var start = 'X'
 			if (Math.random() < 0.5)
@@ -44,5 +44,5 @@ io.on('connection', function(socket){
 // });
 
 http.listen((procress.env.PORT || 8080), function(){
-
+	console.log('listening in azure');
 });
