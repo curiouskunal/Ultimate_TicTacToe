@@ -165,7 +165,12 @@ function switchTurn() {
 	// set user messages
     // if not won set player turn message
     if (win == null){
-        setMessage("It's " + document.turn + "'s turn!");
+        if (document.turn == myChar){
+            setMessage("It's your turn!");
+        }
+        else{
+            setMessage("It's your opponent's turn");
+        }
     }
     // if game is won set win or draw message
     else{
@@ -173,7 +178,12 @@ function switchTurn() {
             setMessage("Game has ended in draw");
         }
         else {
-            setMessage(win + " has won the game!");
+            if (win == myChar){
+                setMessage("You won the game!");
+            }
+            else{
+                setMessage("You lost the game");
+            }
         }
         // open end screen at end of game
         openEndNav();
@@ -649,5 +659,10 @@ socket.on('setCharacter', function(msg){
     console.log('start: ' + msg.start);
     document.turn = msg.start;
     myChar = msg.userChar;
-    setMessage(document.turn + ' gets to start');
+    if(document.turn == myChar){
+        setMessage('You get to start');
+    }
+    else{
+        setMessage('Your opponent gets to start');
+    }
 });
