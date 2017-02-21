@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 var roomNum = 1;
 var numUsers = 0;
 
-app.use(express.static(__dirname+"/public"));
+app.use(express.static(__dirname+"/public/"));
 
 io.on('connection', function(socket){
 	console.log('a user connected');
@@ -28,7 +28,7 @@ io.on('connection', function(socket){
 			var userChar = 'X';
 			for (var id in room.sockets){
 				var time = new Date();
-				io.to(id).emit('setCharacter', {'userChar':userChar, 'start':start, 'time':time});
+				io.to(id).emit('setCharacter', {'userChar':userChar, 'start':start, 'time':JSON.stringify(time)});
 				userChar = 'O';
 			}
 		}

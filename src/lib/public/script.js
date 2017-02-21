@@ -13,7 +13,7 @@ var Xcolor = '#76edb4';
 /**
  * @constant hoverColor {string} - Player hover color: Grey
  */
-var hoverColor = 'grey';
+var hoverColor = 'rgb(128, 128, 128)';
 /**
  * @constant MAX_PLAYERS {int}
  */
@@ -64,7 +64,7 @@ var startDate = new Date();
 function startGame(gameState) {
     document.turn = '';
 	setMessage("Waiting for other player");
-    var myVar = setInterval(setTimer, 1000);
+    // setInterval(setTimer, 1000);
     setupListeners();
 
     //open overlay
@@ -121,6 +121,7 @@ function hover(square){
 function offHover(square){
     if (square.innerHTML == document.turn && square.style.color == hoverColor){
         square.innerHTML = "";
+        square.innerText = '';
     }
 }
 
@@ -680,10 +681,10 @@ socket.on('new move', function(msg){
 socket.on('setCharacter', function(msg){
     console.log('user char: ' + msg.userChar);
     console.log('start: ' + msg.start);
-    console.log('start time ' + msg.time);
+    console.log('start time ' + JSON.parse(msg.time));
     document.turn = msg.start;
     myChar = msg.userChar;
-    startDate = msg.time;
+    startDate = new Date(JSON.parse(msg.time));
     if(document.turn == myChar){
         setMessage('You get to start');
     }
