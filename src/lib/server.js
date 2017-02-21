@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 var roomNum = 1;
 var numUsers = 0;
 
-app.use(express.static(__dirname+"\\public\\"));
+app.use(express.static(__dirname+"/public"));
 
 io.on('connection', function(socket){
 	console.log('a user connected');
@@ -27,7 +27,8 @@ io.on('connection', function(socket){
 				start = 'O'
 			var userChar = 'X';
 			for (var id in room.sockets){
-				io.to(id).emit('setCharacter', {'userChar':userChar, 'start':start});
+				var time = new Date();
+				io.to(id).emit('setCharacter', {'userChar':userChar, 'start':start, 'time':time});
 				userChar = 'O';
 			}
 		}
@@ -43,6 +44,6 @@ io.on('connection', function(socket){
 // 	console.log('listening on *:3000');
 // });
 
-app.listen((process.env.PORT || 8080), function(){
+http.listen((process.env.PORT || 8080), function(){
 	console.log('listening in azure');
 });

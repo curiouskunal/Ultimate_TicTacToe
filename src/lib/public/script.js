@@ -43,8 +43,16 @@ fullBoard[2][1] = null;
 fullBoard[2][2] = null;
 
 var socket = io();
-
+/**
+ * @var myChar {string} string of the player's character, null until determined by server
+*/
 var myChar;
+
+/**
+ * @var startDate {date} date of the start of a game
+*/
+var startDate = new Date();
+
 /**
  * Will start the game
  * set up click listeners
@@ -56,7 +64,7 @@ var myChar;
 function startGame(gameState) {
     document.turn = '';
 	setMessage("Waiting for other player");
-
+    var myVar = setInterval(setTimer, 1000);
     setupListeners();
 
     //open overlay
@@ -147,6 +155,21 @@ function nextMove(square) {
     }
 }
 
+/**
+ * Set the play time
+ */
+function setTimer() {
+    var d = new Date();
+    var diffSec = (d.getTime() - startDate.getTime())/1000;
+    var diffMin = diffSec/60;
+    var diffHour = diffMin/60;
+
+    var hours = Math.floor(diffHour);
+    var mins = Math.floor(diffMin - 60*hours);
+    var seconds = Math.floor(diffSec - 60*mins);
+
+    document.getElementById("clock").innerHTML = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
+}
 
 /**
  * Switch player turn,
@@ -657,8 +680,10 @@ socket.on('new move', function(msg){
 socket.on('setCharacter', function(msg){
     console.log('user char: ' + msg.userChar);
     console.log('start: ' + msg.start);
+    console.log('start time ' + msg.time);
     document.turn = msg.start;
     myChar = msg.userChar;
+    startDate = msg.time;
     if(document.turn == myChar){
         setMessage('You get to start');
     }
