@@ -64,7 +64,6 @@ var startDate = new Date();
 function startGame(gameState) {
     document.turn = '';
 	setMessage("Waiting for other player");
-    // setInterval(setTimer, 1000);
     setupListeners();
 
     //open overlay
@@ -169,7 +168,7 @@ function setTimer() {
     var mins = Math.floor(diffMin - 60*hours);
     var seconds = Math.floor(diffSec - 60*mins);
 
-    document.getElementById("clock").innerHTML = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
+    document.getElementById("clock").innerText = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
 }
 
 /**
@@ -691,4 +690,5 @@ socket.on('setCharacter', function(msg){
     else{
         setMessage('Your opponent gets to start');
     }
+    setInterval(setTimer, 1000);
 });
