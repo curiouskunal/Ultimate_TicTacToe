@@ -61,10 +61,22 @@ html {
 	padding-bottom: 20px;
 }
 
+#topbar{
+	margin: 0 auto;
+}
 #clock{
+	float: right;
 	text-align: right;
 	font-size: 20px;
 	padding-bottom: 20px;
+}
+
+#invite{
+	background-color: none; 
+	float: left;
+	text-align: left;
+	font-size: 20px;
+	padding-top: -20px;
 }
 
 .box{

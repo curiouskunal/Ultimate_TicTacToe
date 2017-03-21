@@ -31,6 +31,8 @@ var winningSet = null;
  */
 var win = null;
 
+var roomNum = '#';
+
 // setting board to null
 fullBoard[0][0] = null;
 fullBoard[0][1] = null;
@@ -64,7 +66,7 @@ var startDate = new Date();
 function startGame(gameState) {
     document.turn = '';
 	setMessage("Waiting for other player");
-    // setInterval(setTimer, 1000);
+    setInterval(setTimer, 1000);
     setupListeners();
 
     //open overlay
@@ -87,7 +89,7 @@ function setupListeners(){
         squares[s].addEventListener('click',function(){
             if (document.turn == myChar){
                 square = this;
-                var message = {'move': square.id, 'turn': document.turn};
+                var message = {'move': square.id, 'turn': document.turn, 'room':roomNum};
                 socket.emit("new move", message);
                 nextMove(square);
             }
@@ -133,6 +135,10 @@ function setMessage(msg) {
 	document.getElementById("message").innerText = msg;
 }
 
+/**
+* Calls all the functions to continue the game and make a move
+@param square The square that was clicked on
+*/
 function nextMove(square) {
 
     if (win == null) {
@@ -156,6 +162,10 @@ function nextMove(square) {
     }
 }
 
+function copyLink(){
+    var link = location.href + roomNum;
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", link);
+}
 /**
  * Set the play time
  */
@@ -169,7 +179,7 @@ function setTimer() {
     var mins = Math.floor(diffMin - 60*hours);
     var seconds = Math.floor(diffSec - 60*mins);
 
-    document.getElementById("clock").innerHTML = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
+    document.getElementById("time").innerHTML = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
 }
 
 /**
@@ -571,7 +581,16 @@ function openNav() {
  */
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
-    socket.emit('room');
+    console.log(String(location.href).slice(-1));
+    if (String(location.href).slice(-1) != '/' && String(location.href).slice(-1) != '#'){
+        roomNum = String(location.href).slice(-5);
+        console.log(roomNum);
+        socket.emit('joinRoom',roomNum);
+    }
+    else{
+        console.log('joining new room');
+        socket.emit('room');
+    }
 }
 /**
  * open the nav when a game has ended or when the ultimate button is clicked
@@ -678,6 +697,11 @@ socket.on('new move', function(msg){
     nextMove(square);
 });
 
+socket.on('roomConnected', function(msg){
+    console.log('connected to room ' + msg.room);
+    roomNum = msg.room;
+});
+
 socket.on('setCharacter', function(msg){
     console.log('user char: ' + msg.userChar);
     console.log('start: ' + msg.start);
@@ -691,4 +715,5 @@ socket.on('setCharacter', function(msg){
     else{
         setMessage('Your opponent gets to start');
     }
+    document.getElementById('copyLink').style.display = 'none';
 });
