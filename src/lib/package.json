@@ -6,9 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^1.7.4",
-    "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "express": "^4.14.1",
+    "socket.io": "^1.7.2"
   }
 }

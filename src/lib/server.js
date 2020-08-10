@@ -4,29 +4,8 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerDefinition = {
-	info: {
-	    // API informations (required)
-	    title: 'Ultimate Tic-Tac-Toe API', // Title (required)
-	    version: '1.0.0', // Version (required)
-	    description: 'An API to all the commands and calls', // Description (optional)
-	}
-};
-var options = {
-  explorer: true,
-  swaggerDefinition,
-  apis: ['./server.js'], // <-- not in the definition, but in the options
-};
-
-
-// Initialize swagger-jsdoc -> returns validated swagger spec in json format
-const swaggerSpec = swaggerJSDoc(options);
-
 
 app.use(express.static(__dirname+"/public/"));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 io.on('connection', function(socket){
 
@@ -99,22 +78,6 @@ io.on('connection', function(socket){
 app.get('.*',function(req,res){
 	res.send('root');
 });
-
-/**
-* @swagger
-* /api/roomName:
-*   get:
-*     description: Get the current noom name
-*     tags: [Room]
-*     produces:
-*       - application/json
-*     responses:
-*       200:
-*         description: room number
-*/
-app.get('/api/roomName', function(req, res){
-	res.send('Getting room number')
-})
 
 http.listen((process.env.PORT || 8080), function(){
 	console.log('listening in azure');
