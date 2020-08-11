@@ -3,12 +3,7 @@ const express = require("express");
 const app = express();
 var sql = require("mssql");
 // config for your database
-var db_config = {
-	user: 'shahravi',
-	password: 'McMaster2019',
-	server: 'ultimatetictactoe.database.windows.net', 
-	database: 'uttt-storage' 
-};
+var db_config = require('./creds.json')
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
