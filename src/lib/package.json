@@ -1,5 +1,5 @@
 {
-  "name": "UltimateTicTacToeServer",
+  "name": "ultimatetictactoeserver",
   "version": "0.0.1",
   "description": "UTTT Socket Server",
   "scripts": {
@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "mssql": "^6.2.1",
     "socket.io": "^1.7.4",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4"

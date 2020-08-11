@@ -1,11 +1,21 @@
 //Server Code
 const express = require("express");
 const app = express();
+var sql = require("mssql");
+// config for your database
+var db_config = {
+	user: 'shahravi',
+	password: 'McMaster2019',
+	server: 'ultimatetictactoe.database.windows.net', 
+	database: 'uttt-storage' 
+};
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
+const { throws } = require("assert");
+const { exception } = require("console");
 const swaggerDefinition = {
 	info: {
 	    // API informations (required)
@@ -92,6 +102,33 @@ io.on('connection', function(socket){
 
 });
 
+
+async function sql_request(type, query){
+	let pool = await sql.connect(db_config);
+	let data = await pool.request()
+		.query(query)
+		.catch(err =>{
+			if (err.message.includes("Violation of PRIMARY KEY constraint")){
+				throw("Duplicate Room Number")
+			}	
+		});
+	let result = []
+	if (type == 'GET'){
+		for (let i=0;i<data.rowsAffected;i++){
+			result.push(data.recordset[i]);
+		}
+	}
+	else if (type == 'PUT'){
+		if (data.rowsAffected == 1){
+			result = "Created new room"
+		}
+	}
+	pool.close;
+	sql.close;
+
+	return result;
+}
+
 // http.listen(3000, function(){
 // 	console.log('listening on *:3000');
 // });
@@ -102,9 +139,9 @@ app.get('.*',function(req,res){
 
 /**
 * @swagger
-* /api/roomName:
+* /api/allRooms:
 *   get:
-*     description: Get the current noom name
+*     description: Get all rooms
 *     tags: [Room]
 *     produces:
 *       - application/json
@@ -112,8 +149,52 @@ app.get('.*',function(req,res){
 *       200:
 *         description: room number
 */
-app.get('/api/roomName', function(req, res){
-	res.send('Getting room number')
+app.get('/api/allRooms', function(req, res){
+	sql_request('GET', 'SELECT * FROM room_numbers')
+		.then(result=>{
+			res.send(result);
+		})
+		.catch(err=>{
+			console.log(err)
+			res.status(404).send("Failed to get rooms")
+		})
+})
+
+/**
+* @swagger
+* /api/createRoom:
+*   put:
+*     description: Create new room
+*     tags: [Room]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*       - in: query
+*         name: room_name
+*         schema:
+*           type: string
+*       - in: query
+*         name: date_start
+*         schema:
+*           type: string
+*           format: date
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: room number
+*/
+app.put('/api/createRoom', function(req, res){
+	parameters = req.query;
+	sql_request('PUT', `INSERT INTO room_numbers (room_number, room_name, date_start) values('${parameters['room_number']}', '${parameters['room_name']}', '${parameters['date_start']}')`)
+		.then(result=>{
+			res.status(200).send(result);
+		})
+		.catch(err=>{
+			res.status(404).send(err)
+		})
 })
 
 http.listen((process.env.PORT || 8080), function(){
