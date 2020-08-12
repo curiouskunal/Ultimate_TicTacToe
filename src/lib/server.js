@@ -118,6 +118,14 @@ async function sql_request(type, query){
 			result = "Created new room"
 		}
 	}
+	else if (type == 'DELETE'){
+		if (data.rowsAffected == 1){
+			result = "Deleted the room"
+		}
+		else{
+			throw("Room not found")
+		}
+	}
 	pool.close;
 	sql.close;
 
@@ -184,6 +192,34 @@ app.get('/api/allRooms', function(req, res){
 app.put('/api/createRoom', function(req, res){
 	parameters = req.query;
 	sql_request('PUT', `INSERT INTO room_numbers (room_number, room_name, date_start) values('${parameters['room_number']}', '${parameters['room_name']}', '${parameters['date_start']}')`)
+		.then(result=>{
+			res.status(200).send(result);
+		})
+		.catch(err=>{
+			res.status(404).send(err)
+		})
+})
+
+/**
+* @swagger
+* /api/closeRoom:
+*   delete:
+*     description: Close a room
+*     tags: [Room]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: Confirmation
+*/
+app.delete('/api/closeRoom', function(req, res){
+	parameters = req.query;
+	sql_request('DELETE', `DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
 			res.status(200).send(result);
 		})
