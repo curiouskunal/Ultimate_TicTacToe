@@ -56,6 +56,11 @@ var myChar;
 var startDate = new Date();
 
 /**
+ * @var baseUrl {string} base url for all api calls
+ */
+var baseUrl = "http://localhost:8080/api/"
+
+/**
  * Will start the game
  * set up click listeners
  * and randomly initializes player 1 to X or O
@@ -589,7 +594,15 @@ function closeNav() {
     }
     else{
         console.log('joining new room');
-        socket.emit('room');
+        let url = baseUrl + "createRoom?room_name=" + "Test room" + "&date_start=" + (new Date().toISOString())
+        $.ajax({
+            url: url,
+            method: 'PUT'
+        }).done(function (data){
+            let room_number = data.split(":")[1]
+            roomNum = room_number
+            socket.emit('joinRoom',room_number);
+        })
     }
 }
 /**

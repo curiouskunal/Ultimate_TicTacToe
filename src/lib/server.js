@@ -22,7 +22,7 @@ const swaggerDefinition = {
 var options = {
   explorer: true,
   swaggerDefinition,
-  apis: ['./server.js'], // <-- not in the definition, but in the options
+  apis: ['server.js'], // <-- not in the definition, but in the options
 };
 
 
@@ -171,11 +171,11 @@ app.get('/api/allRooms', function(req, res){
 *     tags: [Room]
 *     parameters:
 *       - in: query
-*         name: room_number
+*         name: room_name
 *         schema:
 *           type: string
 *       - in: query
-*         name: room_name
+*         name: user_name
 *         schema:
 *           type: string
 *       - in: query
@@ -191,9 +191,11 @@ app.get('/api/allRooms', function(req, res){
 */
 app.put('/api/createRoom', function(req, res){
 	parameters = req.query;
-	sql_request('PUT', `INSERT INTO room_numbers (room_number, room_name, date_start) values('${parameters['room_number']}', '${parameters['room_name']}', '${parameters['date_start']}')`)
+	var roomNum = Math.random().toString(36).substring(3,8);
+	sql_request('PUT', `INSERT INTO room_numbers (room_number, room_name, date_start) values('${roomNum}', '${parameters['room_name']}', '${parameters['date_start']}')`)
 		.then(result=>{
-			res.status(200).send(result);
+			res.status(200).send(result + ":" + roomNum);
+			// add to game database table
 		})
 		.catch(err=>{
 			res.status(404).send(err)
