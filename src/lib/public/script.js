@@ -594,7 +594,7 @@ function closeNav() {
     }
     else{
         console.log('joining new room');
-        let url = baseUrl + "createRoom?room_name=" + "Test room" + "&date_start=" + (new Date().toISOString())
+        let url = baseUrl + "createRoom"
         $.ajax({
             url: url,
             method: 'PUT'

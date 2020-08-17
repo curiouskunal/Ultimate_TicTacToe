@@ -42,6 +42,7 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 		socket.leave(socket.room);
+		// decrement database
 	});
 
 	socket.on('room', function(){
@@ -169,20 +170,6 @@ app.get('/api/allRooms', function(req, res){
 *   put:
 *     description: Create new room
 *     tags: [Room]
-*     parameters:
-*       - in: query
-*         name: room_name
-*         schema:
-*           type: string
-*       - in: query
-*         name: user_name
-*         schema:
-*           type: string
-*       - in: query
-*         name: date_start
-*         schema:
-*           type: string
-*           format: date
 *     produces:
 *       - application/json
 *     responses:
@@ -192,7 +179,8 @@ app.get('/api/allRooms', function(req, res){
 app.put('/api/createRoom', function(req, res){
 	parameters = req.query;
 	var roomNum = Math.random().toString(36).substring(3,8);
-	sql_request('PUT', `INSERT INTO room_numbers (room_number, room_name, date_start) values('${roomNum}', '${parameters['room_name']}', '${parameters['date_start']}')`)
+	var date = new Date().toISOString()
+	sql_request('PUT', `INSERT INTO room_numbers (room_number, date_start, users_count) values('${roomNum}', '${date}', 1)`)
 		.then(result=>{
 			res.status(200).send(result + ":" + roomNum);
 			// add to game database table
