@@ -7,6 +7,7 @@ var db_config = require('./creds.json')
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var dateFormat = require('dateformat');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const { throws } = require("assert");
@@ -41,6 +42,7 @@ io.on('connection', function(socket){
 
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
+		leave_room(socket.room)
 		socket.leave(socket.room);
 		// decrement database
 	});
@@ -67,7 +69,7 @@ io.on('connection', function(socket){
 	socket.on('joinRoom',function(roomNumber){
 		socket.room = roomNumber;
     	socket.join(roomNumber);
-    	console.log('new room: ' + socket.room);
+    	console.log('joining room: ' + socket.room);
 		var room = io.nsps['/'].adapter.rooms[roomNumber];
 
 		if (room.length == 2){
@@ -98,6 +100,21 @@ io.on('connection', function(socket){
 
 });
 
+async function leave_room(room_number){
+	sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
+		.then(result=>{
+			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count - 1} where room_number = '${room_number}'`)
+				.then(result=>{
+					return 200,result
+				})
+				.catch(err=>{
+					return 404,result
+				})
+		})
+		.catch(err=>{
+			return 404, result
+		})
+}
 
 async function sql_request(type, query){
 	let pool = await sql.connect(db_config);
@@ -122,6 +139,14 @@ async function sql_request(type, query){
 	else if (type == 'DELETE'){
 		if (data.rowsAffected == 1){
 			result = "Deleted the room"
+		}
+		else{
+			throw("Room not found")
+		}
+	}
+	else if (type == 'UPDATE'){
+		if (data.rowsAffected >= 1){
+			result = "Updated the room"
 		}
 		else{
 			throw("Room not found")
@@ -177,12 +202,11 @@ app.get('/api/allRooms', function(req, res){
 *         description: room number
 */
 app.put('/api/createRoom', function(req, res){
-	parameters = req.query;
 	var roomNum = Math.random().toString(36).substring(3,8);
-	var date = new Date().toISOString()
+	var date =  dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
 	sql_request('PUT', `INSERT INTO room_numbers (room_number, date_start, users_count) values('${roomNum}', '${date}', 1)`)
 		.then(result=>{
-			res.status(200).send(result + ":" + roomNum);
+			res.status(200).send({"room number": roomNum, "message": result});
 			// add to game database table
 		})
 		.catch(err=>{
@@ -216,6 +240,64 @@ app.delete('/api/closeRoom', function(req, res){
 		.catch(err=>{
 			res.status(404).send(err)
 		})
+})
+
+
+/**
+* @swagger
+* /api/joinRoom:
+*   post:
+*     description: Join a room
+*     tags: [Room]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: Confirmation
+*/
+app.post('/api/joinRoom', function(req, res){
+	parameters = req.query;
+	sql_request('GET', `select users_count from room_numbers where room_number = '${parameters['room_number']}'`)
+		.then(result=>{
+			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count + 1} where room_number = '${parameters['room_number']}'`)
+				.then(result=>{
+					res.status(200).send(result);
+				})
+				.catch(err=>{
+					res.status(404).send(err)
+				})
+		})
+		.catch(err=>{
+			res.status(404).send(err)
+		})
+})
+
+/**
+* @swagger
+* /api/leaveRoom:
+*   post:
+*     description: Join a room
+*     tags: [Room]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: Confirmation
+*/
+app.post('/api/leaveRoom', function(req, res){
+	parameters = req.query;
+	code, result = leave_room(parameters['room_number'])
+	res.status(code).send(result)
 })
 
 http.listen((process.env.PORT || 8080), function(){

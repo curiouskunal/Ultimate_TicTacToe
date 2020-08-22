@@ -2,7 +2,7 @@ drop table game;
 drop table room_numbers;
 CREATE TABLE room_numbers (
     room_number VARCHAR(5) PRIMARY KEY,
-    date_start DATE,
+    date_start DATETIME,
     users_count INT
 );
 

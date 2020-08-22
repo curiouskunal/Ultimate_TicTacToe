@@ -590,6 +590,13 @@ function closeNav() {
     if (String(location.href).slice(-1) != '/' && String(location.href).slice(-1) != '#'){
         roomNum = String(location.href).slice(-5);
         console.log(roomNum);
+        let url = baseUrl + "joinRoom?room_number=" + roomNum
+        $.ajax({
+            url: url,
+            method: 'POST'
+        }).done(function (data){
+            socket.emit('joinRoom',room_number);
+        })
         socket.emit('joinRoom',roomNum);
     }
     else{
@@ -599,7 +606,7 @@ function closeNav() {
             url: url,
             method: 'PUT'
         }).done(function (data){
-            let room_number = data.split(":")[1]
+            let room_number = data['room number']
             roomNum = room_number
             socket.emit('joinRoom',room_number);
         })
