@@ -95,10 +95,22 @@ io.on('connection', function(socket){
 	});
 	socket.on("new move", function(move){
 		console.log('sending move to ' + move.room);
+		uploadFullBoard(move.fullBoard, move.room);
 		socket.broadcast.to(move.room).emit("new move", move);
 	});
 
 });
+
+async function uploadFullBoard(fullBoard, room_number){
+	sql_request('POST', `UPDATE game SET board = '${fullBoard}' where room_number = '${room_number}'`)
+		.then(result=>{
+			return 200, result;
+		})
+		.catch(err=>{
+			console.log(err);
+			return 404, err;
+		})
+}
 
 async function leave_room(room_number){
 	sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
@@ -137,11 +149,11 @@ async function sql_request(type, query){
 		}
 	}
 	else if (type == 'DELETE'){
-		if (data.rowsAffected == 1){
-			result = "Deleted the room"
+		if (data.rowsAffected >= 2){
+			result = "Deleted the room and game"
 		}
 		else{
-			throw("Room not found")
+			throw("Room/game not found")
 		}
 	}
 	else if (type == 'UPDATE'){
@@ -150,6 +162,16 @@ async function sql_request(type, query){
 		}
 		else{
 			throw("Room not found")
+		}
+	}
+	else if (type == 'CREATE'){
+		if (data.rowsAffected >= 1){
+			result = "Created the game"
+		}
+	}
+	else if (type == 'POST'){
+		if (data.rowsAffected >= 1){
+			result = "Updated game board"
 		}
 	}
 	pool.close;
@@ -206,8 +228,14 @@ app.put('/api/createRoom', function(req, res){
 	var date =  dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
 	sql_request('PUT', `INSERT INTO room_numbers (room_number, date_start, users_count) values('${roomNum}', '${date}', 1)`)
 		.then(result=>{
-			res.status(200).send({"room number": roomNum, "message": result});
 			// add to game database table
+			sql_request('CREATE', `INSERT into game (room_number, board) values('${roomNum}', '')`)
+						.then(result2=>{
+							res.status(200).send({"room number": roomNum, "message": result});
+						})
+						.catch(err=>{
+							res.status(404).send(err);
+						})
 		})
 		.catch(err=>{
 			res.status(404).send(err)
@@ -233,7 +261,7 @@ app.put('/api/createRoom', function(req, res){
 */
 app.delete('/api/closeRoom', function(req, res){
 	parameters = req.query;
-	sql_request('DELETE', `DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
+	sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
 			res.status(200).send(result);
 		})
@@ -298,6 +326,30 @@ app.post('/api/leaveRoom', function(req, res){
 	parameters = req.query;
 	code, result = leave_room(parameters['room_number'])
 	res.status(code).send(result)
+})
+
+
+/**
+* @swagger
+* /api/allGames:
+*   get:
+*     description: Get all games
+*     tags: [Game]
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: room number
+*/
+app.get('/api/allGames', function(req, res){
+	sql_request('GET', 'SELECT * FROM game')
+		.then(result=>{
+			res.send(result);
+		})
+		.catch(err=>{
+			console.log(err)
+			res.status(404).send("Failed to get games")
+		})
 })
 
 http.listen((process.env.PORT || 8080), function(){

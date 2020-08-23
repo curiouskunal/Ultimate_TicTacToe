@@ -94,7 +94,8 @@ function setupListeners(){
         squares[s].addEventListener('click',function(){
             if (document.turn == myChar){
                 square = this;
-                var message = {'move': square.id, 'turn': document.turn, 'room':roomNum};
+                let fullTableString = getBoardText();
+                var message = {'move': square.id, 'turn': document.turn, 'room':roomNum, 'fullBoard': fullTableString};
                 socket.emit("new move", message);
                 nextMove(square);
             }
@@ -228,6 +229,26 @@ function switchTurn() {
         openEndNav();
     }
 
+}
+
+
+/**
+* Adding the colors to the inner square to indicate to the user where they can play their next move
+* @param square the small square that was clicked by the user {square}
+*/
+function getBoardText(){
+    let fullTableString = "";
+    let mainTable = document.getElementsByClassName('mainTable')[0].children[0].children;
+    let fullTableRawArray = getBoard(mainTable);
+    
+    for (let i = 0; i < fullTableRawArray.length; i++){
+        for (let j = 0; j < fullTableRawArray.length; j++){
+            let innerBoard = fullTableRawArray[i][j];
+            fullTableString += innerBoard + ";"
+        }   
+    }
+
+    return fullTableString;
 }
 
 /**
