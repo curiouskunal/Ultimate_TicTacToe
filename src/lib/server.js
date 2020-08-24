@@ -206,7 +206,7 @@ app.get('/api/allRooms', function(req, res){
 		.then(result=>{
 			let returnJSON = {}
 			returnJSON['rooms'] = result
-			returnJSON['# of rooms'] = result.length
+			returnJSON['count'] = result.length
 			res.status(200).send(returnJSON);
 		})
 		.catch(err=>{
