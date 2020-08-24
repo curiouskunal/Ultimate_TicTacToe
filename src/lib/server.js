@@ -149,7 +149,7 @@ async function sql_request(type, query){
 		}
 	}
 	else if (type == 'DELETE'){
-		if (data.rowsAffected >= 2){
+		if (data.rowsAffected.length >= 2){
 			result = "Deleted the room and game"
 		}
 		else{
@@ -262,23 +262,12 @@ app.put('/api/createRoom', function(req, res){
 app.delete('/api/closeRoom', function(req, res){
 	parameters = req.query;
 	if (parameters['room_number'] == 'all'){
-		var roomsDeleted = []
-		sql_request('GET', 'SELECT * FROM room_numbers')
+		sql_request('DELETE', `DELETE FROM game; DELETE FROM room_numbers;`)
 			.then(result=>{
-				for (data in result){
-					sql_request('DELETE', `DELETE FROM game where room_number = '${result[data].room_number}'; DELETE FROM room_numbers where room_number = '${result[data].room_number}'`)
-						.then(result2=>{
-							roomsDeleted.push(data.room_number)
-						})
-						.catch(err=>{
-							res.status(404).send(err)
-						})
-				}
-				res.status(200).send({'deleted': roomsDeleted, '# rooms deleted': roomsDeleted.length})
+				res.status(200).send(result)
 			})
 			.catch(err=>{
-				console.log(err)
-				res.status(404).send("Failed to get rooms")
+				res.status(404).send(err)
 			})
 	}else {
 		sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
