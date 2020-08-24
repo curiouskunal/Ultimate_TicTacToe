@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Ultimate TicTacToe</title>
+
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="./script.js"></script>
+
+	<!-- tab icon -->
+	<link rel="icon" href="./assets/Icon.ico">
+
+	<!--view port-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body onload="openNav()">
+
+	<!-- Welcome Page overlay -->
+	<div id="myNav" class="overlay">
+		<!-- Overlay content -->
+		<div class="overlay-content">
+			<h1> Ultimate TicTacToe </h1>
+			<p> by: Kunal Shah & Pareek Ravi</p>
+			<a id="play" href="#" onclick="closeNav()">Play</a>
+		</div>
+	</div> 
+	
+	<div>
+		<a id="play" href="#" onclick="goToGamePage()">Go To Game Page</a>	
+	</div>
+</body>
+</html>
