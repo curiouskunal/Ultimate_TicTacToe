@@ -230,7 +230,7 @@ app.get('/api/allRooms', function(req, res){
 app.put('/api/createRoom', function(req, res){
 	var roomNum = Math.random().toString(36).substring(3,8);
 	var date =  dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss')
-	sql_request('PUT', `INSERT INTO room_numbers (room_number, date_start, users_count) values('${roomNum}', '${date}', 1)`)
+	sql_request('PUT', `INSERT INTO room_numbers (room_number, date_start, users_count) values('${roomNum}', '${date}', 0)`)
 		.then(result=>{
 			// add to game database table
 			sql_request('CREATE', `INSERT into game (room_number, board) values('${roomNum}', '')`)
