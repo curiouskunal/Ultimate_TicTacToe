@@ -12,6 +12,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const { throws } = require("assert");
 const { exception } = require("console");
+const { response } = require("express");
 const swaggerDefinition = {
 	info: {
 	    // API informations (required)
@@ -142,7 +143,6 @@ async function sql_request(type, query){
 		for (let i=0;i<data.rowsAffected;i++){
 			result.push(data.recordset[i]);
 		}
-		result.push({'# of rooms': data.rowsAffected[0]})
 	}
 	else if (type == 'PUT'){
 		if (data.rowsAffected == 1){
@@ -204,7 +204,10 @@ app.get('.*',function(req,res){
 app.get('/api/allRooms', function(req, res){
 	sql_request('GET', 'SELECT * FROM room_numbers')
 		.then(result=>{
-			res.send(result);
+			let returnJSON = {}
+			returnJSON['rooms'] = result
+			returnJSON['# of rooms'] = result.length
+			res.status(200).send(returnJSON);
 		})
 		.catch(err=>{
 			console.log(err)
