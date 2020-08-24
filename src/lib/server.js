@@ -142,6 +142,7 @@ async function sql_request(type, query){
 		for (let i=0;i<data.rowsAffected;i++){
 			result.push(data.recordset[i]);
 		}
+		result.push({'# of rooms': data.rowsAffected[0]})
 	}
 	else if (type == 'PUT'){
 		if (data.rowsAffected == 1){
