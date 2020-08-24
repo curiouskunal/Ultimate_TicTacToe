@@ -261,13 +261,34 @@ app.put('/api/createRoom', function(req, res){
 */
 app.delete('/api/closeRoom', function(req, res){
 	parameters = req.query;
-	sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
+	if (parameters['room_number'] == 'all'){
+		var roomsDeleted = []
+		sql_request('GET', 'SELECT * FROM room_numbers')
+			.then(result=>{
+				for (data in result){
+					sql_request('DELETE', `DELETE FROM game where room_number = '${result[data].room_number}'; DELETE FROM room_numbers where room_number = '${result[data].room_number}'`)
+						.then(result2=>{
+							roomsDeleted.push(data.room_number)
+						})
+						.catch(err=>{
+							res.status(404).send(err)
+						})
+				}
+				res.status(200).send({'deleted': roomsDeleted, '# rooms deleted': roomsDeleted.length})
+			})
+			.catch(err=>{
+				console.log(err)
+				res.status(404).send("Failed to get rooms")
+			})
+	}else {
+		sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
 			res.status(200).send(result);
 		})
 		.catch(err=>{
 			res.status(404).send(err)
 		})
+	}
 })
 
 
