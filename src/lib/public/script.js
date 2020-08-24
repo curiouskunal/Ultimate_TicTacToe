@@ -74,10 +74,12 @@ function startGame(gameState) {
     setInterval(setTimer, 1000);
     setupListeners();
 
+    createRoomCode();
+
     //open overlay
-    if (gameState){
-        openNav();
-    }
+    // if (gameState){
+    //     openNav();
+    // }
 }
 
 
@@ -169,7 +171,7 @@ function nextMove(square) {
 }
 
 function copyLink(){
-    var link = location.href + roomNum;
+    var link = location.href + '#' + roomNum;
     window.prompt("Copy to clipboard: Ctrl+C, Enter", link);
 }
 /**
@@ -597,6 +599,13 @@ function getBoard(boardTable) {
 }
 
 /**
+ * From the welcome page open game page
+ */
+function goToGamePage() {
+    window.open("./game","_self");
+}
+
+/**
  * open the welcome page at the start of loading the page
  */
 function openNav() {
@@ -605,8 +614,15 @@ function openNav() {
 /**
  * close the welcome page to play the game
  */
-function closeNav() {
+function closeNav(){
     document.getElementById("myNav").style.height = "0%";
+}
+
+/**
+ * Join or create room socket connection
+ */
+function connectToRoomSocket() {
+    // document.getElementById("myNav").style.height = "0%";
     console.log(String(location.href).slice(-1));
     if (String(location.href).slice(-1) != '/' && String(location.href).slice(-1) != '#'){
         roomNum = String(location.href).slice(-5);
