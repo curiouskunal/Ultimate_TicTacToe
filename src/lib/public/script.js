@@ -74,7 +74,7 @@ function startGame(gameState) {
     setInterval(setTimer, 1000);
     setupListeners();
 
-    createRoomCode();
+    connectToRoomSocket();
 
     //open overlay
     // if (gameState){
@@ -774,3 +774,52 @@ socket.on('setCharacter', function(msg){
     }
     document.getElementById('copyLink').style.display = 'none';
 });
+
+function createAvailableGamesTable(){
+    let url = baseUrl + "allRooms";
+    $.ajax({
+        url: url,
+        method: 'GET'
+    }).done(function (data){
+        if(data.count === 0){
+            document.getElementById('availableGamesParrent').style.display = 'none';
+            document.getElementById('emptyGameListParrent').style.display = 'block';
+        } else {
+            data.rooms.forEach(row => addAvailableGameRow(row));
+        }
+
+    });    
+}
+
+function addAvailableGameRow(data){
+    var tableRef = document.getElementById('availableGamesTable').getElementsByTagName('tbody')[0];
+    var newRow   = tableRef.insertRow(tableRef.rows.length);
+  
+    var nameCell  = newRow.insertCell(0);
+    var name  = document.createTextNode(data.room_number)
+    nameCell.appendChild(name);
+
+    var playersCell  = newRow.insertCell(1);
+    var players  = document.createTextNode(data.users_count)
+    playersCell.appendChild(players);
+
+    var connectionText = `<div id='row_${data.room_number}' class= 'button' onClick=connectToGameRoom("${data.room_number}")>Connect</div>`
+    var connectCell  = newRow.insertCell(2);
+    var connect = document.createElement("div");
+    connect.innerHTML = connectionText
+    connectCell.appendChild(connect);
+
+}
+
+function connectToGameRoom(room_number){
+    window.open("./game/#"+room_number,"_self");
+}
+
+function resetAvailableGamesTable(){
+
+}
+
+function onHomePageLoad(){
+    openNav();
+    createAvailableGamesTable();
+}
