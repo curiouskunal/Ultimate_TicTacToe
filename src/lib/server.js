@@ -116,13 +116,23 @@ async function uploadFullBoard(fullBoard, room_number){
 async function leave_room(room_number){
 	sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
 		.then(result=>{
-			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count - 1} where room_number = '${room_number}'`)
-				.then(result=>{
-					return 200,result
-				})
-				.catch(err=>{
-					return 404,result
-				})
+			if (result[0].users_count == 1){
+				sql_request('DELETE', `DELETE FROM game where room_number = '${room_number}'; DELETE FROM room_numbers where room_number = '${room_number}'`)
+					.then(result=>{
+						return 200, result
+					})
+					.catch(err=>{
+						return 200, result
+					})
+			}else{
+				sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count - 1} where room_number = '${room_number}'`)
+					.then(result=>{
+						return 200,result
+					})
+					.catch(err=>{
+						return 404,result
+					})
+			}
 		})
 		.catch(err=>{
 			return 404, result
