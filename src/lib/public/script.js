@@ -645,7 +645,13 @@ function connectToRoomSocket() {
         }).done(function (data){
             let room_number = data['room number']
             roomNum = room_number
-            socket.emit('joinRoom',room_number);
+            url = baseUrl + "joinRoom?room_number=" + roomNum
+            $.ajax({
+                url: url,
+                method: 'POST'
+            }).done(function (data){
+                socket.emit('joinRoom',room_number);
+            });
         })
     }
 }
