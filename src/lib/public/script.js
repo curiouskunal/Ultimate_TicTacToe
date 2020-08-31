@@ -171,7 +171,7 @@ function nextMove(square) {
 }
 
 function copyLink(){
-    var link = location.href + '#' + roomNum;
+    var link = location.href;
     window.prompt("Copy to clipboard: Ctrl+C, Enter", link);
 }
 /**
@@ -651,6 +651,7 @@ function connectToRoomSocket() {
                 method: 'POST'
             }).done(function (data){
                 socket.emit('joinRoom',room_number);
+                location.href += '#' + room_number
             });
         })
     }
