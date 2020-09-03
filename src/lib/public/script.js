@@ -797,11 +797,17 @@ function addAvailableGameRow(data){
     var name  = document.createTextNode(data.room_number)
     nameCell.appendChild(name);
 
+    var playersText = "<div>";
+    for (i=0; i<data.users_count; i++){
+        playersText += "<img class='icon' src='assets/player.svg'>";
+    }
+    playersText += "</div>"
     var playersCell  = newRow.insertCell(1);
-    var players  = document.createTextNode(data.users_count)
+    var players  = document.createElement("div");
+    players.innerHTML = playersText
     playersCell.appendChild(players);
 
-    var connectionText = `<div id='row_${data.room_number}' class= 'button' onClick=connectToGameRoom("${data.room_number}")>Connect</div>`
+    var connectionText = `<div id='row_${data.room_number}' class= 'button ${isConnectButtonDisabled(data.users_count)?"disabled":""}' onClick=connectToGameRoom("${data.room_number}")>Connect</div>`
     var connectCell  = newRow.insertCell(2);
     var connect = document.createElement("div");
     connect.innerHTML = connectionText
@@ -811,6 +817,10 @@ function addAvailableGameRow(data){
 
 function connectToGameRoom(room_number){
     window.open("./game/#"+room_number,"_self");
+}
+
+function isConnectButtonDisabled(user_count){
+    return user_count >=2 ;
 }
 
 function resetAvailableGamesTable(){

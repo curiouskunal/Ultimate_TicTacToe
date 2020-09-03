@@ -28,6 +28,18 @@ html {
 	
 }
 
+.icon{
+	height: 20px;
+	line-height: 20px;
+	font-family: serif;
+	display: inline-block;
+}
+
+.disabled{
+	pointer-events: none;
+	opacity: 0.4;
+}
+
 .header{
 	text-align: center;
 	max-width: 700px;
