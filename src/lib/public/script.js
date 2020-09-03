@@ -599,18 +599,12 @@ function getBoard(boardTable) {
 }
 
 /**
- * From the welcome page open game page
- */
-function goToGamePage() {
-    window.open("./game","_self");
-}
-
-/**
  * open the welcome page at the start of loading the page
  */
 function openNav() {
     document.getElementById("myNav").style.height = "100%";
 }
+
 /**
  * close the welcome page to play the game
  */
@@ -619,7 +613,21 @@ function closeNav(){
 }
 
 /**
- * Join or create room socket connection
+ * From the welcome page open game page and create New room
+ */
+function createNewRoom(){
+    let url = baseUrl + "createRoom"
+    $.ajax({
+        url: url,
+        method: 'PUT'
+    }).done(function (data){
+        let room_number = data['room number'];
+        connectToGameRoom(room_number);
+    })
+}
+
+/**
+ * Join existing room
  */
 function connectToRoomSocket() {
     // document.getElementById("myNav").style.height = "0%";
@@ -632,28 +640,11 @@ function connectToRoomSocket() {
             url: url,
             method: 'POST'
         }).done(function (data){
-            socket.emit('joinRoom',room_number);
+            socket.emit('joinRoom',roomNum);
         })
-        socket.emit('joinRoom',roomNum);
     }
     else{
-        console.log('joining new room');
-        let url = baseUrl + "createRoom"
-        $.ajax({
-            url: url,
-            method: 'PUT'
-        }).done(function (data){
-            let room_number = data['room number']
-            roomNum = room_number
-            url = baseUrl + "joinRoom?room_number=" + roomNum
-            $.ajax({
-                url: url,
-                method: 'POST'
-            }).done(function (data){
-                socket.emit('joinRoom',room_number);
-                location.href += '#' + room_number
-            });
-        })
+        window.open("/","_self");
     }
 }
 /**
