@@ -43,9 +43,13 @@ io.on('connection', function(socket){
 
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
-		leave_room(socket.room)
-		socket.leave(socket.room);
 		// decrement database
+		try {
+			leave_room(socket.room)
+		} catch (error) {
+			console.log(error)
+		}
+		socket.leave(socket.room);
 	});
 
 	socket.on('room', function(){
@@ -113,30 +117,53 @@ async function uploadFullBoard(fullBoard, room_number){
 		})
 }
 
+async function checkEmptyUnplayedRoom(room_number){
+	
+}
+
 async function leave_room(room_number){
-	sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
-		.then(result=>{
-			if (result[0].users_count == 1){
-				sql_request('DELETE', `DELETE FROM game where room_number = '${room_number}'; DELETE FROM room_numbers where room_number = '${room_number}'`)
-					.then(result=>{
-						return 200, result
-					})
-					.catch(err=>{
-						return 200, result
-					})
-			}else{
-				sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count - 1} where room_number = '${room_number}'`)
-					.then(result=>{
-						return 200,result
-					})
-					.catch(err=>{
-						return 404,result
-					})
-			}
+
+	let promise = new Promise((resolve, reject) => {
+		sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
+		.then(result1=>{
+			sql_request('GET', `select board from game where room_number = '${room_number}'`)
+				.then(result2=>{
+					if (result1[0].users_count == 1 && result2[0].board != ""){
+						resolve([true, result1[0].users_count])
+					}
+					else{
+						resolve([false, result1[0].users_count])
+					}
+				})
+				.catch(() =>{
+					// do nothing
+				})
 		})
-		.catch(err=>{
-			return 404, result
-		})
+	});
+	
+	let confirmation = await promise;
+
+	if (confirmation[0]){
+		sql_request('DELETE', `DELETE FROM game where room_number = '${room_number}'; DELETE FROM room_numbers where room_number = '${room_number}'`)
+			.then(result=>{
+				return [200, result]
+			})
+			.catch(err=>{
+				return [200, err]
+			})
+	}else{
+		let users_count = confirmation[1]
+		if (users_count > 0)
+			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
+				.then(result=>{
+					return [200,result]
+				})
+				.catch(err=>{
+					return [404,err]
+				})
+		else
+			return 200, 'Left room'
+	}
 }
 
 async function sql_request(type, query){
@@ -348,8 +375,13 @@ app.post('/api/joinRoom', function(req, res){
 */
 app.post('/api/leaveRoom', function(req, res){
 	parameters = req.query;
-	code, result = leave_room(parameters['room_number'])
-	res.status(code).send(result)
+	result = leave_room(parameters['room_number'])
+	try{
+		res.status(result[0]).send(result[1])
+	}
+	catch (error){
+		res.status(500).send(error.message);
+	}
 })
 
 
