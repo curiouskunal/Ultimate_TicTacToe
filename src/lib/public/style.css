@@ -5,7 +5,7 @@
 }
 html {
 	background-color:  #D2EBEF;
-
+	font-family: Roboto;
 	background-color: var(--colour3);
 	/*overflow: hidden;*/
 }
@@ -31,7 +31,6 @@ html {
 .icon{
 	height: 20px;
 	line-height: 20px;
-	font-family: serif;
 	display: inline-block;
 }
 
@@ -61,6 +60,7 @@ html {
 	display: block;
 	-webkit-text-stroke: 0.5px black;
 	transition: 0.5s;
+	font-family: 'Times New Roman', Times, serif;
 }
 .header a:hover, .overlay a:focus {
 	color: #025C96;
@@ -148,6 +148,7 @@ table{
 	height: 10em;
 }
 
+
 #availableGamesParrent{
 	display: flex;
 	justify-content: center;
@@ -155,6 +156,9 @@ table{
 
 #availableGamesWrapper{
 	width: 70%;
+	background-color: rgba(255,255,255,0.2);
+	padding-bottom: 64px;
+	border-radius: 25px;
 }
 
 #availableGamesTable{
@@ -163,6 +167,7 @@ table{
     border-collapse: collapse;
 	border-spacing: 0;
 	justify-content: center;
+	margin: 0;
 }
 
 #availableGamesWrapper td, th {
@@ -178,6 +183,7 @@ table{
 
 .newConnection{
 	float: right;
+	margin: 30px 30px 0 0;
 }
 #PageHeader{
     padding: 8px;
@@ -532,6 +538,7 @@ button:hover {
 	text-align: center;
 	font-size: 4em;
 	font-weight: 300;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 .overlay h2 {
@@ -560,6 +567,49 @@ button:hover {
 .overlay a:hover, .overlay a:focus {
     color: #ff6e21;
 }
+
+.tooltip {
+	position: relative;
+	/* display: inline-block; */
+  }
+  
+  .tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
+  }
+
+  .joinButton{
+	  width: 9em;
+	  margin: 0 auto;
+  }
 
 @media only screen and (max-width: 768px) {
 

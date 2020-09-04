@@ -807,7 +807,7 @@ function addAvailableGameRow(data){
     players.innerHTML = playersText
     playersCell.appendChild(players);
 
-    var connectionText = `<div id='row_${data.room_number}' class= 'button ${isConnectButtonDisabled(data.users_count)?"disabled":""}' onClick=connectToGameRoom("${data.room_number}")>Connect</div>`
+    var connectionText = `<div id='row_${data.room_number}' class= 'button joinButton ${isConnectButtonDisabled(data.users_count)?"disabled":""}' onClick=connectToGameRoom("${data.room_number}")>Join Room</div>`
     var connectCell  = newRow.insertCell(2);
     var connect = document.createElement("div");
     connect.innerHTML = connectionText

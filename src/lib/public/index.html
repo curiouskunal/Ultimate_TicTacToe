@@ -9,6 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="./script.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
 	<!-- tab icon -->
 	<link rel="icon" href="./assets/Icon.ico">
@@ -30,13 +31,22 @@
 		</div>
 	</div>
 
-	<div id="PageHeader">
-		Ultimate Tic-Tac-Toe
+	<div class = header >
+		<a id="title">Ultimate Tic-Tac-Toe</a>
+	</div>
+
+	<div class="center">
+		<h2>This is a game that is one step further than the original tic tac toe, with added strategy but still has the simplicity of the original game.</h2>
 	</div>
 
 	<div id=availableGamesParrent>
 		<div id=availableGamesWrapper>
-			<div class="button newConnection" onclick="createNewRoom()">+</div>
+
+			<div class="tooltip newConnection">	
+				<div class="button" onclick="createNewRoom()">+</div>
+				<span class="tooltiptext">Create New Room</span>
+			</div>
+
 			<table id="availableGamesTable">
 				<thead>
 					<tr>
