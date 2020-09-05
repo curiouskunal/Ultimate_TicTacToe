@@ -368,7 +368,11 @@ function checkCompletedBoard(square) {
 	}
 	else {
 		color = Xcolor; // mint
-	}
+    }
+    let draw_character = document.turn;
+    if (!draw_character){
+        draw_character = square.innerText
+    }
 
     //id of the inner board
     var boardID = square.parentNode.parentNode.parentNode.parentNode.id;
@@ -381,96 +385,96 @@ function checkCompletedBoard(square) {
     var col = boardID.charAt(2);
 
     // row 1
-    if (innerBoard[0][0] == square.innerText && innerBoard [0][1] == square.innerText && innerBoard[0][2] == square.innerText) {
+    if (square.innerText != "" && innerBoard[0][0] == square.innerText && innerBoard [0][1] == square.innerText && innerBoard[0][2] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //row 2
-    else if (innerBoard[1][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[1][2] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[1][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[1][2] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //row 3
-    else if (innerBoard[2][0] == square.innerText && innerBoard [2][1] == square.innerText && innerBoard[2][2] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[2][0] == square.innerText && innerBoard [2][1] == square.innerText && innerBoard[2][2] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //col 1
-    else if (innerBoard[0][0] == square.innerText && innerBoard [1][0] == square.innerText && innerBoard[2][0] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[0][0] == square.innerText && innerBoard [1][0] == square.innerText && innerBoard[2][0] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //col 2
-    else if (innerBoard[0][1] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][1] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[0][1] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][1] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //col 3
-    else if (innerBoard[0][2] == square.innerText && innerBoard [1][2] == square.innerText && innerBoard[2][2] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[0][2] == square.innerText && innerBoard [1][2] == square.innerText && innerBoard[2][2] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     // diagonal
-    else if (innerBoard[0][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][2] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[0][0] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][2] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
         // console.log(fullBoard)
     }
     //diagonal
-    else if (innerBoard[0][2] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][0] == square.innerText) {
+    else if (square.innerText != "" && innerBoard[0][2] == square.innerText && innerBoard [1][1] == square.innerText && innerBoard[2][0] == square.innerText) {
         //changing the color of the inner board to show a win
         document.getElementById(boardID).style.backgroundColor = color;
 
         //changing the label of the inner board to show a win
-        document.getElementById(boardID).innerHTML = document.turn;
+        document.getElementById(boardID).innerHTML = draw_character;
 
         //indicating on the full board that the inner board is won
         fullBoard[row][col] = square.innerText;
@@ -830,4 +834,38 @@ function resetAvailableGamesTable(){
 function onHomePageLoad(){
     openNav();
     createAvailableGamesTable();
+}
+
+function getBoardFromDB(){
+    let url = baseUrl + "getBoard?room_number=" + roomNum
+    $.ajax({
+        url: url,
+        method: 'GET'
+    }).done(function (data){
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j<3; j++){
+                // go by columns not by rows
+                populateInnerBoard(data[i][j], "B"+j+i);
+            }
+        }
+    })
+}
+
+function populateInnerBoard(boardData, boardID){
+    let innerBoardRows = document.getElementById(boardID).children[0].children[0].children;
+    let squareCount = 1;
+    for (var i = 0; i < innerBoardRows.length; i++) {
+        //get the row element
+        var row = innerBoardRows[i].children;
+        
+        for (var j = 0; j < row.length; j++) {
+            //set the inner text of every element from the data
+            row[j].innerText = boardData[i][j];
+            console.log(boardID.substring(1) + "s" + parseInt(squareCount))
+            // after every square, check if that completes the board
+            checkCompletedBoard(document.getElementById(boardID.substring(1) + "s" + parseInt(squareCount)))
+
+            squareCount++;
+        }
+    }
 }
