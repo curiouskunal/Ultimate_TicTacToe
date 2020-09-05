@@ -730,5 +730,8 @@ button:hover {
 		width: 250px;
 		height: 30%;
 	}
+	.joinButton{
+		width: auto;
+	}
 
 }
