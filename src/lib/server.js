@@ -117,8 +117,14 @@ async function uploadFullBoard(fullBoard, room_number){
 		})
 }
 
-async function checkEmptyUnplayedRoom(room_number){
-	
+function str_to_array(board){
+    let innerBoard = new Array(3)
+
+    let rows = board.split("\n")
+    for (let i = 0; i < rows.length; i++){
+        innerBoard[i] = rows[i].split("\t")
+    }
+    return innerBoard;
 }
 
 async function leave_room(room_number){
@@ -405,6 +411,51 @@ app.get('/api/allGames', function(req, res){
 		.catch(err=>{
 			console.log(err)
 			res.status(404).send("Failed to get games")
+		})
+})
+
+/**
+* @swagger
+* /api/getBoard:
+*   get:
+*     description: Get all games
+*     tags: [Game]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: game board
+*/
+app.get('/api/getBoard', function(req, res){
+	parameters = req.query;
+	sql_request('GET', `SELECT board FROM game where room_number= '${parameters['room_number']}'`)
+		.then(result=>{
+			let receivedBoard = result[0].board;
+			let tempFullBoard = [new Array(3), new Array(3), new Array(3)];
+			if (receivedBoard != ""){
+				let i = 0;
+				let j = 0;
+				let innerBoards = (receivedBoard.split(";")).slice(0,9)
+				for (let innerBoard of innerBoards){
+					tempFullBoard[i][j] = str_to_array(innerBoard)
+					i++;
+					if (i == 3){
+						i = 0; 
+						j++;
+					}
+				}
+			}
+
+			res.status(200).send(tempFullBoard)
+		})
+		.catch(err=>{
+			console.log(err)
+			res.status(404).send("Failed to get board")
 		})
 })
 
