@@ -436,8 +436,10 @@ app.get('/api/getBoard', function(req, res){
 	sql_request('GET', `SELECT board FROM game where room_number= '${parameters['room_number']}'`)
 		.then(result=>{
 			let receivedBoard = result[0].board;
-			let tempFullBoard = [new Array(3), new Array(3), new Array(3)];
+			let tempFullBoard = ""
 			if (receivedBoard != ""){
+				tempFullBoard = [new Array(3), new Array(3), new Array(3)];
+				
 				let i = 0;
 				let j = 0;
 				let innerBoards = (receivedBoard.split(";")).slice(0,9)

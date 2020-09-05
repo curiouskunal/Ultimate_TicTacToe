@@ -75,6 +75,7 @@ function startGame(gameState) {
     setupListeners();
 
     connectToRoomSocket();
+    getBoardFromDB();
 
     //open overlay
     // if (gameState){
@@ -842,12 +843,13 @@ function getBoardFromDB(){
         url: url,
         method: 'GET'
     }).done(function (data){
-        for (let i = 0; i < 3; i++){
-            for (let j = 0; j<3; j++){
-                // go by columns not by rows
-                populateInnerBoard(data[i][j], "B"+j+i);
+        if (data != "")
+            for (let i = 0; i < 3; i++){
+                for (let j = 0; j<3; j++){
+                    // go by columns not by rows
+                    populateInnerBoard(data[i][j], "B"+j+i);
+                }
             }
-        }
     })
 }
 
