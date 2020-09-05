@@ -56,11 +56,7 @@
 		<div id="clock">
 			<p id="time">Time</p>
 		</div>
-		<div id="invite">
-			<button id="copyLink" onclick="copyLink()">Invite</button>
-		</div>
 	</div>
-	<div id="clock"></div>
 	
 	<div class = header >
 
@@ -114,197 +110,209 @@
 
 
 	</div> 	<!-- close header -->
+	<div class="center">
+		<div id="WaitingOverlay">
+			<p>Waiting for your opponent to join the room <br>
+				Share this with friends for them to join
+			</p>
 
-	<div id="Game-Board">
-		<div class = center id="center">
-			<table class= mainTable> <!-- table of tables  -->
-				<tr id="row1"> <!-- Row 1  -->
-					<td id="B00" class = 'box' align = "center">
-						<table > <!-- Col 1  -->
-							<tr>
-								<td id="00s1" class="Square"></td>
-								<td id="00s2" class="Square"></td>
-								<td id="00s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="00s4" class="Square"></td>
-								<td id="00s5" class="Square"></td>
-								<td id="00s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="00s7" class="Square"></td>
-								<td id="00s8" class="Square"></td>
-								<td id="00s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+			<div class="roomcodeWrapper">
+				<div id="clicktocopyText">click to copy</div>
+				<div class="roomCode"> Room Code:</div>
+				<div id="roomCode" class="roomCode clicktocopy" onclick="copyLink()"></div>
+			</div>
+		</div>
+		<div id="Game-Board" class="disabled">
+			<div class = center id="center">
+				<table class= mainTable> <!-- table of tables  -->
+					<tr id="row1"> <!-- Row 1  -->
+						<td id="B00" class = 'box' align = "center">
+							<table > <!-- Col 1  -->
+								<tr>
+									<td id="00s1" class="Square"></td>
+									<td id="00s2" class="Square"></td>
+									<td id="00s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="00s4" class="Square"></td>
+									<td id="00s5" class="Square"></td>
+									<td id="00s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="00s7" class="Square"></td>
+									<td id="00s8" class="Square"></td>
+									<td id="00s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B01" class = 'box' align = "center">
-						<table > <!-- Col 2  -->
-							<tr>
-								<td id="01s1" class="Square"></td>
-								<td id="01s2" class="Square"></td>
-								<td id="01s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="01s4" class="Square"></td>
-								<td id="01s5" class="Square"></td>
-								<td id="01s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="01s7" class="Square"></td>
-								<td id="01s8" class="Square"></td>
-								<td id="01s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+						<td id="B01" class = 'box' align = "center">
+							<table > <!-- Col 2  -->
+								<tr>
+									<td id="01s1" class="Square"></td>
+									<td id="01s2" class="Square"></td>
+									<td id="01s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="01s4" class="Square"></td>
+									<td id="01s5" class="Square"></td>
+									<td id="01s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="01s7" class="Square"></td>
+									<td id="01s8" class="Square"></td>
+									<td id="01s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B02" class = 'box' align = "center">
-						<table > <!-- Col 3  -->
-							<tr>
-								<td id="02s1" class="Square"></td>
-								<td id="02s2" class="Square"></td>
-								<td id="02s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="02s4" class="Square"></td>
-								<td id="02s5" class="Square"></td>
-								<td id="02s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="02s7" class="Square"></td>
-								<td id="02s8" class="Square"></td>
-								<td id="02s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+						<td id="B02" class = 'box' align = "center">
+							<table > <!-- Col 3  -->
+								<tr>
+									<td id="02s1" class="Square"></td>
+									<td id="02s2" class="Square"></td>
+									<td id="02s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="02s4" class="Square"></td>
+									<td id="02s5" class="Square"></td>
+									<td id="02s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="02s7" class="Square"></td>
+									<td id="02s8" class="Square"></td>
+									<td id="02s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 
-				<tr id="row2"> <!-- Row 2  -->
-					<td id="B10" class = 'box' align = "center">
-						<table > <!-- Col 1  -->
-							<tr>
-								<td id="10s1" class="Square"></td>
-								<td id="10s2" class="Square"></td>
-								<td id="10s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="10s4" class="Square"></td>
-								<td id="10s5" class="Square"></td>
-								<td id="10s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="10s7" class="Square"></td>
-								<td id="10s8" class="Square"></td>
-								<td id="10s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+					<tr id="row2"> <!-- Row 2  -->
+						<td id="B10" class = 'box' align = "center">
+							<table > <!-- Col 1  -->
+								<tr>
+									<td id="10s1" class="Square"></td>
+									<td id="10s2" class="Square"></td>
+									<td id="10s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="10s4" class="Square"></td>
+									<td id="10s5" class="Square"></td>
+									<td id="10s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="10s7" class="Square"></td>
+									<td id="10s8" class="Square"></td>
+									<td id="10s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B11" class = 'box' align = "center">
-						<table > <!-- Col 2  -->
-							<tr>
-								<td id="11s1" class="Square"></td>
-								<td id="11s2" class="Square"></td>
-								<td id="11s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="11s4" class="Square"></td>
-								<td id="11s5" class="Square"></td>
-								<td id="11s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="11s7" class="Square"></td>
-								<td id="11s8" class="Square"></td>
-								<td id="11s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+						<td id="B11" class = 'box' align = "center">
+							<table > <!-- Col 2  -->
+								<tr>
+									<td id="11s1" class="Square"></td>
+									<td id="11s2" class="Square"></td>
+									<td id="11s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="11s4" class="Square"></td>
+									<td id="11s5" class="Square"></td>
+									<td id="11s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="11s7" class="Square"></td>
+									<td id="11s8" class="Square"></td>
+									<td id="11s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B12" class = 'box' align = "center">
-						<table > <!-- Col 3  -->
-							<tr>
-								<td id="12s1" class="Square"></td>
-								<td id="12s2" class="Square"></td>
-								<td id="12s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="12s4" class="Square"></td>
-								<td id="12s5" class="Square"></td>
-								<td id="12s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="12s7" class="Square"></td>
-								<td id="12s8" class="Square"></td>
-								<td id="12s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+						<td id="B12" class = 'box' align = "center">
+							<table > <!-- Col 3  -->
+								<tr>
+									<td id="12s1" class="Square"></td>
+									<td id="12s2" class="Square"></td>
+									<td id="12s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="12s4" class="Square"></td>
+									<td id="12s5" class="Square"></td>
+									<td id="12s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="12s7" class="Square"></td>
+									<td id="12s8" class="Square"></td>
+									<td id="12s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 
-				<tr id="row3"> <!-- Row 3 -->
-					<td id="B20" class = 'box' align = "center">
-						<table > <!-- Col 1  -->
-							<tr>
-								<td id="20s1" class="Square"></td>
-								<td id="20s2" class="Square"></td>
-								<td id="20s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="20s4" class="Square"></td>
-								<td id="20s5" class="Square"></td>
-								<td id="20s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="20s7" class="Square"></td>
-								<td id="20s8" class="Square"></td>
-								<td id="20s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+					<tr id="row3"> <!-- Row 3 -->
+						<td id="B20" class = 'box' align = "center">
+							<table > <!-- Col 1  -->
+								<tr>
+									<td id="20s1" class="Square"></td>
+									<td id="20s2" class="Square"></td>
+									<td id="20s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="20s4" class="Square"></td>
+									<td id="20s5" class="Square"></td>
+									<td id="20s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="20s7" class="Square"></td>
+									<td id="20s8" class="Square"></td>
+									<td id="20s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B21" class = 'box' align = "center" >
-						<table > <!-- Col 2  -->
-							<tr>
-								<td id="21s1" class="Square"></td>
-								<td id="21s2" class="Square"></td>
-								<td id="21s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="21s4" class="Square"></td>
-								<td id="21s5" class="Square"></td>
-								<td id="21s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="21s7" class="Square"></td>
-								<td id="21s8" class="Square"></td>
-								<td id="21s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
+						<td id="B21" class = 'box' align = "center" >
+							<table > <!-- Col 2  -->
+								<tr>
+									<td id="21s1" class="Square"></td>
+									<td id="21s2" class="Square"></td>
+									<td id="21s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="21s4" class="Square"></td>
+									<td id="21s5" class="Square"></td>
+									<td id="21s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="21s7" class="Square"></td>
+									<td id="21s8" class="Square"></td>
+									<td id="21s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
 
-					<td id="B22" class = 'box' align = "center" >
-						<table > <!-- Col 3  -->
-							<tr>
-								<td id="22s1" class="Square"></td>
-								<td id="22s2" class="Square"></td>
-								<td id="22s3" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="22s4" class="Square"></td>
-								<td id="22s5" class="Square"></td>
-								<td id="22s6" class="Square"></td>
-							</tr>
-							<tr>
-								<td id="22s7" class="Square"></td>
-								<td id="22s8" class="Square"></td>
-								<td id="22s9" class="Square"></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table> <!-- close table of tables  -->
-			
+						<td id="B22" class = 'box' align = "center" >
+							<table > <!-- Col 3  -->
+								<tr>
+									<td id="22s1" class="Square"></td>
+									<td id="22s2" class="Square"></td>
+									<td id="22s3" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="22s4" class="Square"></td>
+									<td id="22s5" class="Square"></td>
+									<td id="22s6" class="Square"></td>
+								</tr>
+								<tr>
+									<td id="22s7" class="Square"></td>
+									<td id="22s8" class="Square"></td>
+									<td id="22s9" class="Square"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table> <!-- close table of tables  -->
+				
+			</div>
 		</div>
 	</div>
 

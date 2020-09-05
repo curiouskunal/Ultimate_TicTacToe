@@ -611,6 +611,64 @@ button:hover {
 	  margin: 0 auto;
   }
 
+  #WaitingOverlay{
+	  text-align: center;
+	  height: fit-content;
+	  width: 360px;
+	  background-color: white;
+	  position: absolute;
+	  z-index: 2;
+	  border-radius: 25px;
+	  box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.2), 0 60px 200px 0 rgba(0, 0, 0, 0.19);
+	  border: 1px solid rgba(0, 0, 0, 0.05);
+	  padding: 30px;
+	  margin-top: 40px;
+  }
+
+  #Game-Board{
+	position: absolute;
+  }
+
+  #clicktocopyText{
+	text-align: right;
+	display: block;
+    margin: 10px 0px 3px 0;
+    font-size: x-small;
+  }
+
+  .roomCode{
+	  font-weight: bold;
+	  display: inline-block;
+	  font-size: x-large;
+  }
+
+  .roomcodeWrapper{
+	width: fit-content;
+	margin: 0 auto;
+  }
+  
+  .clicktocopy{
+	cursor: pointer;
+    background-color: rgba(210, 235, 239, 0.2);
+    padding: 3px 11px;
+	border: 1px solid;
+    border-radius: 20px;
+	color: var(--colour);
+	user-select: none; /* standard syntax */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+  }
+
+  .clicktocopy:hover{
+	background-color: rgba(210, 235, 239, 0.6);
+  }
+
+  .clicktocopy:active{
+	background-color: rgba(210, 235, 239, 1);
+  }
+
 @media only screen and (max-width: 768px) {
 
 	html {
@@ -666,6 +724,11 @@ button:hover {
 
 	#availableGamesWrapper{
 		width: 100%;
+	}
+
+	#WaitingOverlay{
+		width: 250px;
+		height: 30%;
 	}
 
 }

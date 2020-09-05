@@ -70,7 +70,8 @@ var baseUrl = "http://localhost:8080/api/"
 */
 function startGame(gameState) {
     document.turn = '';
-	setMessage("Waiting for other player");
+    setMessage(" ");
+    setInviteRoomCodeText();
     setInterval(setTimer, 1000);
     setupListeners();
 
@@ -171,10 +172,25 @@ function nextMove(square) {
     }
 }
 
-function copyLink(){
-    var link = location.href;
-    window.prompt("Copy to clipboard: Ctrl+C, Enter", link);
+function copyLink() {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val(location.href).select();
+    document.execCommand("copy");
+    $temp.remove();
 }
+  
+function setInviteRoomCodeText(){
+    var hash = window.location.hash.substring(1);
+    document.getElementById('roomCode').innerText = hash;
+}
+
+function padNumber(num) {
+    var s = num+"";
+    while (s.length < 2) s = "0" + s;
+    return s;
+}
+
 /**
  * Set the play time
  */
@@ -188,7 +204,7 @@ function setTimer() {
     var mins = Math.floor(diffMin - 60*hours);
     var seconds = Math.floor(diffSec - 60*mins);
 
-    document.getElementById("time").innerHTML = 'Time elapsed: ' + hours + ':' + mins + ':' + seconds;
+    document.getElementById("time").innerHTML = 'Time elapsed: ' + padNumber(hours) + ':' + padNumber(mins) + ':' + padNumber(seconds);
 }
 
 /**
@@ -775,7 +791,8 @@ socket.on('setCharacter', function(msg){
     else{
         setMessage('Your opponent gets to start');
     }
-    document.getElementById('copyLink').style.display = 'none';
+    document.getElementById('WaitingOverlay').style.display = 'none';
+    document.getElementById('Game-Board').classList.remove("disabled");
 });
 
 function createAvailableGamesTable(){
