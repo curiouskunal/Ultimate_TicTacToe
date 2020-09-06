@@ -98,10 +98,11 @@ function setupListeners(){
         squares[s].addEventListener('click',function(){
             if (document.turn == myChar){
                 square = this;
-                let fullTableString = getBoardText();
-                var message = {'move': square.id, 'turn': document.turn, 'room':roomNum, 'fullBoard': fullTableString};
-                socket.emit("new move", message);
+                var message = {'move': square.id, 'turn': document.turn, 'room':roomNum};
                 nextMove(square);
+                let fullTableString = getBoardText();
+                message['fullBoard'] = fullTableString;
+                socket.emit("new move", message);
             }
         });
         squares[s].addEventListener('mouseover',function(){
@@ -871,20 +872,43 @@ function getBoardFromDB(){
 }
 
 function populateInnerBoard(boardData, boardID){
-    let innerBoardRows = document.getElementById(boardID).children[0].children[0].children;
-    let squareCount = 1;
-    for (var i = 0; i < innerBoardRows.length; i++) {
-        //get the row element
-        var row = innerBoardRows[i].children;
-        
-        for (var j = 0; j < row.length; j++) {
-            //set the inner text of every element from the data
-            row[j].innerText = boardData[i][j];
-            console.log(boardID.substring(1) + "s" + parseInt(squareCount))
-            // after every square, check if that completes the board
-            checkCompletedBoard(document.getElementById(boardID.substring(1) + "s" + parseInt(squareCount)))
+    if (boardData[0].length == 1){
+        console.log(boardID.substring(1) + " - complete")
+        var color = null;
+        if (boardData[0][0] == 'O') {
+            color = Ocolor; // pink
+        }
+        else {
+            color = Xcolor; // mint
+        }
 
-            squareCount++;
+        //changing the color of the inner board to show a win
+        document.getElementById(boardID).style.backgroundColor = color;
+
+        //changing the label of the inner board to show a win
+        document.getElementById(boardID).innerHTML = boardData[0][0];
+
+        //indicating on the full board that the inner board is won
+        fullBoard[boardID.charAt(1)][boardID.charAt(2)] = boardData[0][0];
+        // console.log(fullBoard)
+
+    }
+    else{
+        let innerBoardRows = document.getElementById(boardID).children[0].children[0].children;
+        let squareCount = 1;
+        for (var i = 0; i < innerBoardRows.length; i++) {
+            //get the row element
+            var row = innerBoardRows[i].children;
+
+            for (var j = 0; j < row.length; j++) {
+                //set the inner text of every element from the data
+                row[j].innerText = boardData[i][j];
+                console.log(boardID.substring(1) + "s" + parseInt(squareCount))
+                // after every square, check if that completes the board
+                checkCompletedBoard(document.getElementById(boardID.substring(1) + "s" + parseInt(squareCount)))
+
+                squareCount++;
+            }
         }
     }
 }
