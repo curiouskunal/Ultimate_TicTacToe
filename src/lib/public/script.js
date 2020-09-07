@@ -662,7 +662,14 @@ function connectToRoomSocket() {
             url: url,
             method: 'POST'
         }).done(function (data){
-            socket.emit('joinRoom',roomNum);
+            let count = 0;
+            for (key in data[0]) if(data[0][key] == null) count ++;
+
+            if (data[0].x_user == null)
+                socket.emit('joinRoom',{'roomNum': roomNum, 'character': 'X', 'null_chars': count});
+            else{
+                socket.emit('joinRoom',{'roomNum': roomNum, 'character': 'O', 'null_chars': count});   
+            }
         })
     }
     else{
@@ -756,7 +763,7 @@ function playAgainNav(){
     }
     //call to run a new game
     console.log('New Game');
-    socket.emit('room');
+    // socket.emit('room');
     startGame(0);
 }
 
@@ -861,13 +868,20 @@ function getBoardFromDB(){
         url: url,
         method: 'GET'
     }).done(function (data){
-        if (data != "")
+        if (data['board'] != "")
             for (let i = 0; i < 3; i++){
                 for (let j = 0; j<3; j++){
                     // go by columns not by rows
-                    populateInnerBoard(data[i][j], "B"+j+i);
+                    populateInnerBoard(data['board'][i][j], "B"+j+i);
                 }
             }
+        if (data['turn'] != ''){
+            if (data['turn'] == 'X')
+                document.turn = data['O']
+            else
+                document.turn = data['X']
+            nextMove(document.getElementById(data['square']))
+        }
     })
 }
 

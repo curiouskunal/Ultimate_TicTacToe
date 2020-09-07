@@ -52,41 +52,49 @@ io.on('connection', function(socket){
 		socket.leave(socket.room);
 	});
 
-	socket.on('room', function(){
-		socket.room = socket.id;
-		console.log('current room: ' + socket.room);
-        socket.leave(socket.room);
+	// socket.on('room', function(){
+	// 	socket.room = socket.id;
+	// 	console.log('current room: ' + socket.room);
+    //     socket.leave(socket.room);
 		
-    	socket.room = roomNum;
-    	socket.join(roomNum);
-    	console.log('new room: ' + socket.room);
+    // 	socket.room = roomNum;
+    // 	socket.join(roomNum);
+    // 	console.log('new room: ' + socket.room);
 
-    	io.sockets.connected[socket.id].emit('roomConnected', {'room':roomNum});
-    	console.log(socket.id + ' connected to room ' + roomNum);
-		var rooms = io.sockets.adapter.rooms;
-		console.log('All rooms: ');
-		for (var i in rooms){
-			console.log('\troom id: ' + i);
-		}
-		console.log('------------------------------------------------------------------------');
-	});
+    // 	io.sockets.connected[socket.id].emit('roomConnected', {'room':roomNum});
+    // 	console.log(socket.id + ' connected to room ' + roomNum);
+	// 	var rooms = io.sockets.adapter.rooms;
+	// 	console.log('All rooms: ');
+	// 	for (var i in rooms){
+	// 		console.log('\troom id: ' + i);
+	// 	}
+	// 	console.log('------------------------------------------------------------------------');
+	// });
 
-	socket.on('joinRoom',function(roomNumber){
+	socket.on('joinRoom',function(data){
+		let roomNumber = data['roomNumber']
+		let char = data['character']
+		let null_chars = data['null_chars']
 		socket.room = roomNumber;
     	socket.join(roomNumber);
     	console.log('joining room: ' + socket.room);
 		var room = io.nsps['/'].adapter.rooms[roomNumber];
 
 		if (room.length == 2){
-			var start = 'X';
-			if (Math.random() < 0.5)
-				start = 'O';
-			var userChar = 'X';
-			for (var id in room.sockets){
-				var time = new Date();
-				console.log('sending information to ' + id);
-				io.sockets.connected[id].emit('setCharacter', {'userChar':userChar, 'start':start, 'time':JSON.stringify(time)});
-				userChar = 'O';
+			if (null_chars == 2){
+				var start = 'X';
+				if (Math.random() < 0.5)
+					start = 'O';
+				var userChar = 'X';
+				for (var id in room.sockets){
+					var time = new Date();
+					console.log('sending information to ' + id);
+					io.sockets.connected[id].emit('setCharacter', {'userChar':userChar, 'start':start, 'time':JSON.stringify(time)});
+					userChar = 'O';
+				}
+			}
+			else{
+				
 			}
 		}
 
@@ -100,14 +108,14 @@ io.on('connection', function(socket){
 	});
 	socket.on("new move", function(move){
 		console.log('sending move to ' + move.room);
-		uploadFullBoard(move.fullBoard, move.room);
+		uploadFullBoard(move.fullBoard, move.room, move.turn, move.move);
 		socket.broadcast.to(move.room).emit("new move", move);
 	});
 
 });
 
-async function uploadFullBoard(fullBoard, room_number){
-	sql_request('POST', `UPDATE game SET board = '${fullBoard}' where room_number = '${room_number}'`)
+async function uploadFullBoard(fullBoard, room_number, last_player, square){
+	sql_request('POST', `UPDATE game SET board = '${fullBoard}', last_player = '${last_player}', square = '${square}' where room_number = '${room_number}'`)
 		.then(result=>{
 			return 200, result;
 		})
@@ -347,7 +355,7 @@ app.delete('/api/closeRoom', function(req, res){
 */
 app.post('/api/joinRoom', function(req, res){
 	parameters = req.query;
-	sql_request('GET', `select users_count from room_numbers where room_number = '${parameters['room_number']}'`)
+	sql_request('GET', `select * from room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
 			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count + 1} where room_number = '${parameters['room_number']}'`)
 				.then(result=>{
@@ -433,13 +441,13 @@ app.get('/api/allGames', function(req, res){
 */
 app.get('/api/getBoard', function(req, res){
 	parameters = req.query;
-	sql_request('GET', `SELECT board FROM game where room_number= '${parameters['room_number']}'`)
+	sql_request('GET', `SELECT board, last_player FROM game where room_number= '${parameters['room_number']}'`)
 		.then(result=>{
 			let receivedBoard = result[0].board;
 			let tempFullBoard = ""
 			if (receivedBoard != ""){
 				tempFullBoard = [new Array(3), new Array(3), new Array(3)];
-				
+
 				let i = 0;
 				let j = 0;
 				let innerBoards = (receivedBoard.split(";")).slice(0,9)
@@ -452,8 +460,12 @@ app.get('/api/getBoard', function(req, res){
 					}
 				}
 			}
-
-			res.status(200).send(tempFullBoard)
+			let data = {
+				'board': tempFullBoard,
+				'turn': result[0].last_player,
+				'square': result[0].square
+			}
+			res.status(200).send(data)
 		})
 		.catch(err=>{
 			console.log(err)
