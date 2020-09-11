@@ -21,31 +21,30 @@
 
 <body onload="onHomePageLoad()">
 
-	<!-- Welcome Page overlay -->
-	<div id="myNav" class="overlay">
-		<!-- Overlay content -->
-		<div class="overlay-content">
-			<h1> Ultimate TicTacToe </h1>
-			<p> by: Kunal Shah & Pareek Ravi</p>
-			<a id="play" href="#" onclick="closeNav()">Play</a>
+	<!-- <div id="navbar">
+		<a href="#games">Games</a>
+		<a href="#rules">Rulse</a>
+	  </div> -->
+
+	<div id="headerBannerParrent">
+		<div class="headerBannerWrapper">
+			<div class="headerBannerContent">
+				<div class="title"> Ultimate Tic-Tac-Toe </div>
+				<div class="caption"> A game that is one step further than the original tic tac toe, with added strategy but still has the simplicity of the original game.</div>
+			</div>
 		</div>
 	</div>
 
-	<div class = header >
-		<a id="title">Ultimate Tic-Tac-Toe</a>
-	</div>
-
-	<div class="center">
-		<h2>This is a game that is one step further than the original tic tac toe, with added strategy but still has the simplicity of the original game.</h2>
-	</div>
-
-	<div id=availableGamesParrent>
-		<div id=availableGamesWrapper>
-
-			<div class="tooltip newConnection">	
-				<div class="button" onclick="createNewRoom()">+</div>
-				<span class="tooltiptext">Create New Room</span>
+	<div id=availableGamesParrent class="sectionParrent">
+		<div id=availableGamesWrapper class="sectionWrapper"> 
+			<div class="availableGamesHeadder">
+				<div class="sectionText">Available Games</div>
+				<div class="tooltip newConnection">	
+					<div class="button" onclick="createNewRoom()">+</div>
+					<span class="tooltiptext">Create New Room</span>
+				</div>
 			</div>
+
 
 			<table id="availableGamesTable">
 				<thead>
@@ -59,14 +58,19 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<div id="emptyGameListParrent" style="display: none;">
-		<div id="emptyGameListWrapper">
+		<div id="emptyGameListWrapper" class="sectionWrapper" style="display: none;">
 			<div id="emptyGameList">
 				<img class="emptyIcon " src="assets/tic-tac-toe-center.svg" alt="empty game image">
 				<div class="emptyGameListText">No Active Games Found</div>
 				<div class="button" onclick="createNewRoom()">Create New Game</div>
 			</div>
+		</div>
+
+	</div>
+
+	<div id="rulesParrent" class="sectionParrent">
+		<div id="rulesWrapper"class="sectionWrapper">
+			<div class="sectionText"> Rules </div>
 		</div>
 	</div>
 </body>

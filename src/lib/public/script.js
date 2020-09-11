@@ -807,11 +807,12 @@ function createAvailableGamesTable(){
     let url = baseUrl + "allRooms";
     $.ajax({
         url: url,
-        method: 'GET'
+        method: 'GET',
+        cache: false,
     }).done(function (data){
         if(data.count === 0){
-            document.getElementById('availableGamesParrent').style.display = 'none';
-            document.getElementById('emptyGameListParrent').style.display = 'block';
+            document.getElementById('availableGamesWrapper').style.display = 'none';
+            document.getElementById('emptyGameListWrapper').style.display = 'block';
         } else {
             data.rooms.forEach(row => addAvailableGameRow(row));
         }
@@ -858,7 +859,7 @@ function resetAvailableGamesTable(){
 }
 
 function onHomePageLoad(){
-    openNav();
+    // openNav();
     createAvailableGamesTable();
 }
 
