@@ -154,7 +154,7 @@ function nextMove(square) {
 
     if (win == null) {
         // if tile is empty
-        if (square.innerHTML == document.turn && square.style.color == hoverColor) {
+        if (square.innerHTML == document.turn) {
 
             // Print move to board
             square.style.color = 'black';
@@ -884,11 +884,8 @@ function getBoardFromDB(){
                     populateInnerBoard(data['board'][i][j], "B"+j+i);
                 }
             }
-        if (data['turn'] != ''){
-            if (data['turn'] == 'X')
-                document.turn = data['O']
-            else
-                document.turn = data['X']
+        if (data['turn'] != null){
+            document.turn = data['turn']
             nextMove(document.getElementById(data['square']))
         }
     })

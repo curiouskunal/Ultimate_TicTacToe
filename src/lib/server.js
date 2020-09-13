@@ -146,15 +146,15 @@ async function getNotNullCharacter(room_number){
 				})
 				.finally(() => {
 					let joinedId = [result[0]['x_user'], result[0]['o_user']]
-					let mySocketId = ''
+					let newUserSocketId = ''
 					let room = io.nsps['/'].adapter.rooms[room_number];
 					for (id in room['sockets'])
 						if (!joinedId.includes(id))
-							mySocketId = id
+							newUserSocketId = id
 
 					// resend setcharacter socket message
 					let userChar = myChar.charAt(0).toUpperCase();
-					io.sockets.connected[mySocketId].emit('setCharacter', {'userChar':userChar, 'start':nextTurn, 'time':JSON.stringify(new Date()), 'socket_id':mySocketId});
+					io.sockets.connected[newUserSocketId].emit('setCharacter', {'userChar':userChar, 'start':nextTurn, 'time':JSON.stringify(new Date()), 'socket_id':newUserSocketId});
 				})
 		})
 		.catch(err=>{
@@ -184,9 +184,10 @@ async function leave_room(room_number, socket_id = ""){
 					for (key in result1[0]) 
 						if (result1[0][key] == socket_id){
 							myChar = key
+							break
 						}
 						if (myChar != ""){
-							sql_request('UPDATE', `UPDATE room_numbers SET ${key} = null where room_number = '${room_number}'`)
+							sql_request('UPDATE', `UPDATE room_numbers SET ${myChar} = null where room_number = '${room_number}'`)
 								.then(result3=>{
 									if (result1[0].users_count == 1 && result2[0].board != ""){
 										resolve([true, result1[0].users_count])
@@ -221,28 +222,22 @@ async function leave_room(room_number, socket_id = ""){
 	});
 	
 	let confirmation = await promise;
-
-	if (confirmation[0]){
-		sql_request('DELETE', `DELETE FROM game where room_number = '${room_number}'; DELETE FROM room_numbers where room_number = '${room_number}'`)
+	let users_count = confirmation[1]
+	if (users_count > 0)
+		sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
 			.then(result=>{
-				return [200, result]
+				return [200,result[0]]
 			})
 			.catch(err=>{
-				return [200, err]
+				return [404,err]
 			})
-	}else{
-		let users_count = confirmation[1]
-		if (users_count > 0)
-			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
-				.then(result=>{
-					return [200,result[0]]
-				})
-				.catch(err=>{
-					return [404,err]
-				})
-		else
-			return 200, 'Left room'
-	}
+	else
+		return 200, 'Left room'
+}
+
+
+async function send_refresh(){
+	io.sockets.emit('allRoomUpdate', 'Update');
 }
 
 async function sql_request(type, query){
@@ -358,9 +353,15 @@ app.put('/api/createRoom', function(req, res){
 						.catch(err=>{
 							res.status(404).send(err);
 						})
+						.finally(() =>{
+							send_refresh()
+						})
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 })
 
@@ -391,6 +392,9 @@ app.delete('/api/closeRoom', function(req, res){
 			.catch(err=>{
 				res.status(404).send(err)
 			})
+			.finally(() =>{
+				send_refresh()
+			})
 	}else {
 		sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
@@ -398,6 +402,9 @@ app.delete('/api/closeRoom', function(req, res){
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 	}
 })
@@ -431,9 +438,15 @@ app.post('/api/joinRoom', function(req, res){
 				.catch(err=>{
 					res.status(404).send(err)
 				})
+				.finally(() =>{
+					send_refresh()
+				})
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 })
 
@@ -458,9 +471,11 @@ app.post('/api/leaveRoom', function(req, res){
 	parameters = req.query;
 	result = leave_room(parameters['room_number'])
 	try{
+		send_refresh()
 		res.status(result[0]).send(result[1])
 	}
 	catch (error){
+		send_refresh()
 		res.status(500).send(error.message);
 	}
 })
@@ -545,7 +560,7 @@ app.get('/api/allGames', function(req, res){
 */
 app.get('/api/getBoard', function(req, res){
 	parameters = req.query;
-	sql_request('GET', `SELECT board, last_player FROM game where room_number='${parameters['room_number']}'`)
+	sql_request('GET', `SELECT board, last_player, square FROM game where room_number='${parameters['room_number']}'`)
 		.then(result=>{
 			let receivedBoard = result[0].board;
 			let tempFullBoard = ""
