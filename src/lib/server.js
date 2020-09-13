@@ -222,28 +222,22 @@ async function leave_room(room_number, socket_id = ""){
 	});
 	
 	let confirmation = await promise;
-
-	if (confirmation[0]){
-		sql_request('DELETE', `DELETE FROM game where room_number = '${room_number}'; DELETE FROM room_numbers where room_number = '${room_number}'`)
+	let users_count = confirmation[1]
+	if (users_count > 0)
+		sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
 			.then(result=>{
-				return [200, result]
+				return [200,result[0]]
 			})
 			.catch(err=>{
-				return [200, err]
+				return [404,err]
 			})
-	}else{
-		let users_count = confirmation[1]
-		if (users_count > 0)
-			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
-				.then(result=>{
-					return [200,result[0]]
-				})
-				.catch(err=>{
-					return [404,err]
-				})
-		else
-			return 200, 'Left room'
-	}
+	else
+		return 200, 'Left room'
+}
+
+
+async function send_refresh(){
+	io.sockets.emit('allRoomUpdate', 'Update');
 }
 
 async function sql_request(type, query){
@@ -359,9 +353,15 @@ app.put('/api/createRoom', function(req, res){
 						.catch(err=>{
 							res.status(404).send(err);
 						})
+						.finally(() =>{
+							send_refresh()
+						})
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 })
 
@@ -392,6 +392,9 @@ app.delete('/api/closeRoom', function(req, res){
 			.catch(err=>{
 				res.status(404).send(err)
 			})
+			.finally(() =>{
+				send_refresh()
+			})
 	}else {
 		sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
@@ -399,6 +402,9 @@ app.delete('/api/closeRoom', function(req, res){
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 	}
 })
@@ -432,9 +438,15 @@ app.post('/api/joinRoom', function(req, res){
 				.catch(err=>{
 					res.status(404).send(err)
 				})
+				.finally(() =>{
+					send_refresh()
+				})
 		})
 		.catch(err=>{
 			res.status(404).send(err)
+		})
+		.finally(() =>{
+			send_refresh()
 		})
 })
 
@@ -459,9 +471,11 @@ app.post('/api/leaveRoom', function(req, res){
 	parameters = req.query;
 	result = leave_room(parameters['room_number'])
 	try{
+		send_refresh()
 		res.status(result[0]).send(result[1])
 	}
 	catch (error){
+		send_refresh()
 		res.status(500).send(error.message);
 	}
 })
