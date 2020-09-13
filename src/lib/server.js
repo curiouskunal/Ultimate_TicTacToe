@@ -146,15 +146,15 @@ async function getNotNullCharacter(room_number){
 				})
 				.finally(() => {
 					let joinedId = [result[0]['x_user'], result[0]['o_user']]
-					let mySocketId = ''
+					let newUserSocketId = ''
 					let room = io.nsps['/'].adapter.rooms[room_number];
 					for (id in room['sockets'])
 						if (!joinedId.includes(id))
-							mySocketId = id
+							newUserSocketId = id
 
 					// resend setcharacter socket message
 					let userChar = myChar.charAt(0).toUpperCase();
-					io.sockets.connected[mySocketId].emit('setCharacter', {'userChar':userChar, 'start':nextTurn, 'time':JSON.stringify(new Date()), 'socket_id':mySocketId});
+					io.sockets.connected[newUserSocketId].emit('setCharacter', {'userChar':userChar, 'start':nextTurn, 'time':JSON.stringify(new Date()), 'socket_id':newUserSocketId});
 				})
 		})
 		.catch(err=>{
@@ -184,9 +184,10 @@ async function leave_room(room_number, socket_id = ""){
 					for (key in result1[0]) 
 						if (result1[0][key] == socket_id){
 							myChar = key
+							break
 						}
 						if (myChar != ""){
-							sql_request('UPDATE', `UPDATE room_numbers SET ${key} = null where room_number = '${room_number}'`)
+							sql_request('UPDATE', `UPDATE room_numbers SET ${myChar} = null where room_number = '${room_number}'`)
 								.then(result3=>{
 									if (result1[0].users_count == 1 && result2[0].board != ""){
 										resolve([true, result1[0].users_count])
@@ -545,7 +546,7 @@ app.get('/api/allGames', function(req, res){
 */
 app.get('/api/getBoard', function(req, res){
 	parameters = req.query;
-	sql_request('GET', `SELECT board, last_player FROM game where room_number='${parameters['room_number']}'`)
+	sql_request('GET', `SELECT board, last_player, square FROM game where room_number='${parameters['room_number']}'`)
 		.then(result=>{
 			let receivedBoard = result[0].board;
 			let tempFullBoard = ""
