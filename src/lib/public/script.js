@@ -805,6 +805,12 @@ socket.on('setCharacter', function(msg){
     })
 });
 
+socket.on('allRoomUpdate', function(msg){
+    console.log("reload games table");
+    resetAvailableGamesTable();
+    createAvailableGamesTable();
+});
+
 function createAvailableGamesTable(){
     let url = baseUrl + "allRooms";
     $.ajax({
@@ -857,7 +863,7 @@ function isConnectButtonDisabled(user_count){
 }
 
 function resetAvailableGamesTable(){
-
+    $("#availableGamesTableList").empty();
 }
 
 function onHomePageLoad(){
