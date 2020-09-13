@@ -664,12 +664,7 @@ function connectToRoomSocket() {
         }).done(function (data){
             let count = 0;
             for (key in data[0]) if(data[0][key] == null) count ++;
-
-            if (data[0].x_user == null)
-                socket.emit('joinRoom',{'roomNum': roomNum, 'character': 'X', 'null_chars': count});
-            else{
-                socket.emit('joinRoom',{'roomNum': roomNum, 'character': 'O', 'null_chars': count});   
-            }
+            socket.emit('joinRoom',{'roomNum': roomNum, 'null_chars': count});
         })
     }
     else{
@@ -790,17 +785,24 @@ socket.on('setCharacter', function(msg){
     console.log('user char: ' + msg.userChar);
     console.log('start: ' + msg.start);
     console.log('start time ' + JSON.parse(msg.time));
+    let socket_id = msg.socket_id
     document.turn = msg.start;
     myChar = msg.userChar;
     startDate = new Date(JSON.parse(msg.time));
-    if(document.turn == myChar){
-        setMessage('You get to start');
-    }
-    else{
-        setMessage('Your opponent gets to start');
-    }
-    document.getElementById('WaitingOverlay').style.display = 'none';
-    document.getElementById('Game-Board').classList.remove("disabled");
+    let url = baseUrl + `setCharacter?room_number=${roomNum}&character=${myChar.toLowerCase()}&socket_id=${socket_id}`;
+    $.ajax({
+        url: url,
+        method: 'POST'
+    }).done(function (data){
+        if(document.turn == myChar){
+            setMessage('You get to start');
+        }
+        else{
+            setMessage('Your opponent gets to start');
+        }
+        document.getElementById('WaitingOverlay').style.display = 'none';
+        document.getElementById('Game-Board').classList.remove("disabled");
+    })
 });
 
 function createAvailableGamesTable(){

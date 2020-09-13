@@ -42,14 +42,16 @@ io.on('connection', function(socket){
 	console.log('a user connected: ' + socket.id);
 
 	socket.on('disconnect', function(){
-		console.log('user disconnected');
+		console.log('user disconnected: ' + socket.id);
 		// decrement database
 		try {
-			leave_room(socket.room)
+			if (socket.room != undefined){
+				leave_room(socket.room, socket.id)
+				socket.leave(socket.room);
+			}
 		} catch (error) {
 			console.log(error)
 		}
-		socket.leave(socket.room);
 	});
 
 	// socket.on('room', function(){
@@ -72,8 +74,7 @@ io.on('connection', function(socket){
 	// });
 
 	socket.on('joinRoom',function(data){
-		let roomNumber = data['roomNumber']
-		let char = data['character']
+		let roomNumber = data['roomNum']
 		let null_chars = data['null_chars']
 		socket.room = roomNumber;
     	socket.join(roomNumber);
@@ -89,13 +90,16 @@ io.on('connection', function(socket){
 				for (var id in room.sockets){
 					var time = new Date();
 					console.log('sending information to ' + id);
-					io.sockets.connected[id].emit('setCharacter', {'userChar':userChar, 'start':start, 'time':JSON.stringify(time)});
+					io.sockets.connected[id].emit('setCharacter', {'userChar':userChar, 'start':start, 'time':JSON.stringify(time), 'socket_id':id});
 					userChar = 'O';
 				}
 			}
 			else{
-				
+				// find which column is null
+				getNotNullCharacter(roomNumber)
 			}
+		}else{
+			// do nothing and wait for second player to join in
 		}
 
 		var rooms = io.sockets.adapter.rooms;
@@ -117,11 +121,45 @@ io.on('connection', function(socket){
 async function uploadFullBoard(fullBoard, room_number, last_player, square){
 	sql_request('POST', `UPDATE game SET board = '${fullBoard}', last_player = '${last_player}', square = '${square}' where room_number = '${room_number}'`)
 		.then(result=>{
-			return 200, result;
+			return 200, result[0];
 		})
 		.catch(err=>{
 			console.log(err);
 			return 404, err;
+		})
+}
+
+async function getNotNullCharacter(room_number){
+	let myChar = ''
+	let nextTurn = ''
+	sql_request('GET', `SELECT * from room_numbers where room_number = '${room_number}'`)
+		.then(result=>{
+			for (key in result[0])
+				if (result[0][key] == null)
+					myChar = key
+			sql_request('GET', `SELECT last_player from game where room_number='${room_number}'`)
+				.then(result2 =>{
+					nextTurn = (result2[0].last_player == 'X') ? 'O' : 'X'
+				})
+				.catch(err =>{
+					nextTurn = null
+				})
+				.finally(() => {
+					let joinedId = [result[0]['x_user'], result[0]['o_user']]
+					let mySocketId = ''
+					let room = io.nsps['/'].adapter.rooms[room_number];
+					for (id in room['sockets'])
+						if (!joinedId.includes(id))
+							mySocketId = id
+
+					// resend setcharacter socket message
+					let userChar = myChar.charAt(0).toUpperCase();
+					io.sockets.connected[mySocketId].emit('setCharacter', {'userChar':userChar, 'start':nextTurn, 'time':JSON.stringify(new Date()), 'socket_id':mySocketId});
+				})
+		})
+		.catch(err=>{
+			console.log(err);
+			return "ERROR"
 		})
 }
 
@@ -135,19 +173,46 @@ function str_to_array(board){
     return innerBoard;
 }
 
-async function leave_room(room_number){
+async function leave_room(room_number, socket_id = ""){
 
 	let promise = new Promise((resolve, reject) => {
-		sql_request('GET', `select users_count from room_numbers where room_number = '${room_number}'`)
+		sql_request('GET', `select * from room_numbers where room_number = '${room_number}'`)
 		.then(result1=>{
 			sql_request('GET', `select board from game where room_number = '${room_number}'`)
 				.then(result2=>{
-					if (result1[0].users_count == 1 && result2[0].board != ""){
-						resolve([true, result1[0].users_count])
-					}
-					else{
-						resolve([false, result1[0].users_count])
-					}
+					let myChar = ""
+					for (key in result1[0]) 
+						if (result1[0][key] == socket_id){
+							myChar = key
+						}
+						if (myChar != ""){
+							sql_request('UPDATE', `UPDATE room_numbers SET ${key} = null where room_number = '${room_number}'`)
+								.then(result3=>{
+									if (result1[0].users_count == 1 && result2[0].board != ""){
+										resolve([true, result1[0].users_count])
+									}
+									else{
+										resolve([false, result1[0].users_count])
+									}
+								})
+								.catch(err =>{
+									if (result1[0].users_count == 1 && result2[0].board != ""){
+										resolve([true, result1[0].users_count])
+									}
+									else{
+										resolve([false, result1[0].users_count])
+									}
+								})
+							}
+						else{
+							if (result1[0].users_count == 1 && result2[0].board != ""){
+								resolve([true, result1[0].users_count])
+							}
+							else{
+								resolve([false, result1[0].users_count])
+							}
+						}
+
 				})
 				.catch(() =>{
 					// do nothing
@@ -170,7 +235,7 @@ async function leave_room(room_number){
 		if (users_count > 0)
 			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${users_count - 1} where room_number = '${room_number}'`)
 				.then(result=>{
-					return [200,result]
+					return [200,result[0]]
 				})
 				.catch(err=>{
 					return [404,err]
@@ -187,7 +252,9 @@ async function sql_request(type, query){
 		.catch(err =>{
 			if (err.message.includes("Violation of PRIMARY KEY constraint")){
 				throw("Duplicate Room Number")
-			}	
+			}else{
+				console.log("ERROR: " + err.message)
+			}
 		});
 	let result = []
 	if (type == 'GET'){
@@ -210,7 +277,7 @@ async function sql_request(type, query){
 	}
 	else if (type == 'UPDATE'){
 		if (data.rowsAffected >= 1){
-			result = "Updated the room"
+			result = ["Updated the room", data]
 		}
 		else{
 			throw("Room not found")
@@ -358,7 +425,7 @@ app.post('/api/joinRoom', function(req, res){
 	sql_request('GET', `select * from room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
 			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count + 1} where room_number = '${parameters['room_number']}'`)
-				.then(result=>{
+				.then(result1=>{
 					res.status(200).send(result);
 				})
 				.catch(err=>{
@@ -396,6 +463,43 @@ app.post('/api/leaveRoom', function(req, res){
 	catch (error){
 		res.status(500).send(error.message);
 	}
+})
+
+/**
+* @swagger
+* /api/setCharacter:
+*   post:
+*     description: Assign the chartacter for user
+*     tags: [Room]
+*     parameters:
+*       - in: query
+*         name: room_number
+*         schema:
+*           type: string
+*       - in: query
+*         name: character
+*         schema:
+*           type: string
+*       - in: query
+*         name: socket_id
+*         schema:
+*           type: string
+*     produces:
+*       - application/json
+*     responses:
+*       200:
+*         description: room number
+*/
+app.post('/api/setCharacter', function(req, res){
+	parameters = req.query;
+	sql_request('UPDATE', `UPDATE room_numbers SET ${parameters['character']}_user = '${parameters['socket_id']}' where room_number = '${parameters['room_number']}'`)
+		.then(result=>{
+			res.send(result[0]);
+		})
+		.catch(err=>{
+			console.log(err)
+			res.status(404).send("Failed to update user's character")
+		})
 })
 
 
@@ -441,7 +545,7 @@ app.get('/api/allGames', function(req, res){
 */
 app.get('/api/getBoard', function(req, res){
 	parameters = req.query;
-	sql_request('GET', `SELECT board, last_player FROM game where room_number= '${parameters['room_number']}'`)
+	sql_request('GET', `SELECT board, last_player FROM game where room_number='${parameters['room_number']}'`)
 		.then(result=>{
 			let receivedBoard = result[0].board;
 			let tempFullBoard = ""
