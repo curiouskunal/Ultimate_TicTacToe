@@ -807,7 +807,6 @@ socket.on('setCharacter', function(msg){
 
 socket.on('allRoomUpdate', function(msg){
     console.log("reload games table");
-    resetAvailableGamesTable();
     createAvailableGamesTable();
 });
 
@@ -818,6 +817,7 @@ function createAvailableGamesTable(){
         method: 'GET',
         cache: false,
     }).done(function (data){
+        resetAvailableGamesTable();
         if(data.count === 0){
             document.getElementById('availableGamesWrapper').style.display = 'none';
             document.getElementById('emptyGameListWrapper').style.display = 'block';
