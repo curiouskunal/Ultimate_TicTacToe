@@ -58,7 +58,17 @@ var startDate = new Date();
 /**
  * @var baseUrl {string} base url for all api calls
  */
-var baseUrl = "http://localhost:8080/api/"
+var baseUrl = "http://" + window.location.hostname+":8080/api/"
+/**
+ * check and execute scripts when page loads
+*/
+window.onload = (function(){
+    if (location.href.split("/").includes('game')){
+        startGame(1);
+    }else{
+        onHomePageLoad();
+    }
+});
 
 /**
  * Will start the game

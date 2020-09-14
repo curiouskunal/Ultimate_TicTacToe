@@ -215,168 +215,128 @@ table{
 /*Row 1 */
 
 #B00{
-	border-bottom: 5px solid blue;
-	border-right: 5px solid blue;
-
-	border-bottom: 5px solid var(--colour);
-	border-right: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 0 5px 5px 0;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B01{
-	border-right: 5px solid blue;
-	border-left: 5px solid blue;
-
-	border-right: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
-	border-bottom: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 0 5px 5px 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B02{
-	border-bottom: 5px solid blue;
-	border-left: 5px solid blue;
-
-	border-bottom: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 0 0 5px 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 
 /*Row 2 */
 
 #B10{
-	border-bottom: 5px solid blue;
-	border-right: 5px solid blue;
-	border-top: 5px solid blue;
-
-	border-bottom: 5px solid var(--colour);
-	border-right: 5px solid var(--colour);
-	border-top: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 5px 5px 0;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B11{
-	border-right: 5px solid blue;
-	border-left: 5px solid blue;
-	border-bottom: 5px solid blue;
-	border-top: 5px solid blue;
-
-	border-right: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
-	border-bottom: 5px solid var(--colour);
-	border-top: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 5px 5px 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B12{
-	border-bottom: 5px solid blue;
-	border-left: 5px solid blue;
-	border-top: 5px solid blue;
-
-	border-bottom: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
-	border-top: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 0 5px 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 
 /*Row 3*/
 
 #B20{
-	border-top: 5px solid blue;
-	border-right: 5px solid blue;
-
-	border-top: 5px solid var(--colour);
-	border-right: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 5px 0 0;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B21{
-	border-right: 5px solid blue;
-	border-left: 5px solid blue;
-
-	border-right: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
-	border-top: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 #B22{
-	border-top: 5px solid blue;
-	border-left: 5px solid blue;
-
-	border-top: 5px solid var(--colour);
-	border-left: 5px solid var(--colour);
+	border-style: solid;
+	border-width: 5px 0 0 5px;
+	border-color: blue;
+	border-color: var(--colour);
 }
 
 /* Inside Border*/
 
 
 td[id$='s1']{
-	border-right: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-
-	border-right: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 0 3px 3px 0;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s2']{
-	border-left: 3px solid #2D2A32;
-	border-right: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-right: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 0 3px 3px 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s3']{
-	border-left: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 0 0 3px 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 
 /*Row 2 */
 
 td[id$='s4']{
-	border-right: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-right: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 3px 3px 0;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s5']{
-	border-left: 3px solid #2D2A32;
-	border-right: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-right: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 3px 3px 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s6']{
-	border-left: 3px solid #2D2A32;
-	border-bottom: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-bottom: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 0 3px 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 
 /*Row 3*/
 
 td[id$='s7']{
-	border-right: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-right: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 3px 0 0;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s8']{
-	border-left: 3px solid #2D2A32;
-	border-right: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-right: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 3px 0 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 td[id$='s9']{
-	border-left: 3px solid #2D2A32;
-	border-top: 3px solid #2D2A32;
-
-	border-left: 3px solid var(--colour2);
-	border-top: 3px solid var(--colour2);
+	border-style: solid;
+	border-width: 3px 0 0 3px;
+	border-color: #2D2A32;
+	border-color: var(--colour2);
 }
 
 /*-------MODAL FROM CODEDROPS*/
@@ -807,6 +767,77 @@ br{
 		margin:0px;
 		padding: 0px;
 
+	}
+
+	#B00{
+		border-width: 0 3px 3px 0;
+	}
+	#B01{
+		border-width: 0 3px 3px 3px;
+	}
+	#B02{
+		border-width: 0 0 3px 3px;
+	}
+	
+	/*Row 2 */
+	
+	#B10{
+		border-width: 3px 3px 3px 0;
+	}
+	#B11{
+		border-width: 3px 3px 3px 3px;
+	}
+	#B12{
+		border-width: 3px 0 3px 3px;
+	}
+	
+	/*Row 3*/
+	
+	#B20{
+		border-width: 3px 3px 0 0;
+	}
+	#B21{
+		border-width: 3px 3px 0 3px;
+	}
+	#B22{
+		border-width: 3px 0 0 3px;
+	}
+
+	/* #---- */
+
+
+	td[id$='s1']{
+		border-width: 0 2px 2px 0;
+	}
+	td[id$='s2']{
+		border-width: 0 2px 2px 2px;
+	}
+	td[id$='s3']{
+		border-width: 0 0 2px 2px;
+	}
+	
+	/*Row 2 */
+	
+	td[id$='s4']{
+		border-width: 2px 2px 2px 0;
+	}
+	td[id$='s5']{
+		border-width: 2px 2px 2px 2px;
+	}
+	td[id$='s6']{
+		border-width: 2px 0 2px 2px;
+	}
+	
+	/*Row 3*/
+	
+	td[id$='s7']{
+		border-width: 2px 2px 0 0;
+	}
+	td[id$='s8']{
+		border-width: 2px 2px 0 2px;
+	}
+	td[id$='s9']{
+		border-width: 2px 0 0 2px;
 	}
 
 	.overlay h1 {
