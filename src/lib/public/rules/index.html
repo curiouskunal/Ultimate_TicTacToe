@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Ultimate TicTacToe</title>
+
+	<link rel="stylesheet" href="../style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+	<!-- tab icon -->
+	<link rel="icon" href="../assets/Icon.ico">
+
+	<!--view port-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+
+	<div id="headerBannerParrent">
+		<div class="headerBannerWrapper">
+			<div class="rulesHeaderBannerContent">
+				<div class="howToPlayTitle"> How To Play </div>
+				<div class="title"> Ultimate Tic-Tac-Toe </div>
+			</div>
+		</div>
+    </div>
+    
+    <div id="rulesWrapper">
+        <div class="rule">
+            <div class="ruleText">
+                Everyone is familiar with this classic 9-square grid tic-tac-toe.<br/>
+                In Ultimate Tic Tac Toe, you are going to be plaing 10 games at the same time.<br/>
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot1.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                As you can see there are 9 smaller grids within each of those large squares in the blue board.<br/>
+                To win the game, you need to get three larger squares in a row. <br/>
+                To win a large square, you have to get three small squares in a row.<br/>
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot2.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Here’s how it works. Say X goes first <br/>
+                For the first move they can go anywhere on the board they would like.
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot3.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Now, just like in normal tic-tac-toe, O goes next. But O can’t just go anywhere. <br/>
+                X’s move determines which of the smaller grids O can play on.<br/>
+                Since X went in the bottom right corner within the small grid, O must go in the bottom right corner of the large grid
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot4.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Now O can go anywhere in this small grid indicated by the orange square.
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot3.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Remember, O gets to decide where X will be allowed to play next
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot6.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                A few moves later, the game might look like this
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot7.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Notice whats about to happened in the far right top square
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot8.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                X got three in a row! <br/>
+                That means X wins the top right small grid, thus claiming that square in the large grid
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot9.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Notice how X is about to send O to the top right large square, but it has already been claimed
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot10.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                O got sent to a grid that has already been won, they get to go wherever they want! <br>
+                This is a huge advantage so try to avoid sending your opponent large squares that have already been claimed
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot11.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                Notice how X is about to claim the top left large square
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot12.png">
+        </div>
+
+        <div class="rule">
+            <div class="ruleText">
+                X has won the game by getting three large squares in a row
+            </div>
+            <img class="ruleImage" src="../assets/Rules/Screenshot13.png">
+        </div>
+
+    </div>
+
+</body>
+</html>

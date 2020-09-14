@@ -857,6 +857,9 @@ function addAvailableGameRow(data){
 function connectToGameRoom(room_number){
     window.open("./game/#"+room_number,"_self");
 }
+function openHowToPlayPage(){
+    window.open("../rules","_blank");
+}
 
 function isConnectButtonDisabled(user_count){
     return user_count >=2 ;
