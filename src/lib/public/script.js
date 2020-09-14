@@ -63,12 +63,16 @@ var baseUrl = "http://" + window.location.hostname+":8080/api/"
  * check and execute scripts when page loads
 */
 window.onload = (function(){
-    if (location.href.split("/").includes('game')){
+    if (isGameRoom()){
         startGame(1);
     }else{
         onHomePageLoad();
     }
 });
+
+function isGameRoom(){
+    return location.href.split("/").includes('game');
+}
 
 /**
  * Will start the game
@@ -816,8 +820,10 @@ socket.on('setCharacter', function(msg){
 });
 
 socket.on('allRoomUpdate', function(msg){
-    console.log("reload games table");
-    createAvailableGamesTable();
+    if (!isGameRoom()){
+        console.log("reload games table");
+        createAvailableGamesTable();
+    }
 });
 
 function createAvailableGamesTable(){
