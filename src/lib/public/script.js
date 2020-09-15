@@ -790,11 +790,6 @@ socket.on('new move', function(msg){
     nextMove(square);
 });
 
-socket.on('roomConnected', function(msg){
-    console.log('connected to room ' + msg.room);
-    roomNum = msg.room;
-});
-
 socket.on('setCharacter', function(msg){
     console.log('user char: ' + msg.userChar);
     console.log('start: ' + msg.start);
@@ -823,6 +818,21 @@ socket.on('allRoomUpdate', function(msg){
     if (!isGameRoom()){
         console.log("reload games table");
         createAvailableGamesTable();
+    }
+});
+
+
+socket.on('connection_status', function(msg){
+    if (isGameRoom()){
+        console.log(msg);
+        if (msg.type == 'disconnect'){
+            document.getElementById('WaitingOverlay').style.display = 'block';
+            document.getElementById('Game-Board').classList.add("disabled");
+        }
+        else if (msg.type == 'connect' && msg.count >= 2){
+            document.getElementById('WaitingOverlay').style.display = 'none';
+            document.getElementById('Game-Board').classList.remove("disabled");
+        }
     }
 });
 

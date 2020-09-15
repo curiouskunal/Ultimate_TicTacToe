@@ -46,6 +46,7 @@ io.on('connection', function(socket){
 		// decrement database
 		try {
 			if (socket.room != undefined){
+				notifyRoom('disconnect', socket.room)
 				leave_room(socket.room, socket.id)
 				socket.leave(socket.room);
 			}
@@ -80,6 +81,7 @@ io.on('connection', function(socket){
     	socket.join(roomNumber);
     	console.log('joining room: ' + socket.room);
 		var room = io.nsps['/'].adapter.rooms[roomNumber];
+		notifyRoom('connect', socket.room, room.length)
 
 		if (room.length == 2){
 			if (null_chars == 2){
@@ -171,6 +173,10 @@ function str_to_array(board){
         innerBoard[i] = rows[i].split("\t")
     }
     return innerBoard;
+}
+
+async function notifyRoom(type, room_number, count = 1){
+	io.in(room_number).emit('connection_status', {'type': type, 'count': count})
 }
 
 async function leave_room(room_number, socket_id = ""){
