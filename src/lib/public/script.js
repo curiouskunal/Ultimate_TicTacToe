@@ -886,6 +886,9 @@ function connectToGameRoom(room_number){
 function openHowToPlayPage(){
     window.open("../rules","_blank");
 }
+function goToLobby(){
+    window.open("../","_self");
+}
 
 function isConnectButtonDisabled(user_count){
     return user_count >=2 ;
