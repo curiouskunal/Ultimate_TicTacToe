@@ -28,12 +28,17 @@ var options = {
 };
 
 
-// Initialize swagger-jsdoc -> returns validated swagger spec in json format
-const swaggerSpec = swaggerJSDoc(options);
 
 
 app.use(express.static(__dirname+"/public/"));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+try {
+	// Initialize swagger-jsdoc -> returns validated swagger spec in json format
+	const swaggerSpec = swaggerJSDoc(options);
+	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+} catch (error) {
+	console.log(error)
+}
 
 io.on('connection', function(socket){
 
