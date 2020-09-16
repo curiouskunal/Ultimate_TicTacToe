@@ -22,9 +22,8 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        cd src/lib
         npm install
-        npm run build --if-present
-        npm run test --if-present
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
@@ -32,4 +31,4 @@ jobs:
         app-name: 'ultimatetictactoe'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_55ba90fa228e45138e8a9986c09993f4 }}
-        package: .
+        package: src/lib
