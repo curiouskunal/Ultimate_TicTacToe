@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - ultimatetictactoe
 on:
   push:
     branches:
-      - move-to-db
+      - master
 
 jobs:
   build-and-deploy:
@@ -24,6 +24,7 @@ jobs:
       run: |
         cd src/lib
         npm install
+        cd ../../
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
@@ -31,4 +32,4 @@ jobs:
         app-name: 'ultimatetictactoe'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_55ba90fa228e45138e8a9986c09993f4 }}
-        package: src/lib
+        package: .
