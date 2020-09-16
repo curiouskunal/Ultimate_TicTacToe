@@ -8,37 +8,37 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var dateFormat = require('dateformat');
-const swaggerUi = require('swagger-ui-express');
-const swaggerJSDoc = require('swagger-jsdoc');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerJSDoc = require('swagger-jsdoc');
 const { throws } = require("assert");
 const { exception } = require("console");
 const { response } = require("express");
-const swaggerDefinition = {
-	info: {
-	    // API informations (required)
-	    title: 'Ultimate Tic-Tac-Toe API', // Title (required)
-	    version: '1.0.0', // Version (required)
-	    description: 'An API to all the commands and calls', // Description (optional)
-	}
-};
-var options = {
-  explorer: true,
-  swaggerDefinition,
-  apis: ['server.js'], // <-- not in the definition, but in the options
-};
+// const swaggerDefinition = {
+// 	info: {
+// 	    // API informations (required)
+// 	    title: 'Ultimate Tic-Tac-Toe API', // Title (required)
+// 	    version: '1.0.0', // Version (required)
+// 	    description: 'An API to all the commands and calls', // Description (optional)
+// 	}
+// };
+// var options = {
+//   explorer: true,
+//   swaggerDefinition,
+//   apis: ['server.js'], // <-- not in the definition, but in the options
+// };
 
 
 
 
 app.use(express.static(__dirname+"/public/"));
 
-try {
-	// Initialize swagger-jsdoc -> returns validated swagger spec in json format
-	const swaggerSpec = swaggerJSDoc(options);
-	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-} catch (error) {
-	console.log(error)
-}
+// try {
+// 	// Initialize swagger-jsdoc -> returns validated swagger spec in json format
+// 	const swaggerSpec = swaggerJSDoc(options);
+// 	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// } catch (error) {
+// 	console.log(error)
+// }
 
 io.on('connection', function(socket){
 
