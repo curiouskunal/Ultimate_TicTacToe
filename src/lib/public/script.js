@@ -58,7 +58,7 @@ var startDate = new Date();
 /**
  * @var baseUrl {string} base url for all api calls
  */
-var baseUrl = "http://" + window.location.hostname+":8080/api/"
+var baseUrl = "https://"+window.location.hostname+"/api/"
 /**
  * check and execute scripts when page loads
 */
