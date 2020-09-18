@@ -364,20 +364,17 @@ app.put('/api/createRoom', function(req, res){
 			// add to game database table
 			sql_request('CREATE', `INSERT into game (room_number, board) values('${roomNum}', '')`)
 						.then(result2=>{
+							send_refresh()
 							res.status(200).send({"room number": roomNum, "message": result});
 						})
 						.catch(err=>{
-							res.status(404).send(err);
-						})
-						.finally(() =>{
 							send_refresh()
+							res.status(404).send(err);
 						})
 		})
 		.catch(err=>{
-			res.status(404).send(err)
-		})
-		.finally(() =>{
 			send_refresh()
+			res.status(404).send(err)
 		})
 })
 
@@ -403,24 +400,22 @@ app.delete('/api/closeRoom', function(req, res){
 	if (parameters['room_number'] == 'all'){
 		sql_request('DELETE', `DELETE FROM game; DELETE FROM room_numbers;`)
 			.then(result=>{
+				send_refresh()
 				res.status(200).send(result)
 			})
 			.catch(err=>{
-				res.status(404).send(err)
-			})
-			.finally(() =>{
 				send_refresh()
+				res.status(404).send(err)
 			})
 	}else {
 		sql_request('DELETE', `DELETE FROM game where room_number = '${parameters['room_number']}'; DELETE FROM room_numbers where room_number = '${parameters['room_number']}'`)
 		.then(result=>{
+			send_refresh()
 			res.status(200).send(result);
 		})
 		.catch(err=>{
-			res.status(404).send(err)
-		})
-		.finally(() =>{
 			send_refresh()
+			res.status(404).send(err)
 		})
 	}
 })
@@ -449,20 +444,17 @@ app.post('/api/joinRoom', function(req, res){
 		.then(result=>{
 			sql_request('UPDATE', `UPDATE room_numbers SET users_count = ${result[0].users_count + 1} where room_number = '${parameters['room_number']}'`)
 				.then(result1=>{
+					send_refresh()
 					res.status(200).send(result);
 				})
 				.catch(err=>{
-					res.status(404).send(err)
-				})
-				.finally(() =>{
 					send_refresh()
+					res.status(404).send(err)
 				})
 		})
 		.catch(err=>{
-			res.status(404).send(err)
-		})
-		.finally(() =>{
 			send_refresh()
+			res.status(404).send(err)
 		})
 })
 
