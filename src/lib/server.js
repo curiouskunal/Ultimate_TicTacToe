@@ -485,15 +485,15 @@ app.post('/api/joinRoom', function(req, res){
 */
 app.post('/api/leaveRoom', function(req, res){
 	parameters = req.query;
-	result = leave_room(parameters['room_number'])
-	try{
-		send_refresh()
-		res.status(result[0]).send(result[1])
-	}
-	catch (error){
-		send_refresh()
-		res.status(500).send(error.message);
-	}
+	leave_room(parameters['room_number'])
+		.then(result => {
+			send_refresh()
+			res.status(result[0]).send(result[1])
+		})
+		.catch(error =>{
+			send_refresh()
+			res.status(500).send(error.message);
+		})
 })
 
 /**
