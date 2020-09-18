@@ -252,57 +252,62 @@ async function send_refresh(){
 }
 
 async function sql_request(type, query){
-	let pool = await sql.connect(db_config);
-	let data = await pool.request()
-		.query(query)
-		.catch(err =>{
-			if (err.message.includes("Violation of PRIMARY KEY constraint")){
-				throw("Duplicate Room Number")
-			}else{
-				console.log("ERROR: " + err.message)
+	var request = async function (resolve, reject){
+		let pool = await sql.connect(db_config);
+		let data = await pool.request()
+			.query(query)
+			.catch(err =>{
+				if (err.message.includes("Violation of PRIMARY KEY constraint")){
+					reject("Duplicate Room Number")
+				}else{
+					console.log("ERROR: " + err.message)
+					reject(err.message)
+				}
+			});
+		let result = []
+		if (type == 'GET'){
+			for (let i=0;i<data.rowsAffected;i++){
+				result.push(data.recordset[i]);
 			}
-		});
-	let result = []
-	if (type == 'GET'){
-		for (let i=0;i<data.rowsAffected;i++){
-			result.push(data.recordset[i]);
 		}
-	}
-	else if (type == 'PUT'){
-		if (data.rowsAffected == 1){
-			result = "Created new room"
+		else if (type == 'PUT'){
+			if (data.rowsAffected == 1){
+				result = "Created new room"
+			}
 		}
-	}
-	else if (type == 'DELETE'){
-		if (data.rowsAffected.length >= 2){
-			result = "Deleted the room and game"
+		else if (type == 'DELETE'){
+			if (data.rowsAffected.length >= 2){
+				result = "Deleted the room and game"
+			}
+			else{
+				throw("Room/game not found")
+			}
 		}
-		else{
-			throw("Room/game not found")
+		else if (type == 'UPDATE'){
+			if (data.rowsAffected >= 1){
+				result = ["Updated the room", data]
+			}
+			else{
+				throw("Room not found")
+			}
 		}
-	}
-	else if (type == 'UPDATE'){
-		if (data.rowsAffected >= 1){
-			result = ["Updated the room", data]
+		else if (type == 'CREATE'){
+			if (data.rowsAffected >= 1){
+				result = "Created the game"
+			}
 		}
-		else{
-			throw("Room not found")
+		else if (type == 'POST'){
+			if (data.rowsAffected >= 1){
+				result = "Updated game board"
+			}
 		}
-	}
-	else if (type == 'CREATE'){
-		if (data.rowsAffected >= 1){
-			result = "Created the game"
-		}
-	}
-	else if (type == 'POST'){
-		if (data.rowsAffected >= 1){
-			result = "Updated game board"
-		}
-	}
-	pool.close;
-	sql.close;
+		pool.close;
+		sql.close;
 
-	return result;
+		resolve(result)
+	}
+
+	return new Promise(request)
 }
 
 // http.listen(3000, function(){
