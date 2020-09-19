@@ -858,7 +858,13 @@ function addAvailableGameRow(data){
     var tableRef = document.getElementById('availableGamesTable').getElementsByTagName('tbody')[0];
     var newRow   = tableRef.insertRow(tableRef.rows.length);
   
-    var nameCell  = newRow.insertCell(0);
+    var deleteCell = newRow.insertCell(0);
+    var deleteIcon = "<img class='icon' src='assets/delete.svg' onClick='closeRoom(this)'>";
+    var deleteElement = document.createElement("div");
+    deleteElement.innerHTML = deleteIcon;
+    deleteCell.appendChild(deleteElement);
+    var nameCell  = newRow.insertCell(1);
+    
     var name  = document.createTextNode(data.room_number)
     nameCell.appendChild(name);
 
@@ -867,13 +873,13 @@ function addAvailableGameRow(data){
         playersText += "<img class='icon' src='assets/player.svg'>";
     }
     playersText += "</div>"
-    var playersCell  = newRow.insertCell(1);
+    var playersCell  = newRow.insertCell(2);
     var players  = document.createElement("div");
     players.innerHTML = playersText
     playersCell.appendChild(players);
 
     var connectionText = `<div id='row_${data.room_number}' class= 'button joinButton ${isConnectButtonDisabled(data.users_count)?"disabled":""}' onClick=connectToGameRoom("${data.room_number}")>Join Room</div>`
-    var connectCell  = newRow.insertCell(2);
+    var connectCell  = newRow.insertCell(3);
     var connect = document.createElement("div");
     connect.innerHTML = connectionText
     connectCell.appendChild(connect);
@@ -896,6 +902,17 @@ function isConnectButtonDisabled(user_count){
 
 function resetAvailableGamesTable(){
     $("#availableGamesTableList").empty();
+}
+
+function closeRoom(row){
+    let room_number = row.parentElement.parentElement.parentElement.children[1].innerText;
+    let url = baseUrl + "closeRoom?room_number=" + room_number
+        $.ajax({
+            url: url,
+            method: 'DELETE'
+        }).done(function (data){
+            
+        })
 }
 
 function onHomePageLoad(){
